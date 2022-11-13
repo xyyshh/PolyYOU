@@ -3,19 +3,19 @@
 
     <item
         android:id="@+id/home"
-        android:title=""
+        android:title="home"
         android:icon="@drawable/ic_home"/>
     <item
         android:id="@+id/add"
-        android:title=""
+        android:title="dd"
         android:icon="@drawable/ic_add"/>
     <item
         android:id="@+id/notification"
-        android:title=""
+        android:title="ff"
         android:icon="@drawable/ic_message"/>
     <item
         android:id="@+id/profile"
-        android:title=""
+        android:title="dde"
         android:icon="@drawable/ic_person"/>
 
 </menu>
