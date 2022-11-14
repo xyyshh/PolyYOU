@@ -14,6 +14,7 @@ import android.app.Activity;
 
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ImageView;
 
@@ -46,7 +47,7 @@ public class Home extends AppCompatActivity {
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         View search_input = findViewById(R.id.search_input);
-        ImageView search_icon = findViewById(R.id.search_icon);
+        Button search_icon = findViewById(R.id.button_search);
         TextView type_something___________ = (TextView) findViewById(R.id.type_something);
 
 
