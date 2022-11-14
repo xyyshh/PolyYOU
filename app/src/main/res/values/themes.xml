@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.PolyYOU" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/my_red</item>
-        <item name="colorPrimaryVariant">@color/my_red</item>
+        <item name="colorPrimary">@color/polyu_color</item>
+        <item name="colorPrimaryVariant">@color/polyu_color</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

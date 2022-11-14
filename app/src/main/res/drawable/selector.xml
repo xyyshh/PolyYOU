@@ -3,10 +3,10 @@
 
     <item
         android:state_selected="true"
-        android:color="@color/my_red"/>
+        android:color="@color/polyu_color"/>
 
     <item
         android:state_selected="false"
-        android:color="@color/my_red"/>
+        android:color="@color/polyu_color"/>
 
 </selector>

@@ -1,8 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- post_page strings -->
+
     <string name="app_name">PolyYOU</string>
     <string name="ek_img_content">ExportKit Image</string>
     <string name="login_string">Login</string>
     <string name="sign_up_string">Sign Up</string>
     <string name="slogan_string">Express yourself to PolyU</string>
     <string name="intro_string">Let your voice be heard on the App without restrictions!\n- Solve daily life problems\n- Second-hand trade inside PolyU\n- Joint takeaway order\n- More Functions are going on...</string>
+    <string name="comment_number_string">7</string>
+    <string name="post_content_string">Hey Guys! This restaurant is really ...</string>
+    <string name="time_string">2022-11-10 14:20</string>
+    <string name="user_name_string">Kazuma Mitchell</string>
+    <string name="post_title_string">Take away from Two Greens!</string>
+    <string name="type_something____________string">Type something...........</string>
 </resources>
