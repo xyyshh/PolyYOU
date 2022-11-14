@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,4 +10,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="post_area_ek1_color">#F3F3F3</color>
+    <color name="polyu_color">#750015</color>
+    <color name="time_color">#6A6A6A</color>
+    <color name="psw_input_color">#F2F2F2</color>
+    <color name="type_something____________color">#C4C4C4</color>
 </resources>

@@ -1,27 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.Home">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Home"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Home"-->
+<!--        android:textSize="50sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_centerInParent="true"/>-->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/title_guideline_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/title_guideline_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+        <RelativeLayout
+            android:id="@+id/page_post_page_ek1"
+            app:layout_constraintLeft_toLeftOf="@id/title_guideline_left"
+            app:layout_constraintRight_toRightOf="@id/title_guideline_right"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+<!--            <RelativeLayout android:id="@+id/content_container"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent" >-->
+
+                <RelativeLayout
+                    android:id="@+id/searching"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    >
+<!--                    app:layout_constrainedWidth="true">-->
+
+                    <View
+                        android:id="@+id/search_input"
+                        android:background="@drawable/psw_input_shape"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp" />
+
+                    <ImageView
+                        android:id="@+id/search_icon"
+                        android:src="@drawable/search_icon"
+                        android:contentDescription="search_icon"
+                        android:layout_marginStart="350dp"
+                        android:layout_marginTop="11dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp" />
+
+                    <TextView
+                        android:id="@+id/type_something"
+                        android:fontFamily="Roboto"
+                        android:alpha="0.5"
+                        android:textSize="15sp"
+                        android:textColor="@color/type_something____________color"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="9dp"
+                        android:layout_width="174.5dp"
+                        android:layout_height="28.5dp"
+                        android:text="@string/type_something____________string"
+                        />
+
+                </RelativeLayout>
+
+
+
+
+                <!--            <View   android:id="@+id/_bg__post_page_ek2"-->
+<!--                android:background="@drawable/_bg__post_page_ek2_shape"-->
+<!--                android:layout_marginStart="0dp"-->
+<!--                android:layout_marginTop="0dp"-->
+<!--                android:layout_width="360dp"-->
+<!--                android:layout_height="800dp" />-->
+
+
+            <RelativeLayout
+                android:id="@+id/post_area"
+                android:layout_marginTop="80dp"
+                android:layout_marginStart="17dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <View
+                    android:id="@+id/post_area_ek1"
+                    android:background="@drawable/post_area_ek1_shape"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_width="380dp"
+                    android:layout_height="120dp" />
+
+                <TextView
+                    android:id="@+id/post_title"
+                    android:fontFamily="Poppins"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_width="292.5dp"
+                    android:layout_height="33.5dp"
+                    android:text="@string/post_title_string"
+                    />
+                <ImageView
+                    android:id="@+id/user_profile_photo"
+                    android:src="@drawable/user_profile_photo"
+                    android:contentDescription="user_profile_photo"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="35dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" />
+
+                <TextView
+                    android:id="@+id/time"
+                    android:fontFamily="Poppins"
+                    android:layout_gravity="center_horizontal|center"
+                    android:gravity="center"
+                    android:textColor="@color/time_color"
+                    android:layout_marginLeft="200dp"
+                    android:layout_marginTop="31dp"
+                    android:layout_width="85dp"
+                    android:layout_height="22dp"
+                    android:text="@string/time_string"
+                    />
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:fontFamily="Poppins"
+                    android:layout_gravity="center_horizontal|center"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="31dp"
+                    android:layout_width="200dp"
+                    android:layout_height="22dp"
+                    android:text="@string/user_name_string"
+                    />
+
+                <TextView android:id="@+id/post_content"
+                    android:fontFamily="Roboto"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="53dp"
+                    android:layout_marginTop="53dp"
+                    android:layout_width="300dp"
+                    android:layout_height="19dp"
+                    android:text="@string/post_content_string"
+                    />
+
+                <TextView
+                    android:id="@+id/comment_number"
+                    android:fontFamily="Roboto"
+                    android:textStyle="bold"
+                    android:textColor="@color/polyu_color"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginTop="10px"
+                    android:layout_width="275dp"
+                    android:layout_height="19dp"
+                    android:text="@string/comment_number_string"
+                    />
+
+                <ImageView android:id="@+id/comment_icon"
+                    android:src="@drawable/comment_icon"
+                    android:contentDescription="comment_icon"
+                    android:layout_marginLeft="276dp"
+                    android:layout_marginTop="70dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp" />
+
+            </RelativeLayout>
+
+<!--        </RelativeLayout>-->
+    </RelativeLayout>
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bottom_navigation"
-        app:itemBackground="@color/purple_500"
+        app:itemBackground="@color/polyu_color"
         app:itemTextColor="@drawable/selector"
         app:itemIconTint="@drawable/selector"
         app:menu="@menu/menu_navigation"
         android:layout_alignParentBottom="true"/>
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
