@@ -10,4 +10,6 @@
     <string name="user_name_string">Kazuma Mitchell</string>
     <string name="post_title_string">Take away from Two Greens!</string>
     <string name="type_something____________string">Type something...........</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
 </resources>
