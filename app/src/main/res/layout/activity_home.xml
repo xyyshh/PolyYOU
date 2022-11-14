@@ -14,42 +14,57 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true">
-            <RelativeLayout
-                android:id="@+id/searching"
-                android:layout_width="360dp"
-                android:layout_height="40dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                >
-                <View
-                    android:id="@+id/search_input"
-                    android:background="@drawable/psw_input_shape"
-                    android:layout_height="35dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_width="350dp"
-                    />
-                <Button
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:id="@+id/button_search"
-                    android:background="@drawable/search_icon"
-                    android:layout_alignEnd="@id/search_input"
-                    android:layout_centerVertical="true"/>
-                <TextView
-                    android:id="@+id/type_something"
-                    android:fontFamily="Roboto"
-                    android:alpha="0.5"
-                    android:textSize="15sp"
-                    android:textColor="@color/type_something____________color"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="9dp"
-                    android:layout_width="174.5dp"
-                    android:layout_height="28.5dp"
-                    android:text="@string/type_something____________string"
-                    />
-            </RelativeLayout>
 
+            <Button
+                android:id="@+id/sh_button"
+                android:layout_width="88dp"
+                android:layout_height="29dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="65dp"
+                android:background="@drawable/filter_button"
+                android:stateListAnimator="@null"
+                android:text="Secondhand"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                tools:ignore="HardcodedText,SpUsage" />
+
+            <Button
+                android:id="@+id/help_button"
+                android:layout_width="88dp"
+                android:layout_height="29dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="false"
+                android:layout_centerVertical="false"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="65dp"
+                android:background="@drawable/filter_button"
+                android:stateListAnimator="@null"
+                android:text="Help"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                tools:ignore="HardcodedText,SpUsage" />
+
+            <Button
+                android:id="@+id/ta_button"
+                android:layout_width="88dp"
+                android:layout_height="29dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="17dp"
+                android:layout_marginTop="65dp"
+                android:background="@drawable/filter_button"
+                android:stateListAnimator="@null"
+                android:text="Takeaway"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,SpUsage" />
 
             <RelativeLayout
                 android:id="@+id/post_area"
@@ -90,7 +105,6 @@
 
                     <TextView
                         android:id="@+id/user_name"
-                        android:fontFamily="Poppins"
                         android:layout_gravity="center_horizontal|center"
                         android:gravity="start"
                         android:textColor="@color/black"
@@ -105,7 +119,6 @@
                         />
                     <TextView
                         android:id="@+id/time"
-                        android:fontFamily="Poppins"
                         android:layout_gravity="center_horizontal|center"
                         android:gravity="start"
                         android:layout_marginTop="40dp"
@@ -119,7 +132,6 @@
                         tools:ignore="RtlHardcoded" />
 
                     <TextView android:id="@+id/post_content"
-                        android:fontFamily="Roboto"
                         android:textColor="@color/black"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="65dp"
@@ -141,7 +153,6 @@
                         android:layout_height="15dp" />
                     <TextView
                         android:id="@+id/comment_number"
-                        android:fontFamily="Roboto"
                         android:textColor="@color/polyu_color"
                         android:layout_toEndOf="@id/comment_icon"
                         android:layout_marginTop="90dp"
@@ -167,6 +178,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:itemBackground="@color/white"
+        android:background="@color/white"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:menu="@menu/menu_navigation" />
