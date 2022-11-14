@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import comp4342.android.polyyou.R;
 
-public class Login extends AppCompatActivity {
+public class Welcome extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_welcome);
     }
 }

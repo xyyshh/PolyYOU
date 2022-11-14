@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.Login">
+    tools:context=".activity.Welcome">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="102dp"
             android:text="@string/slogan_string"
-            android:textColor="@color/my_red"
+            android:textColor="@color/polyu_color"
             android:textSize="36sp"
             android:textStyle="bold" />
 
