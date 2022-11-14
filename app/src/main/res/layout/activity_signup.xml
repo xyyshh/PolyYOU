@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.Signup">
+
+    <Button
+        android:id="@+id/nextbutton"
+        android:layout_width="306dp"
+        android:layout_height="49dp"
+        android:layout_centerInParent="false"
+        android:layout_centerVertical="false"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="54dp"
+        android:background="@drawable/red_next_button"
+        android:stateListAnimator="@null"
+        android:text="Next"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText,SpUsage"
+        android:textSize="18dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="55dp"
+        android:src="@drawable/ic_left"
+        android:contentDescription="@string/back"
+        app:tint="@color/black"/>
+
+    <TextView
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="110dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Personal Information"
+        android:textColor="@color/polyu_color"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
+
+
+    <RelativeLayout
+        android:id="@+id/nameinput"
+        android:layout_width="306dp"
+        android:layout_height="49dp"
+        android:layout_centerInParent="false"
+        android:layout_centerVertical="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="193dp"
+        android:background="@drawable/narrowinput"
+        android:radius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:layout_alignStart="@+id/nameinput"
+        android:layout_marginTop="155dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Name"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_alignStart="@+id/nameinput"
+        android:layout_marginTop="176dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You cannot change the name after successful registration."
+        android:textColor="@color/time_color"
+        android:textSize="10sp" />
+
+
+    <RelativeLayout
+        android:id="@+id/addressinput"
+        android:layout_width="306dp"
+        android:layout_height="49dp"
+        android:layout_centerInParent="false"
+        android:layout_centerVertical="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="293dp"
+        android:background="@drawable/narrowinput"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:layout_alignStart="@+id/addressinput"
+        android:layout_marginTop="255dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email Address"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_alignStart="@+id/addressinput"
+        android:layout_marginTop="276dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please Input your PolyU email."
+        android:textColor="@color/time_color"
+        android:textSize="10sp" />
+
+
+    <RelativeLayout
+        android:id="@+id/create_password_input"
+        android:layout_width="306dp"
+        android:layout_height="49dp"
+        android:layout_centerInParent="false"
+        android:layout_centerVertical="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="402dp"
+        android:background="@drawable/narrowinput"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:layout_alignStart="@+id/create_password_input"
+        android:layout_marginTop="364dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_alignStart="@+id/create_password_input"
+        android:layout_marginTop="385dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="8-16 characters; contain numbers and letters; no space."
+        android:textColor="@color/time_color"
+        android:textSize="10sp" />
+
+    <RelativeLayout
+        android:id="@+id/confirm_password_input"
+        android:layout_width="306dp"
+        android:layout_height="49dp"
+        android:layout_centerInParent="false"
+        android:layout_centerVertical="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="492dp"
+        android:background="@drawable/narrowinput"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:layout_alignStart="@+id/confirm_password_input"
+        android:layout_marginTop="472dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <RelativeLayout
+        android:id="@+id/otp_input"
+        android:layout_width="306dp"
+        android:layout_height="49dp"
+        android:layout_centerInParent="false"
+        android:layout_centerVertical="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="582dp"
+        android:background="@drawable/narrowinput"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:layout_alignStart="@+id/otp_input"
+        android:layout_marginTop="562dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OTP sent"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+</RelativeLayout>
