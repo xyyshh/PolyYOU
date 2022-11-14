@@ -51,6 +51,7 @@
         app:itemTextColor="@drawable/selector"
         app:itemIconTint="@drawable/selector"
         app:menu="@menu/menu_navigation"
+        android:background="@color/white"
         android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

@@ -41,7 +41,6 @@ public class Welcome extends AppCompatActivity {
     private void toLoginActivity() {
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
-        finish();
     }
 
     private void toSignUpActivity() {
