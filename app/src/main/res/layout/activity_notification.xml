@@ -9,10 +9,39 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="false"
+        android:layout_centerVertical="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="69dp"
         android:text="Notification"
-        android:textSize="50sp"
+        android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_centerInParent="true"/>
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="113dp"
+        android:text="New comments in Your Post"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="377dp"
+        android:text="New comments in Your Post"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        />
+
+    <!--        android:layout_centerInParent="true" -->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
