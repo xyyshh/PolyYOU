@@ -41,6 +41,9 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        Intent intent_welcome = new Intent(this, Welcome.class);
+        startActivity(intent_welcome);
         //setContentView(R.layout.post_page);
 
 
