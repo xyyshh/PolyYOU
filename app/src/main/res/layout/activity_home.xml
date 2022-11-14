@@ -29,13 +29,15 @@
                     android:layout_centerVertical="true"
                     android:layout_width="350dp"
                     />
+
                 <Button
+                    android:id="@+id/button_search"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
-                    android:id="@+id/button_search"
-                    android:background="@drawable/search_icon"
                     android:layout_alignEnd="@id/search_input"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/search_icon"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
                 <TextView
                     android:id="@+id/type_something"
                     android:fontFamily="Roboto"
