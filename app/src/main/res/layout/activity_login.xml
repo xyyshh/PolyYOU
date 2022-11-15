@@ -8,7 +8,7 @@
     tools:context=".activity.Login">
 
     <Button
-        android:id="@+id/nextbutton"
+        android:id="@+id/button_confirm_login"
         android:layout_width="306dp"
         android:layout_height="49dp"
         android:layout_centerInParent="false"
@@ -18,20 +18,33 @@
         android:layout_marginBottom="54dp"
         android:background="@drawable/red_next_button"
         android:stateListAnimator="@null"
-        android:text="Next"
+        android:text="Confirm Log In"
         android:textColor="@color/white"
         android:textAllCaps="false"
         tools:ignore="HardcodedText,SpUsage"
         android:textSize="18dp" />
 
-    <ImageView
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="55dp"
-        android:src="@drawable/ic_left"
-        android:contentDescription="@string/back"
-        app:tint="@color/black"/>
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="55dp"
+            android:src="@drawable/ic_left"
+            android:contentDescription="@string/back"
+            app:tint="@color/black"/>
+
+        <Button
+            android:id="@+id/button_login_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="55dp"
+            android:background="@android:color/transparent"
+            tools:ignore="InvalidId,SpeakableTextPresentCheck" />
+    </RelativeLayout>
 
     <TextView
         android:layout_marginStart="33dp"
@@ -52,22 +65,35 @@
         android:layout_centerVertical="false"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="175dp"
-        android:background="@drawable/input_blanket"
+        android:background="@drawable/narrowinput"
         android:radius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/email"
-            android:layout_alignStart="@+id/emailinput"
-            android:layout_marginTop="155dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+        <EditText
+            android:id="@+id/edittext_login_email"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12sp"
+            android:background="@null"
+            android:inputType="text"
+            android:hint="Please enter a PolyU email address"
+            style="@style/Hint"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_alignStart="@+id/emailinput"
+        android:layout_marginTop="155dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
 
     <RelativeLayout
         android:id="@+id/passwordinput"
@@ -77,11 +103,22 @@
         android:layout_centerVertical="false"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="273dp"
-        android:background="@drawable/input_blanket"
+        android:background="@drawable/narrowinput"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/edittext_login_password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12sp"
+            android:background="@null"
+            android:inputType="textWebPassword"
+            style="@style/Hint"/>
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/password"
@@ -93,4 +130,4 @@
         android:textColor="@color/black"
         android:textSize="14sp" />
 
-    </RelativeLayout>
+</RelativeLayout>
