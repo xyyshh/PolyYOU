@@ -49,10 +49,6 @@ public class Home extends AppCompatActivity {
 
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        View search_input = findViewById(R.id.search_input);
-        Button search_icon = findViewById(R.id.button_search);
-        TextView type_something___________ = (TextView) findViewById(R.id.type_something);
-
 
 //
 //        // Set that home is selected
