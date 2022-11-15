@@ -4,6 +4,7 @@ public class User {
     private String name;
     private String id;
     private String headImage;
+    private String password;
 
     public User(String name, String id) {
         this.name = name;
@@ -32,5 +33,23 @@ public class User {
 
     public String getHeadImage() {
         return this.headImage;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", headImage='" + headImage + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

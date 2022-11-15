@@ -8,7 +8,7 @@
     tools:context=".activity.Signup">
 
     <Button
-        android:id="@+id/nextbutton"
+        android:id="@+id/button_signup_1"
         android:layout_width="306dp"
         android:layout_height="49dp"
         android:layout_centerInParent="false"
@@ -24,14 +24,27 @@
         tools:ignore="HardcodedText,SpUsage"
         android:textSize="18dp" />
 
-    <ImageView
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="55dp"
-        android:src="@drawable/ic_left"
-        android:contentDescription="@string/back"
-        app:tint="@color/black"/>
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="55dp"
+            android:src="@drawable/ic_left"
+            android:contentDescription="@string/back"
+            app:tint="@color/black"/>
+        <Button
+            android:id="@+id/button_sign_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="55dp"
+            android:background="@android:color/transparent"
+            tools:ignore="InvalidId" />
+    </RelativeLayout>
+
 
     <TextView
         android:layout_marginStart="33dp"
@@ -57,7 +70,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
+        <EditText
+            android:id="@+id/edittext_sign_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12sp"
+            android:background="@null"
+            android:inputType="text"
+            style="@style/Hint"/>
+    </RelativeLayout>
 
     <TextView
         android:layout_alignStart="@+id/nameinput"
@@ -90,7 +112,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
+        <EditText
+            android:id="@+id/edittext_sign_email"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12sp"
+            android:background="@null"
+            android:inputType="text"
+            android:hint="Please enter a PolyU email address"
+            style="@style/Hint"/>
+    </RelativeLayout>
+
 
     <TextView
         android:layout_alignStart="@+id/addressinput"
@@ -123,7 +156,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
+        <EditText
+            android:id="@+id/edittext_sign_password1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12sp"
+            android:background="@null"
+            android:inputType="text"
+            style="@style/Hint"/>
+    </RelativeLayout>
 
     <TextView
         android:layout_alignStart="@+id/create_password_input"
@@ -155,37 +197,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
+        <EditText
+            android:id="@+id/edittext_sign_password2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12sp"
+            android:background="@null"
+            android:inputType="text"
+            style="@style/Hint"/>
+    </RelativeLayout>
 
     <TextView
         android:layout_alignStart="@+id/confirm_password_input"
         android:layout_marginTop="472dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Password"
-        android:textColor="@color/black"
-        android:textSize="14sp" />
-
-    <RelativeLayout
-        android:id="@+id/otp_input"
-        android:layout_width="306dp"
-        android:layout_height="49dp"
-        android:layout_centerInParent="false"
-        android:layout_centerVertical="false"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="582dp"
-        android:background="@drawable/input_blanket"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <TextView
-        android:layout_alignStart="@+id/otp_input"
-        android:layout_marginTop="562dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OTP sent"
+        android:text="Confirm Password"
         android:textColor="@color/black"
         android:textSize="14sp" />
 
