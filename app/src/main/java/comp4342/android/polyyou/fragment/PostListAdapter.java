@@ -11,7 +11,8 @@ import java.util.List;
 
 import comp4342.android.polyyou.model.Post;
 
-public class PostListAdapter extends BaseAdapter implements AdapterView.OnItemLongClickListener {
+//public class PostListAdapter extends BaseAdapter implements AdapterView.OnItemLongClickListener {
+public class PostListAdapter extends BaseAdapter{
 
     /**
      * The application Context in which this PostListAdapter is being used.
@@ -23,10 +24,10 @@ public class PostListAdapter extends BaseAdapter implements AdapterView.OnItemLo
      */
     private List<Post> m_postList;
 
-    /**
-     * The position in the dataset of the currently selected Post.
-     */
-    private int m_nSelectedPosition;
+//    /**
+//     * The position in the dataset of the currently selected Post.
+//     */
+//    private int m_nSelectedPosition;
 
     /**
      * Parameterized constructor that takes in the application Context in which
@@ -45,20 +46,20 @@ public class PostListAdapter extends BaseAdapter implements AdapterView.OnItemLo
         //TODO
         m_context = context;
         m_postList = postList;
-        m_nSelectedPosition = Adapter.NO_SELECTION;
+//        m_nSelectedPosition = Adapter.NO_SELECTION;
     }
 
-    /**
-     * Accessor method for retrieving the position in the dataset of the
-     * currently selected Post.
-     *
-     * @return an integer representing the position in the dataset of the
-     *         currently selected Post.
-     */
-    public int getSelectedPosition() {
-        //TODO
-        return m_nSelectedPosition;
-    }
+//    /**
+//     * Accessor method for retrieving the position in the dataset of the
+//     * currently selected Post.
+//     *
+//     * @return an integer representing the position in the dataset of the
+//     *         currently selected Post.
+//     */
+//    public int getSelectedPosition() {
+//        //TODO
+//        return m_nSelectedPosition;
+//    }
 
     @Override
     public int getCount() {
@@ -85,10 +86,10 @@ public class PostListAdapter extends BaseAdapter implements AdapterView.OnItemLo
         PostView postView= new PostView(m_context,post);
         return postView;
     }
-
-    public boolean onItemLongClick(AdapterView parent,View view, int position, long id){
-
-        m_nSelectedPosition=position;
-        return false;
-    }
+//
+//    public boolean onItemLongClick(AdapterView parent,View view, int position, long id){
+//
+//        m_nSelectedPosition=position;
+//        return false;
+//    }
 }

@@ -21,10 +21,10 @@ public class PostList extends Activity{
     /** Contains the list Posts the Activity will present to the user. */
     protected ArrayList<Post> m_arrPostList = new ArrayList<Post>();
 
-    /**
-     * Contains the selected list of Posts the Activity will present to the user.
-     **/
-    protected ArrayList<Post> m_arrSelectedPostList;
+//    /**
+//     * Contains the selected list of Posts the Activity will present to the user.
+//     **/
+//    protected ArrayList<Post> m_arrSelectedPostList;
 
     /**
      * Adapter used to bind an AdapterView to List of Posts.
