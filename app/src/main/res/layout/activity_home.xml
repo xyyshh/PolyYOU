@@ -8,63 +8,75 @@
     android:layout_height="match_parent"
     tools:context=".activity.Home">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="false"
+        android:layout_centerVertical="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Home"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
 
         <RelativeLayout
             android:id="@+id/page_post_page_ek1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true">
+
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="65dp"
+            android:layout_width="327dp"
+            android:layout_height="48dp"
+            android:layout_centerInParent="false"
+            android:layout_centerVertical="false"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="65dp">
+
+
 
             <Button
                 android:id="@+id/sh_button"
                 android:layout_width="88dp"
-                android:layout_height="29dp"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="17dp"
-                android:layout_marginTop="65dp"
+                android:layout_height="48dp"
                 android:background="@drawable/filter_button"
                 android:stateListAnimator="@null"
                 android:text="Secondhand"
                 android:textStyle="bold"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="10dp"
+                android:textSize="14dp"
                 tools:ignore="HardcodedText,SpUsage" />
 
             <Button
                 android:id="@+id/help_button"
                 android:layout_width="88dp"
-                android:layout_height="29dp"
+                android:layout_height="48dp"
                 android:layout_alignParentTop="true"
-                android:layout_centerInParent="false"
-                android:layout_centerVertical="false"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="65dp"
                 android:background="@drawable/filter_button"
                 android:stateListAnimator="@null"
                 android:text="Help"
                 android:textStyle="bold"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="10dp"
+                android:textSize="14dp"
                 tools:ignore="HardcodedText,SpUsage" />
 
             <Button
                 android:id="@+id/ta_button"
                 android:layout_width="88dp"
-                android:layout_height="29dp"
-                android:layout_alignParentEnd="true"
+                android:layout_height="48dp"
                 android:layout_alignParentTop="true"
-                android:layout_marginEnd="17dp"
-                android:layout_marginTop="65dp"
+                android:layout_alignParentEnd="true"
                 android:background="@drawable/filter_button"
                 android:stateListAnimator="@null"
                 android:text="Takeaway"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="10dp"
+                android:textSize="14dp"
                 android:textStyle="bold"
                 tools:ignore="HardcodedText,SpUsage" />
+        </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/post_area"
@@ -169,7 +181,7 @@
 
 
 <!--        </RelativeLayout>-->
-    </RelativeLayout>
+
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -184,4 +196,3 @@
         app:menu="@menu/menu_navigation" />
 
 </RelativeLayout>
-<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
