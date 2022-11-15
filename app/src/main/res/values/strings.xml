@@ -16,4 +16,9 @@
     <string name="type_something____________string">Type something...........</string>
     <string name="next">Next</string>
     <string name="back">Back</string>
+    <string-array name="postList">
+        <item>A small boy swallowed some coins and was taken to a hospital. When his grandmother telephoned to ask how he was a nurse said, \'No change yet\'.</item>
+        <item>Cartoonist found dead in home. Details are sketchy.</item>
+        <item>I wondered why the baseball was getting bigger. Then it hit me.</item>
+    </string-array>
 </resources>

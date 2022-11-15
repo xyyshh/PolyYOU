@@ -1,4 +1,4 @@
-package comp4342.android.polyyou.fragment;
+package comp4342.android.polyyou.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,6 +12,8 @@ public class Post {
     private String m_strPostTitle;
     private String m_strUserName;
     private String m_strPostContent;
+    private String m_strProfilePhotoAddress;
+    private String m_strPhotoAddress;
     private String m_strTime;
 
 
@@ -23,16 +25,20 @@ public class Post {
         this.m_strPostTitle = new String("");
         this.m_strUserName = new String ("");
         this.m_strPostContent = new String("");
-        m_commentNum = 0;
+        this.m_strProfilePhotoAddress = new String("");
+        this.m_strPhotoAddress = new String("");
+        this.m_commentNum = 0;
     }
 
 
-    public Post(String strPostTitle, String strUserName, String strPostContent, int commentNum) {
+    public Post(String strTime, String strPostTitle, String strUserName, String strProfilePhotoAddress, String strPostContent, String strPhotoAddress, int commentNum) {
         m_strPostTitle = strPostTitle;
         m_strUserName = strUserName;
         m_strPostContent = strPostContent;
         m_commentNum = commentNum;
-        setM_strTime();
+        m_strProfilePhotoAddress = strProfilePhotoAddress;
+        m_strPhotoAddress = strPhotoAddress;
+        setM_strTime(strTime);
 
     }
 
@@ -50,27 +56,32 @@ public class Post {
         return m_commentNum;
     }
     public String getM_strTime(){return m_strTime;}
+    public String getM_strProfilePhotoAddress(){return m_strProfilePhotoAddress; }
+    public String getM_strPhotoAddress(){return m_strPhotoAddress; }
+
 
 
     public void setM_strPostTitle(String str) {m_strPostTitle=str;}
     public void setM_strPostContent(String str) {m_strPostContent =str;}
     public void setM_strUserName(String str) {m_strUserName = str;}
     public void setM_commentNum(int num) {m_commentNum = num;}
-    public void setM_strTime(){
-        m_strTime = dateToStamp(System.currentTimeMillis());
+    public void setM_strProfilePhotoAddress(String str){m_strProfilePhotoAddress = str; }
+    public void setM_strTime(String str){
+//        m_strTime = dateToStamp(System.currentTimeMillis());
+        m_strTime = str;
     }
 
-    public String dateToStamp(long s) {
-        String res;
-        try {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date date = new Date(s);
-            res = simpleDateFormat.format(date);
-        } catch (Exception e) {
-            return "";
-        }
-        return res;
-    }
+//    public String dateToStamp(long s) {
+//        String res;
+//        try {
+//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//            Date date = new Date(s);
+//            res = simpleDateFormat.format(date);
+//        } catch (Exception e) {
+//            return "";
+//        }
+//        return res;
+//    }
 
 
     /**

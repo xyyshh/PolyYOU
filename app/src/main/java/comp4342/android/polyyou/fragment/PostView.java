@@ -1,17 +1,15 @@
 package comp4342.android.polyyou.fragment;
 
 import android.content.Context;
-import android.graphics.drawable.Icon;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
 import comp4342.android.polyyou.R;
+import comp4342.android.polyyou.model.Post;
 
 public class PostView extends LinearLayout{
     private Post post;
@@ -59,9 +57,9 @@ public class PostView extends LinearLayout{
         collapsePostView();
     }
 
-    public PostView(Context context) {
-        super(context);
-    }
+//    public PostView(Context context) {
+//        super(context);
+//    }
 
     /**
      * Mutator method for changing the Joke object this View displays. This View
@@ -72,7 +70,6 @@ public class PostView extends LinearLayout{
      */
     public void setPost(Post post) {
         // TODO
-        post = post;
         post_title.setText(post.getM_commentNum());
 
         post_title.setTextSize(23);
