@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import comp4342.android.polyyou.R;
+import comp4342.android.polyyou.utils.Str;
+import comp4342.android.polyyou.utils.T;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,6 +22,7 @@ public class Login extends AppCompatActivity {
         private Button btnLoginBack;
         private EditText etEmail;
         private EditText etPassword;
+        private Button btnConfirmLogin;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,20 @@ public class Login extends AppCompatActivity {
                                 backToWelcome();
                         }
                 });
+
+                btnConfirmLogin.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                                String email = etEmail.getText().toString();
+                                String password = etPassword.getText().toString();
+                                if(!Str.isValidEmail(email)) {
+                                        T.showToast(Login.this, "Please enter a polyu email address");  return;
+                                }
+                                else if(password.isEmpty()) {
+                                        T.showToast(Login.this, "Password cannot be empty");  return;
+                                }
+                        }
+                });
         }
 
         private void backToWelcome() {
@@ -47,5 +64,6 @@ public class Login extends AppCompatActivity {
                 btnLoginBack = findViewById(R.id.button_login_back);
                 etEmail = findViewById(R.id.edittext_login_email);
                 etPassword = findViewById(R.id.edittext_login_password);
+                btnConfirmLogin = findViewById(R.id.button_login);
         }
 }
