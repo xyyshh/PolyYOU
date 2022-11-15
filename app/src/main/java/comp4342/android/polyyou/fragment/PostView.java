@@ -35,7 +35,7 @@ public class PostView extends LinearLayout{
         super(context);
         // TODO
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.activity_home, this, true);
+        inflater.inflate(R.layout.fragment_post, this, true);
 
         post_title = (TextView) findViewById(R.id.title);
         user_name = (TextView) findViewById(R.id.user_name);
@@ -83,19 +83,19 @@ public class PostView extends LinearLayout{
 
     }
 
-    /**
-     * This method encapsulates the logic necessary to update this view so that
-     * it displays itself in its "Expanded" form:
-     * 	- Shows the complete text of the joke.
-     *  - Brings the RadioGroup of rating Buttons back into view.
-     */
-    private void expandPostView() {
-        // TODO
-        post_content.setSingleLine(false);
-//        m_vwLikeGroup.setVisibility(View.VISIBLE);
-        post_content.setPadding(1,1,1,16);
-        requestLayout();
-    }
+//    /**
+//     * This method encapsulates the logic necessary to update this view so that
+//     * it displays itself in its "Expanded" form:
+//     * 	- Shows the complete text of the joke.
+//     *  - Brings the RadioGroup of rating Buttons back into view.
+//     */
+//    private void expandPostView() {
+//        // TODO
+//        post_content.setSingleLine(false);
+////        m_vwLikeGroup.setVisibility(View.VISIBLE);
+//        post_content.setPadding(1,1,1,16);
+//        requestLayout();
+//    }
 
     /**
      * This method encapsulates the logic necessary to update this view so that
