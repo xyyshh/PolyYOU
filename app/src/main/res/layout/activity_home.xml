@@ -20,61 +20,48 @@
         android:textStyle="bold"
         android:textColor="@color/black" />
 
-        <RelativeLayout
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="65dp"
-            android:layout_width="327dp"
+    <RadioGroup
+        android:id="@+id/rg_main"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="65dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/sh_filter_button"
+            android:layout_width="88dp"
             android:layout_height="48dp"
-            android:layout_centerInParent="false"
-            android:layout_centerVertical="false"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="65dp">
+            android:button="@null"
+            android:gravity="center"
+            android:background="@drawable/filter_button"
+            android:text="Secondhand"
+            android:textStyle="bold"
+            android:layout_marginStart="0dp"/>
 
+        <RadioButton
+            android:id="@+id/help_filter_button"
+            android:layout_width="88dp"
+            android:layout_height="48dp"
+            android:button="@null"
+            android:gravity="center"
+            android:background="@drawable/filter_button"
+            android:text="Help"
+            android:textStyle="bold"
+            android:layout_marginStart="31dp"/>
 
-
-            <Button
-                android:id="@+id/sh_button"
-                android:layout_width="88dp"
-                android:layout_height="48dp"
-                android:background="@drawable/filter_button"
-                android:stateListAnimator="@null"
-                android:text="Secondhand"
-                android:textStyle="bold"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="14dp"
-                tools:ignore="HardcodedText,SpUsage" />
-
-            <Button
-                android:id="@+id/help_button"
-                android:layout_width="88dp"
-                android:layout_height="48dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/filter_button"
-                android:stateListAnimator="@null"
-                android:text="Help"
-                android:textStyle="bold"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="14dp"
-                tools:ignore="HardcodedText,SpUsage" />
-
-            <Button
-                android:id="@+id/ta_button"
-                android:layout_width="88dp"
-                android:layout_height="48dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:background="@drawable/filter_button"
-                android:stateListAnimator="@null"
-                android:text="Takeaway"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="14dp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText,SpUsage" />
-        </RelativeLayout>
+        <RadioButton
+            android:id="@+id/ta_filter_button"
+            android:layout_width="88dp"
+            android:layout_height="48dp"
+            android:button="@null"
+            android:gravity="center"
+            android:background="@drawable/filter_button"
+            android:text="Takeaway"
+            android:textStyle="bold"
+            android:layout_marginStart="31dp"/>
+    </RadioGroup>
 
 <!--            <RelativeLayout-->
 <!--                android:id="@+id/post_area"-->

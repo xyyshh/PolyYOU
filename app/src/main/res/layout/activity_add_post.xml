@@ -18,6 +18,7 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         />
+
     <RadioGroup
         android:id="@+id/rg_main"
         android:layout_width="wrap_content"
@@ -50,7 +51,7 @@
             android:layout_marginStart="31dp"/>
 
         <RadioButton
-            android:id="@+id/rb_recite"
+            android:id="@+id/ta_button"
             android:layout_width="88dp"
             android:layout_height="48dp"
             android:button="@null"
@@ -61,64 +62,19 @@
             android:layout_marginStart="31dp"/>
     </RadioGroup>
 
-<!--    <RelativeLayout-->
-<!--        android:layout_alignParentTop="true"-->
-<!--        android:layout_marginStart="65dp"-->
-<!--        android:layout_width="327dp"-->
-<!--        android:layout_height="48dp"-->
-<!--        android:layout_centerInParent="false"-->
-<!--        android:layout_centerVertical="false"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_marginTop="65dp">-->
 
-
-
-<!--        <Button-->
-<!--            android:id="@+id/sh_button"-->
-<!--            android:layout_width="88dp"-->
-<!--            android:layout_height="48dp"-->
-<!--            android:background="@drawable/filter_button"-->
-<!--            android:stateListAnimator="@null"-->
-<!--            android:text="Secondhand"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textAllCaps="false"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="14dp"-->
-<!--            tools:ignore="HardcodedText,SpUsage" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/help_button"-->
-<!--            android:layout_width="88dp"-->
-<!--            android:layout_height="48dp"-->
-<!--            android:layout_alignParentTop="true"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:background="@drawable/filter_button"-->
-<!--            android:stateListAnimator="@null"-->
-<!--            android:text="Help"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textAllCaps="false"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="14dp"-->
-<!--            tools:ignore="HardcodedText,SpUsage" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/ta_button"-->
-<!--            android:layout_width="88dp"-->
-<!--            android:layout_height="48dp"-->
-<!--            android:layout_alignParentTop="true"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:background="@drawable/filter_button"-->
-<!--            android:stateListAnimator="@null"-->
-<!--            android:text="Takeaway"-->
-<!--            android:textAllCaps="false"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="14dp"-->
-<!--            android:textStyle="bold"-->
-<!--            tools:ignore="HardcodedText,SpUsage" />-->
-<!--    </RelativeLayout>-->
+    <TextView
+        android:layout_alignStart="@+id/post_title_blanket"
+        android:layout_marginTop="133dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
     <RelativeLayout
-        android:id="@+id/title_input"
+        android:id="@+id/post_title_blanket"
         android:layout_width="327dp"
         android:layout_height="49dp"
         android:layout_centerInParent="false"
@@ -129,20 +85,30 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_alignStart="@+id/title_input"
-            android:layout_marginTop="133dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Title"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
+        <EditText
+            android:id="@+id/post_title_input"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12sp"
+            android:background="@null"
+            android:inputType="text"
+            style="@style/hint_normal"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_alignStart="@+id/post_text_blanket"
+        android:layout_marginTop="233dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Post text"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
     <RelativeLayout
-        android:id="@+id/post_text_input"
+        android:id="@+id/post_text_blanket"
         android:layout_width="327dp"
         android:layout_height="197dp"
         android:layout_centerInParent="false"
@@ -153,17 +119,24 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:layout_alignStart="@+id/post_text_input"
-        android:layout_marginTop="233dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Post text"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"/>
+        <EditText
+            android:id="@+id/post_text_input"
+            style="@style/hint_normal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12sp"
+            android:layout_marginLeft="12sp"
+            android:layout_marginTop="12sp"
+            android:layout_marginEnd="12sp"
+            android:layout_marginRight="12sp"
+            android:layout_marginBottom="12sp"
+            android:background="@null"
+            android:inputType="text" />
+    </RelativeLayout>
+
+
 
     <TextView
         android:layout_alignStart="@+id/select_image"
