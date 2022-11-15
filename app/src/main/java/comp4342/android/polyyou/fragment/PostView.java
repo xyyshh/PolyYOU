@@ -1,17 +1,15 @@
 package comp4342.android.polyyou.fragment;
 
 import android.content.Context;
-import android.graphics.drawable.Icon;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
 import comp4342.android.polyyou.R;
+import comp4342.android.polyyou.model.Post;
 
 public class PostView extends LinearLayout{
     private Post post;
@@ -37,7 +35,7 @@ public class PostView extends LinearLayout{
         super(context);
         // TODO
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.activity_home, this, true);
+        inflater.inflate(R.layout.fragment_post, this, true);
 
         post_title = (TextView) findViewById(R.id.title);
         user_name = (TextView) findViewById(R.id.user_name);
@@ -59,9 +57,9 @@ public class PostView extends LinearLayout{
         collapsePostView();
     }
 
-    public PostView(Context context) {
-        super(context);
-    }
+//    public PostView(Context context) {
+//        super(context);
+//    }
 
     /**
      * Mutator method for changing the Joke object this View displays. This View
@@ -72,7 +70,6 @@ public class PostView extends LinearLayout{
      */
     public void setPost(Post post) {
         // TODO
-        post = post;
         post_title.setText(post.getM_commentNum());
 
         post_title.setTextSize(23);
@@ -86,19 +83,19 @@ public class PostView extends LinearLayout{
 
     }
 
-    /**
-     * This method encapsulates the logic necessary to update this view so that
-     * it displays itself in its "Expanded" form:
-     * 	- Shows the complete text of the joke.
-     *  - Brings the RadioGroup of rating Buttons back into view.
-     */
-    private void expandPostView() {
-        // TODO
-        post_content.setSingleLine(false);
-//        m_vwLikeGroup.setVisibility(View.VISIBLE);
-        post_content.setPadding(1,1,1,16);
-        requestLayout();
-    }
+//    /**
+//     * This method encapsulates the logic necessary to update this view so that
+//     * it displays itself in its "Expanded" form:
+//     * 	- Shows the complete text of the joke.
+//     *  - Brings the RadioGroup of rating Buttons back into view.
+//     */
+//    private void expandPostView() {
+//        // TODO
+//        post_content.setSingleLine(false);
+////        m_vwLikeGroup.setVisibility(View.VISIBLE);
+//        post_content.setPadding(1,1,1,16);
+//        requestLayout();
+//    }
 
     /**
      * This method encapsulates the logic necessary to update this view so that

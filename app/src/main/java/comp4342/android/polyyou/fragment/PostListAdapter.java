@@ -9,49 +9,51 @@ import android.widget.BaseAdapter;
 
 import java.util.List;
 
+import comp4342.android.polyyou.model.Post;
+
 public class PostListAdapter extends BaseAdapter implements AdapterView.OnItemLongClickListener {
 
     /**
-     * The application Context in which this JokeListAdapter is being used.
+     * The application Context in which this PostListAdapter is being used.
      */
     private Context m_context;
 
     /**
-     * The dataset to which this JokeListAdapter is bound.
+     * The dataset to which this PostListAdapter is bound.
      */
-    private List<Post> m_jokeList;
+    private List<Post> m_postList;
 
     /**
-     * The position in the dataset of the currently selected Joke.
+     * The position in the dataset of the currently selected Post.
      */
     private int m_nSelectedPosition;
 
     /**
      * Parameterized constructor that takes in the application Context in which
-     * it is being used and the Collection of Joke objects to which it is bound.
+     * it is being used and the Collection of Post objects to which it is bound.
      * m_nSelectedPosition will be initialized to Adapter.NO_SELECTION.
      *
      * @param context
-     *            The application Context in which this JokeListAdapter is being
+     *            The application Context in which this PostListAdapter is being
      *            used.
      *
      * @param postList
-     *            The Collection of Joke objects to which this JokeListAdapter
+     *            The Collection of Post objects to which this PostListAdapter
      *            is bound.
      */
-    public Post(Context context, List<Post> postList) {
+    public PostListAdapter(Context context, List<Post> postList) {
         //TODO
         m_context = context;
-        m_jokeList = postList;
+        m_postList = postList;
         m_nSelectedPosition = Adapter.NO_SELECTION;
     }
 
     /**
      * Accessor method for retrieving the position in the dataset of the
-     * currently selected Joke.
+     * currently selected Post.
      *
      * @return an integer representing the position in the dataset of the
-     *         currently selected Joke.
+     *         currently selected Post.
      */
     public int getSelectedPosition() {
         //TODO
@@ -61,13 +63,13 @@ public class PostListAdapter extends BaseAdapter implements AdapterView.OnItemLo
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return m_jokeList.size();
+        return m_postList.size();
     }
 
     @Override
     public Object getItem(int position) {
         // TODO Auto-generated method stub
-        return m_jokeList.get(position);
+        return m_postList.get(position);
     }
 
     @Override
@@ -79,7 +81,7 @@ public class PostListAdapter extends BaseAdapter implements AdapterView.OnItemLo
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
-        Post post = m_jokeList.get(position);
+        Post post = m_postList.get(position);
         PostView postView= new PostView(m_context,post);
         return postView;
     }
