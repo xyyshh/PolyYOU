@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,41 +12,49 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.widget.Button;
 import android.widget.Toast;
 import comp4342.android.polyyou.R;
+import comp4342.android.polyyou.fragment.PostList;
+import comp4342.android.polyyou.fragment.PostListAdapter;
+import comp4342.android.polyyou.fragment.PostView;
+import comp4342.android.polyyou.model.Post;
+
 import android.app.Activity;
 
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Home extends AppCompatActivity {
-//    private View _bg__post_page_ek2;
-//    private View post_area_ek1;
-//    private TextView comment_number;
-//    private ImageView comment_icon;
-//    private TextView post_content;
-//    private ImageView user_profile_photo;
-//    private TextView time;
-//    private TextView user_name;
-//    private TextView post_title;
-//    private View bottom_bar_background;
-//    private ImageView vector;
-//    private ImageView vector_ek1;
-//    private ImageView vector_ek2;
-//    private ImageView vector_ek3;
-//    private View psw_input;
-//    private ImageView vector_ek4;
-//    private TextView type_something___________;
+
+    /** Contains the list Posts the Activity will present to the user. */
+    protected ArrayList<Post> m_arrPostList = new ArrayList<Post>();
+    /**
+     * Adapter used to bind an AdapterView to List of Posts.
+     */
+    protected PostListAdapter m_postAdapter;
+
+    /** LinearLayout used for maintaining a list of Views that each display Posts. */
+//    protected ListView m_vwPostLayout;
+//    private ListView m_container;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        ListView m_container = findViewById(R.id.postListViewGroup);
+//        m_container = findViewById(R.id.postListViewGroup);
+
         Intent intent_welcome = new Intent(this, Welcome.class);
         startActivity(intent_welcome);
-
         //setContentView(R.layout.post_page);
 
 
@@ -81,33 +90,43 @@ public class Home extends AppCompatActivity {
                 return false;
             }
         });
+        initLayout(m_container);
+
+//        registerForContextMenu(m_vwPostLayout);
+//
+//        Resources resources = getResources();
+
+//        String[] strArray = resources.getStringArray(R.array.postList);
+//        m_strAuthorName = resources.getString(R.string.author_name);
+//
+//        for (int i=0; i<strArray.length; i++) {
+//            Post newPost = new Post(strArray[i], m_strAuthorName);
+//            addPost(newPost);
+//        }
 
 
+    }
+    /**
+     * Method used to encapsulate the code that initializes and sets the Layout
+     * for this Activity.
+     */
+    public void initLayout(ListView listView) {
+//        setContentView(R.layout.activity_home);
+        m_arrPostList = new ArrayList<Post>();
+        m_arrPostList.add(new Post("2022-12-26 00:00:00", "Who can help me now aaaa aaaa aaaa aaa aaaaa aaa aaaaaa aaaaaa aaaaaa!","user name", "This is address", "This is the content of the post hahahahaha", "this is adreess"));
+        m_arrPostList.add(new Post("2022-12-26 00:00:00", "Who can help me now aaaa aaaa aaaa aaa aaaaa aaa aaaaaa aaaaaa aaaaaa!","user name", "This is address", "This is the content of the post hahahahaha", "this is adreess"));
+        m_arrPostList.add(new Post("2022-12-26 00:00:00", "Who can help me now aaaa aaaa aaaa aaa aaaaa aaa aaaaaa aaaaaa aaaaaa!","user name", "This is address", "This is the content of the post hahahahaha", "this is adreess"));
+        m_arrPostList.add(new Post("2022-12-26 00:00:00", "Who can help me now aaaa aaaa aaaa aaa aaaaa aaa aaaaaa aaaaaa aaaaaa!","user name", "This is address", "This is the content of the post hahahahaha", "this is adreess"));
+        m_arrPostList.add(new Post("2022-12-26 00:00:00", "Who can help me now aaaa aaaa aaaa aaa aaaaa aaa aaaaaa aaaaaa aaaaaa!","user name", "This is address", "This is the content of the post hahahahaha", "this is adreess"));
 
+        for(int i=0; i<m_arrPostList.size(); i++){
+            Post post=m_arrPostList.get(i);
+//            addView(listView, post);
+        }
+    }
 
-
-
-
-//                _bg__post_page_ek2 = (View) findViewById(R.id._bg__post_page_ek2);
-//                post_area_ek1 = (View) findViewById(R.id.post_area_ek1);
-//                comment_number = (TextView) findViewById(R.id.comment_number);
-//                comment_icon = (ImageView) findViewById(R.id.comment_icon);
-//                post_content = (TextView) findViewById(R.id.post_content);
-//                user_profile_photo = (ImageView) findViewById(R.id.user_profile_photo);
-//                time = (TextView) findViewById(R.id.time);
-//                user_name = (TextView) findViewById(R.id.user_name);
-//                post_title = (TextView) findViewById(R.id.post_title);
-//                bottom_bar_background = (View) findViewById(R.id.bottom_bar_background);
-//                vector = (ImageView) findViewById(R.id.vector);
-//                vector_ek1 = (ImageView) findViewById(R.id.vector_ek1);
-//                vector_ek2 = (ImageView) findViewById(R.id.vector_ek2);
-//                vector_ek3 = (ImageView) findViewById(R.id.vector_ek3);
-//                psw_input = (View) findViewById(R.id.psw_input);
-//                vector_ek4 = (ImageView) findViewById(R.id.vector_ek4);
-//                type_something___________ = (TextView) findViewById(R.id.type_something___________);
-
-
-                //custom code goes here
-
-            }
+    public void addView(ListView listView, Post post) {
+        PostView child = new PostView(this, post);
+        listView.addView(child);
+    }
 }

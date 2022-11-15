@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public class Post {
 
-    /** Contains the text of this joke. */
+    /** Contains the text of this post. */
     private String m_strPostTitle;
     private String m_strUserName;
     private String m_strPostContent;
