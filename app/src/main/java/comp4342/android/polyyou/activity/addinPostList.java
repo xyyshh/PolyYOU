@@ -20,7 +20,7 @@ public class addinPostList extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_home);
-            mContainer = mContainer.findViewById(R.id.post_area);
+            mContainer = mContainer.findViewById(R.id.postListViewGroup);
         }
 
         /**
