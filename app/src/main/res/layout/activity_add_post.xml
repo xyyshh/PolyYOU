@@ -18,62 +18,104 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         />
-
-    <RelativeLayout
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="65dp"
-        android:layout_width="327dp"
+    <RadioGroup
+        android:id="@+id/rg_main"
+        android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_centerInParent="false"
-        android:layout_centerVertical="false"
+        android:layout_marginTop="65dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="65dp">
+        android:gravity="center"
+        android:orientation="horizontal">
 
-
-
-        <Button
+        <RadioButton
             android:id="@+id/sh_button"
             android:layout_width="88dp"
             android:layout_height="48dp"
+            android:button="@null"
+            android:gravity="center"
             android:background="@drawable/filter_button"
-            android:stateListAnimator="@null"
             android:text="Secondhand"
             android:textStyle="bold"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="14dp"
-            tools:ignore="HardcodedText,SpUsage" />
+            android:layout_marginStart="0dp"/>
 
-        <Button
+        <RadioButton
             android:id="@+id/help_button"
             android:layout_width="88dp"
             android:layout_height="48dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
+            android:button="@null"
+            android:gravity="center"
             android:background="@drawable/filter_button"
-            android:stateListAnimator="@null"
             android:text="Help"
             android:textStyle="bold"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="14dp"
-            tools:ignore="HardcodedText,SpUsage" />
+            android:layout_marginStart="31dp"/>
 
-        <Button
-            android:id="@+id/ta_button"
+        <RadioButton
+            android:id="@+id/rb_recite"
             android:layout_width="88dp"
             android:layout_height="48dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
+            android:button="@null"
+            android:gravity="center"
             android:background="@drawable/filter_button"
-            android:stateListAnimator="@null"
             android:text="Takeaway"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="14dp"
             android:textStyle="bold"
-            tools:ignore="HardcodedText,SpUsage" />
-    </RelativeLayout>
+            android:layout_marginStart="31dp"/>
+    </RadioGroup>
+
+<!--    <RelativeLayout-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginStart="65dp"-->
+<!--        android:layout_width="327dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:layout_centerInParent="false"-->
+<!--        android:layout_centerVertical="false"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="65dp">-->
+
+
+
+<!--        <Button-->
+<!--            android:id="@+id/sh_button"-->
+<!--            android:layout_width="88dp"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:background="@drawable/filter_button"-->
+<!--            android:stateListAnimator="@null"-->
+<!--            android:text="Secondhand"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="14dp"-->
+<!--            tools:ignore="HardcodedText,SpUsage" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/help_button"-->
+<!--            android:layout_width="88dp"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:background="@drawable/filter_button"-->
+<!--            android:stateListAnimator="@null"-->
+<!--            android:text="Help"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="14dp"-->
+<!--            tools:ignore="HardcodedText,SpUsage" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/ta_button"-->
+<!--            android:layout_width="88dp"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:background="@drawable/filter_button"-->
+<!--            android:stateListAnimator="@null"-->
+<!--            android:text="Takeaway"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="14dp"-->
+<!--            android:textStyle="bold"-->
+<!--            tools:ignore="HardcodedText,SpUsage" />-->
+<!--    </RelativeLayout>-->
 
     <RelativeLayout
         android:id="@+id/title_input"
@@ -88,15 +130,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-    <TextView
-        android:layout_alignStart="@+id/title_input"
-        android:layout_marginTop="133dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Title"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_alignStart="@+id/title_input"
+            android:layout_marginTop="133dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
     <RelativeLayout
         android:id="@+id/post_text_input"
@@ -111,6 +154,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
         android:layout_alignStart="@+id/post_text_input"
         android:layout_marginTop="233dp"
@@ -118,6 +162,15 @@
         android:layout_height="wrap_content"
         android:text="Post text"
         android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_alignStart="@+id/select_image"
+        android:layout_marginTop="480dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select one Image (optional)" android:textSize="14sp"
         android:textStyle="bold"
         android:textColor="@color/black"/>
 
@@ -133,19 +186,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-    <TextView
-        android:layout_alignStart="@+id/select_image"
-        android:layout_marginTop="480dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select one Image (optional)"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"/>
+        app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:contentDescription="add"
+            android:src="@drawable/ic_add"
+            app:tint="@color/light_polyu_color"
+            />
 
-
+    </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"

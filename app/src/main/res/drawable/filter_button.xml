@@ -1,15 +1,27 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="false">
+        <shape android:shape="rectangle">
 
-    <solid android:color="@color/psw_input_color" />
+            <solid android:color="@color/psw_input_color" />
 
-    <stroke
-        android:width="1dp"
-        android:color="@color/polyu_color"
-        />
+            <stroke
+                android:width="1dp"
+                android:color="@color/polyu_color" />
 
-    <corners
-        android:radius="10dp"
-        />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+    <item android:state_checked="true">
+        <shape android:shape="rectangle">
 
-</shape>
+            <solid android:color="@color/light_polyu_color" />
+
+            <stroke
+                android:width="1dp"
+                android:color="@color/polyu_color" />
+
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+</selector>

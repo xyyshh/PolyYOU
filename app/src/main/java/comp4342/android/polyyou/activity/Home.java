@@ -4,11 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
+import android.widget.Button;
+import android.widget.Toast;
 import comp4342.android.polyyou.R;
 import android.app.Activity;
 
@@ -44,6 +45,7 @@ public class Home extends AppCompatActivity {
 
         Intent intent_welcome = new Intent(this, Welcome.class);
         startActivity(intent_welcome);
+
         //setContentView(R.layout.post_page);
 
 
@@ -79,6 +81,7 @@ public class Home extends AppCompatActivity {
                 return false;
             }
         });
+
 
 
 

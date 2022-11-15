@@ -4,8 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -17,6 +21,8 @@ public class AddPost extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
+
+
 
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -47,5 +53,20 @@ public class AddPost extends AppCompatActivity {
                 return false;
             }
         });
+
+//        int flag[]=new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+//        Button btn0=(Button)findViewById(R.id.sh_button);
+//        btn0.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(flag[0]==0){
+//                    btn0.setBackgroundColor(Color.parseColor("@color/light_polyu_color"));
+//                    flag[0]=1;
+//                }else{
+//                    btn0.setBackgroundColor(Color.parseColor("#ffffff"));
+//                    flag[0]=0;
+//                }
+//            }
+//        });
     }
 }

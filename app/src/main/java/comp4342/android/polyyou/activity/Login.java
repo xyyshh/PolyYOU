@@ -25,7 +25,7 @@ public class Login extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_login);
-                initView();
+//                initView();
                 initEvent();
         }
 
@@ -43,9 +43,9 @@ public class Login extends AppCompatActivity {
                 startActivity(intent);
         }
 
-        private void initView() {
-                btnLoginBack = findViewById(R.id.button_login_back);
-                etEmail = findViewById(R.id.edittext_login_email);
-                etPassword = findViewById(R.id.edittext_login_password);
-        }
+//        private void initView() {
+//                btnLoginBack = findViewById(R.id.button_login_back);
+//                etEmail = findViewById(R.id.edittext_login_email);
+//                etPassword = findViewById(R.id.edittext_login_password);
+//        }
 }

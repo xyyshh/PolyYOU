@@ -21,8 +21,6 @@
         android:textColor="@color/black" />
 
         <RelativeLayout
-            android:id="@+id/page_post_page_ek1"
-
             android:layout_alignParentTop="true"
             android:layout_marginStart="65dp"
             android:layout_width="327dp"
