@@ -3,7 +3,7 @@ package comp4342.android.polyyou.utils;
 public class Str {
 
     public static boolean isValidEmail(String email) {
-        if(email.length() != 26)
+        if(email.length() < 17)
             return false;
         String email_end = email.substring(email.length() - 17);
         if(email_end.equals("@connect.polyu.hk"))

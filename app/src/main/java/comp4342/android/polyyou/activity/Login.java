@@ -51,6 +51,7 @@ public class Login extends AppCompatActivity {
                                 else if(password.isEmpty()) {
                                         T.showToast(Login.this, "Password cannot be empty");  return;
                                 }
+
                         }
                 });
         }

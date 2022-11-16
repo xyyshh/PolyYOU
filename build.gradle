@@ -6,3 +6,8 @@ plugins {
 repositories {
     google()
 }
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
