@@ -1,17 +1,21 @@
 package comp4342.android.polyyou.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
 import comp4342.android.polyyou.R;
+import comp4342.android.polyyou.activity.Home;
 import comp4342.android.polyyou.model.Post;
 
-public class PostView extends LinearLayout{
+public class PostView extends RelativeLayout {
     private Post post;
     private TextView post_title;
     private ImageView profile_photo;
@@ -31,11 +35,19 @@ public class PostView extends LinearLayout{
      * @param post
      * 			  The Joke this view is responsible for displaying.
      */
+//    public PostView(Context context, Post post) {
     public PostView(Context context, Post post) {
         super(context);
         // TODO
+//        RelativeLayout rootView = (RelativeLayout) findViewById(R.id.post_area_ek1);
+
+//        View insideView = LayoutInflater.from(Home.this).inflate(R.layout.fragment_post, null);
+//        rootView.addView(insideView);
+
+
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.fragment_post, this, true);
+//        RelativeLayout postArea = getResources().getDrawable(R.layout.fragment_post);
 
         post_title = (TextView) findViewById(R.id.title);
         user_name = (TextView) findViewById(R.id.user_name);
@@ -51,6 +63,7 @@ public class PostView extends LinearLayout{
 
         //m_vwLikeButton.setTextColor(getResources().getColor(R.color.text));
         //	m_vwDislikeButton.setTextColor(getResources().getColor(R.color.text));
+
         setPost(post);
 //        m_checked = false;
 
@@ -68,16 +81,16 @@ public class PostView extends LinearLayout{
      * @param post
      *            The Joke object which this View will display.
      */
+    @SuppressLint("UseCompatLoadingForDrawables")
     public void setPost(Post post) {
         // TODO
         post_title.setText(post.getM_commentNum());
-
-        post_title.setTextSize(23);
+        post_title.setTextSize(18);
         //profile_photo
         user_name.setText(post.getM_strUserName());
         time.setText(post.getM_strTime());
         post_content.setText(post.getM_strPostContent());
-//        comment_icon.setImageIcon(getResources().getDrawable(R.drawable.comment_icon));
+        comment_icon.setBackground(getResources().getDrawable(R.drawable.comment_icon));
         comment_number.setText(post.getM_commentNum());
         //m_vwJokeText.setTextColor(getResources().getColor(R.color.text));
 
