@@ -1,6 +1,8 @@
 package comp4342.android.polyyou.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String name;
     private String id;
     private String headImage;
