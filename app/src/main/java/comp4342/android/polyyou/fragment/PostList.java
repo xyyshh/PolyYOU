@@ -3,7 +3,12 @@ package comp4342.android.polyyou.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 import comp4342.android.polyyou.R;
@@ -12,19 +17,14 @@ import comp4342.android.polyyou.model.Post;
 
 public class PostList extends Activity{
 
-    /**
-     * Contains the name of the Author for the posts.
-     */
-//    protected String m_strAuthorName;
-//    protected String
-
+//    protected LinearLayout mContainer;
     /** Contains the list Posts the Activity will present to the user. */
     protected ArrayList<Post> m_arrPostList = new ArrayList<Post>();
 
-    /**
-     * Contains the selected list of Posts the Activity will present to the user.
-     **/
-    protected ArrayList<Post> m_arrSelectedPostList;
+//    /**
+//     * Contains the selected list of Posts the Activity will present to the user.
+//     **/
+//    protected ArrayList<Post> m_arrSelectedPostList;
 
     /**
      * Adapter used to bind an AdapterView to List of Posts.
@@ -33,6 +33,7 @@ public class PostList extends Activity{
 
     /** LinearLayout used for maintaining a list of Views that each display Posts. */
     protected ListView m_vwPostLayout;
+    protected LinearLayout m_container;
 
 //    /** EditText used for entering text for a new Post to be added to m_arrPostList. */
 //    protected EditText m_vwPostEditText;
@@ -57,8 +58,10 @@ public class PostList extends Activity{
         super.onCreate(savedInstanceState);
         // TODO
         initLayout();
-        m_postAdapter = new PostListAdapter(getBaseContext(),m_arrPostList);
-        m_vwPostLayout.setAdapter(m_postAdapter);
+//        m_postAdapter = new PostListAdapter(getBaseContext(),m_arrPostList);
+//        m_vwPostLayout.setAdapter(m_postAdapter);
+        setContentView(R.layout.activity_home);
+        m_container = m_container.findViewById(R.id.postListViewGroup);
 //        Resources resources = getResources();
 //
 //        String[] strArray = resources.getStringArray(R.array.postList);
@@ -80,14 +83,16 @@ public class PostList extends Activity{
      * Method used to encapsulate the code that initializes and sets the Layout
      * for this Activity.
      */
-    protected void initLayout() {
+    public void initLayout() {
         setContentView(R.layout.activity_home);
         m_vwPostLayout = (ListView) findViewById(R.id.postListViewGroup);
 //        m_vwPostEditText = (EditText) findViewById(R.id.newPostEditText);
 //        m_vwPostButton = (Button) findViewById(R.id.addPostButton);
 
         m_arrPostList = new ArrayList<Post>();
-        m_vwPostLayout.setChoiceMode(1);
     }
+
+
+
 
 }

@@ -84,21 +84,21 @@ public class AddPost extends AppCompatActivity{
             }
         });
 
-        Resources resources = getResources();
-
-        String[] strArray = resources.getStringArray(R.array.postList);
-        m_strUserName = resources.getString(R.string.user_name_string);
-        String strPostContent = m_vwPostEditText.getText().toString();
-        String strPostTitle = m_vwPostTitleEditText.getText().toString();
-        String strProfilePhotoAddress = "";
-        String strUploadPhotoAddress = "";
-
-        for (int i=0; i<strArray.length; i++) {
-            Post newPost = new Post(dateToStamp(System.currentTimeMillis()), strPostTitle, m_strUserName, strProfilePhotoAddress, strPostContent, strUploadPhotoAddress, 0);
-            addPost(newPost);
-        }
-
-        initAddPostListeners();
+//        Resources resources = getResources();
+//
+//        String[] strArray = resources.getStringArray(R.array.postList);
+//        m_strUserName = resources.getString(R.string.user_name_string);
+//        String strPostContent = m_vwPostEditText.getText().toString();
+//        String strPostTitle = m_vwPostTitleEditText.getText().toString();
+//        String strProfilePhotoAddress = "";
+//        String strUploadPhotoAddress = "";
+//
+//        for (int i=0; i<strArray.length; i++) {
+//            Post newPost = new Post(dateToStamp(System.currentTimeMillis()), strPostTitle, m_strUserName, strProfilePhotoAddress, strPostContent, strUploadPhotoAddress);
+//            addPost(newPost);
+//        }
+//
+//        initAddPostListeners();
     }
 
     /**
@@ -128,7 +128,7 @@ public class AddPost extends AppCompatActivity{
                 String strProfilePhotoAddress = "";
                 String strUploadPhotoAddress = "";
                 if(!strPostContent.isEmpty() && !strPostTitle.isEmpty()) {
-                    addPost(new Post(dateToStamp(System.currentTimeMillis()), strPostTitle, m_strUserName, strProfilePhotoAddress, strPostContent, strUploadPhotoAddress, 0));
+                    addPost(new Post(dateToStamp(System.currentTimeMillis()), strPostTitle, m_strUserName, strProfilePhotoAddress, strPostContent, strUploadPhotoAddress));
                     m_vwPostEditText.setText("");
 
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
