@@ -41,7 +41,7 @@ public abstract class CommonCallBack<T> extends StringCallback {
             if(resultCode == 1) {
                 String data = resp.getString("data");
                 // Log.d("--------", data);
-                if((data.substring(0, 1).equals("{")))
+                if((!data.isEmpty()) && (data.charAt(0) == '{'))
                     onSuccess(GsonUtil.getGson().fromJson(data, eType));
                 else
                     onSuccess(null);
