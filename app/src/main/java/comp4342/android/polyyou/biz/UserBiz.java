@@ -14,7 +14,7 @@ import comp4342.android.polyyou.net.CommonCallBack;
 public class UserBiz {
     public void login(String email, String password, CommonCallBack<User> commonCallBack) {
         OkHttpUtils
-                .post()
+                .get()
                 .url(Config.baseUrl + "login-center/login/")
                 .tag(this)
                 .addParams("email", email)
