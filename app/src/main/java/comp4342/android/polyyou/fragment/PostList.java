@@ -3,15 +3,13 @@ package comp4342.android.polyyou.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import comp4342.android.polyyou.R;
+import comp4342.android.polyyou.adapter.PostListAdapter;
 import comp4342.android.polyyou.model.Post;
 
 

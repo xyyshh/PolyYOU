@@ -34,7 +34,7 @@ import java.util.Scanner;
 
 import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.model.Post;
-import comp4342.android.polyyou.fragment.PostListAdapter;
+import comp4342.android.polyyou.adapter.PostListAdapter;
 
 public class AddPost extends AppCompatActivity {
 
@@ -133,7 +133,7 @@ public class AddPost extends AppCompatActivity {
                 String strProfilePhotoAddress = "";
                 String strUploadPhotoAddress = "";
                 if(!strPostContent.isEmpty() && !strPostTitle.isEmpty()) {
-                    addPost(new Post(dateToStamp(System.currentTimeMillis()), strPostTitle, m_strUserName, strProfilePhotoAddress, strPostContent, strUploadPhotoAddress));
+//                    addPost(new Post(dateToStamp(System.currentTimeMillis()), strPostTitle, m_strUserName, strProfilePhotoAddress, strPostContent, strUploadPhotoAddress));
                     m_vwPostEditText.setText("");
 
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -211,12 +211,12 @@ public class AddPost extends AppCompatActivity {
 
     protected void uploadPostToServer(Post post)  throws IOException {
         String urladdress = "http://pc066.comp.polyu.edu.hk/addOnePost.php?";
-        String url = urladdress +"post_text=" + java.net.URLEncoder.encode(post.getM_strPostContent(),"UTF-8")
-                + "&title=" + java.net.URLEncoder.encode(String.valueOf(post.getM_strPostTitle()),"UTF-8")
-                + "&user=" + java.net.URLEncoder.encode(post.getM_strUserName(),"UTF-8")
-                + "&time=" + java.net.URLEncoder.encode(post.getM_strTime(),"UTF-8")
-                + "&profilePhoto=" + java.net.URLEncoder.encode(post.getM_strProfilePhotoAddress(),"UTF-8")
-                + "&photo=" + java.net.URLEncoder.encode(post.getM_strPhotoAddress(),"UTF-8");
+        String url = urladdress +"post_text=" + java.net.URLEncoder.encode(post.getPostContent(),"UTF-8")
+                + "&title=" + java.net.URLEncoder.encode(String.valueOf(post.getPostTitle()),"UTF-8")
+                + "&user=" + java.net.URLEncoder.encode(post.getUserName(),"UTF-8")
+                + "&time=" + java.net.URLEncoder.encode(post.getTime(),"UTF-8")
+                + "&profilePhoto=" + java.net.URLEncoder.encode(post.getProfilePhotoAddress(),"UTF-8")
+                + "&photo=" + java.net.URLEncoder.encode(post.getPhotoAddress(),"UTF-8");
         Log.v("upload address", url);
         try {
             URL oburl = new URL(url);

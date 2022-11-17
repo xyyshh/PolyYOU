@@ -2,8 +2,8 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/post_area"
-    android:background="@drawable/post_area_ek1_shape"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/shape_post_area"
     android:layout_centerInParent="true"
     android:layout_width="match_parent"
     android:layout_height="120dp">
@@ -29,23 +29,27 @@
             android:layout_marginStart="10dp">
 
                 <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/author_profile_photo"
                     android:layout_width="18dp"
-                    android:layout_height="18dp" />
+                    android:layout_height="18dp"
+                    android:background="@drawable/shape_profile_image"
+                    android:scaleType="centerCrop"
+                    app:riv_oval = "true"/>
 
         </FrameLayout>
 
-        <ImageView
-            android:id="@+id/user_profile_photo"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="40dp"
+<!--        <ImageView-->
+<!--            android:id="@+id/user_profile_photo"-->
+<!--            android:layout_width="18dp"-->
+<!--            android:layout_height="18dp"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginTop="40dp"-->
 
-            android:contentDescription="TODO"
-            android:src="@drawable/user_profile_photo" />
+<!--            android:contentDescription="TODO"-->
+<!--            android:src="@drawable/user_profile_photo" />-->
 
         <TextView
-            android:id="@+id/user_name"
+            android:id="@+id/author_name"
             android:layout_width="195dp"
             android:layout_height="18dp"
             android:layout_gravity="center_horizontal|center"

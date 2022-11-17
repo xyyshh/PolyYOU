@@ -11,7 +11,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="post_area_ek1_color">#F3F3F3</color>
+    <color name="post_grey">#F3F3F3</color>
     <color name="polyu_color">#750015</color>
     <color name="light_polyu_color">#DBC5C9</color>
     <color name="time_color">#6A6A6A</color>
