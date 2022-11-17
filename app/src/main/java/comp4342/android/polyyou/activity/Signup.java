@@ -50,22 +50,22 @@ public class Signup extends AppCompatActivity {
                 String password2 = etPassword2.getText().toString();
                 String email = etEmail.getText().toString();
                 if(TextUtils.isEmpty(username)) {
-                    T.showToast(Signup.this, "User Name cannot be empty"); return;
+                    T.showToast( "User Name cannot be empty"); return;
                 }
                 else if(TextUtils.isEmpty(email)) {
-                    T.showToast(Signup.this, "Email Address cannot be empty");  return;
+                    T.showToast( "Email Address cannot be empty");  return;
                 }
                 else if(!Str.isValidEmail(email)) {
-                    T.showToast(Signup.this, "Please enter a polyu email address");  return;
+                    T.showToast( "Please enter a polyu email address");  return;
                 }
                 else if(TextUtils.isEmpty(password1) || TextUtils.isEmpty(password2)) {
-                    T.showToast(Signup.this, "Password cannot be empty");  return;
+                    T.showToast( "Password cannot be empty");  return;
                 }
                 else if(!password1.equals(password2)) {
-                    T.showToast(Signup.this, "Please enter the same passwords");  return;
+                    T.showToast( "Please enter the same passwords");  return;
                 }
                 else if(!Str.isValidPassword(password1)) {
-                    T.showToast(Signup.this, "Please enter valid password");
+                    T.showToast( "Please enter valid password");
                 }
             }
         });
