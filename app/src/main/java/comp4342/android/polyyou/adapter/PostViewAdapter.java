@@ -29,10 +29,10 @@ import comp4342.android.polyyou.model.Post;
 
 public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHolder> {
 
-    private final List<Post> posts;
+    private final ArrayList<Post> posts;
     private final Context context;
 
-    public PostViewAdapter(Context context, List<Post> posts) {
+    public PostViewAdapter(Context context, ArrayList<Post> posts) {
         this.posts = posts;
         this.context = context;
     }
@@ -44,7 +44,6 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
         return new ViewHolder(view);
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Post post = posts.get(i);
@@ -53,11 +52,11 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
                 .placeholder(R.drawable.user_profile_photo)
                 .error(R.drawable.user_profile_photo)
                 .into(viewHolder.avatar);
-        viewHolder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, Home.class);
-            intent.putExtra("id", post.author);
-            context.startActivity(intent);
-        });
+//        viewHolder.itemView.setOnClickListener(v -> {
+//            Intent intent = new Intent(context, Home.class);
+//            intent.putExtra("id", post.author);
+//            context.startActivity(intent);
+//        });
         viewHolder.content.setText(post.getPostContent());
         viewHolder.title.setText(post.getPostTitle());
         viewHolder.name.setText(post.author.getName());
@@ -67,6 +66,7 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
 
     @Override
     public int getItemCount() {
+        System.out.println("Post num is "+posts.size());
         return posts.size();
     }
 

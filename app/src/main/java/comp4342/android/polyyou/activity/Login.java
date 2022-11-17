@@ -91,7 +91,7 @@ public class Login extends BaseActivity {
         }
 
         private void toHome() {
-                Intent intent = new Intent(this, Signup.class);
+                Intent intent = new Intent(this, Home.class);
                 startActivity(intent);
         }
 

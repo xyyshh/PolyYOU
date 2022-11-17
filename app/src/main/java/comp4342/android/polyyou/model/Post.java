@@ -19,19 +19,20 @@ public class Post implements ListItemModel {
     public String attachedPhoto;
     public String time;
     public ArrayList<Comment> comments;
+    public String tag_name;
 
 //    private int m_commentNum;
 
 
 
-//    public Post() {
-//        this.m_strPostTitle = new String("");
-//        this.m_strPostContent = new String("");
-//        this.m_strProfilePhotoAddress = new String("");
-//        this.m_strPhotoAddress = new String("");
-//        this.m_comments = new ArrayList<Comment>();
-////        this.m_commentNum = 0;
-//    }
+    public Post() {
+        this.postTitle = new String("");
+        this.postContent = new String("");
+        this.attachedPhoto = new String("");
+//        this.photoAddress = new String("");
+        this.comments = new ArrayList<Comment>();
+//        this.m_commentNum = 0;
+    }
 
 
 //    public Post(String strTime, String strPostTitle, String strUserName, String strProfilePhotoAddress, String strPostContent, String strPhotoAddress) {
@@ -53,10 +54,13 @@ public class Post implements ListItemModel {
     public String getUserName() {
         return author.getName();
     }
-    public int getCommentNum() {
-        return comments.size();
+    public String getCommentNum() {
+        return "1";
+
+        //return comments.size();
     }
     public String getTime(){return time;}
+    public String getTag_name(){return tag_name;}
     public String getProfilePhotoAddress(){return author.getHeadImage(); }
     public String getPhotoAddress(){return attachedPhoto; }
     public ArrayList<Comment> getComments(){return comments;}
@@ -66,11 +70,14 @@ public class Post implements ListItemModel {
     public void setPostContent(String str) {postContent =str;}
 //    public void setM_commentNum(int num) {m_commentNum = num;}
 //    public void setProfilePhotoAddress(String str){PhotoAddress = str; }
-    public void addComments(Comment comment){comments.add(comment);}
+    public void addComments(Comment comment){
+        System.out.println("comment is: "+comment.getCommentContent());
+        comments.add(comment);}
     public void setTime(String str){
         time=str;
 //        time = dateToStamp(System.currentTimeMillis());
     }
+    public void setTag_name(String tag){tag_name=tag;}
 
 
     @Override

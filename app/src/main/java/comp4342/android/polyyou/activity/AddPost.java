@@ -31,7 +31,7 @@ import comp4342.android.polyyou.model.Post;
 import comp4342.android.polyyou.adapter.PostAdapter;
 import comp4342.android.polyyou.model.User;
 import comp4342.android.polyyou.net.CommonCallBack;
-import comp4342.android.polyyou.biz.AddPostBiz;
+import comp4342.android.polyyou.biz.PostBiz;
 
 public class AddPost extends AppCompatActivity {
 
@@ -41,7 +41,7 @@ public class AddPost extends AppCompatActivity {
     protected Button btnPost;
     protected PostAdapter postAdapter;
 
-    private AddPostBiz addPostBiz = new AddPostBiz();
+    private PostBiz PostBiz = new PostBiz();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +116,7 @@ public class AddPost extends AppCompatActivity {
                     post.setPostContent(strPostContent);
                     post.setPostTitle(strPostTitle);
 
-                    addPostBiz.addpost(post, new CommonCallBack<Post>(){
+                    PostBiz.addpost(post, new CommonCallBack<Post>(){
                         public void onError(Exception e) {
                             Log.d("add post activity", e.getMessage());
                         }
