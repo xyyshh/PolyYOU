@@ -2,6 +2,8 @@ package comp4342.android.polyyou.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -80,19 +82,19 @@ public class Home extends AppCompatActivity {
             }
         });
 
-//        RecyclerView mRecycleView = findViewById(R.id.postRecycleView);
+        RecyclerView mRecycleView = findViewById(R.id.postRecycleView);
         //初始化数据
-//        initData(m_arrPostList);
-//        //创建布局管理器，垂直设置LinearLayoutManager.VERTICAL，水平设置LinearLayoutManager.HORIZONTAL
-//        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        //创建适配器，将数据传递给适配器
-//        mAdapter = new PostViewAdapter(this, m_arrPostList);
-//        //设置布局管理器
-//        mRecycleView.setLayoutManager(mLinearLayoutManager);
-//        //设置适配器adapter
-//        mRecycleView.setAdapter(mAdapter);
-//        mRecycleView.setLayoutManager(new LinearLayoutManager(this,
-//                LinearLayoutManager.HORIZONTAL,false));
+        initData(m_arrPostList);
+        //创建布局管理器，垂直设置LinearLayoutManager.VERTICAL，水平设置LinearLayoutManager.HORIZONTAL
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+//        创建适配器，将数据传递给适配器
+        mAdapter = new PostViewAdapter(this, m_arrPostList);
+        //设置布局管理器
+        mRecycleView.setLayoutManager(mLinearLayoutManager);
+        //设置适配器adapter
+        mRecycleView.setAdapter(mAdapter);
+        mRecycleView.setLayoutManager(new LinearLayoutManager(this,
+                LinearLayoutManager.HORIZONTAL,false));
 
 //        initLayout(m_container);
 
