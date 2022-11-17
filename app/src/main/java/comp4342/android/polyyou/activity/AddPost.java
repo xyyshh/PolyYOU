@@ -5,19 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -34,7 +29,7 @@ import java.util.Scanner;
 
 import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.model.Post;
-import comp4342.android.polyyou.adapter.PostListAdapter;
+import comp4342.android.polyyou.adapter.PostAdapter;
 
 public class AddPost extends AppCompatActivity {
 
@@ -50,7 +45,7 @@ public class AddPost extends AppCompatActivity {
     /** Button used for creating and adding a new Post to m_arrPostList using the
      * text entered in m_vwPostEditText. */
     protected Button m_vwPostButton;
-    protected PostListAdapter m_postAdapter;
+    protected PostAdapter m_postAdapter;
     protected ArrayList<Post> m_arrPostList = new ArrayList<Post>();
 
     @Override

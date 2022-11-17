@@ -2,13 +2,7 @@
 <resources>
 	<!-- post_page styles -->
 
-	<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-		<item name="colorPrimary">@color/colorPrimary</item>
-		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-		<item name="colorAccent">@color/colorAccent</item>
-	</style>
-
-	<style name="hint_normal" parent="Widget.AppCompat.EditText">
+    <style name="hint_normal" parent="Widget.AppCompat.EditText">
 		<item name="android:textSize">12sp</item>
 	</style>
 
