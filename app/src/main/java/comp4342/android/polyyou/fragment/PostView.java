@@ -1,5 +1,4 @@
 package comp4342.android.polyyou.fragment;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.TextUtils;
@@ -14,8 +13,7 @@ import android.widget.TextView;
 import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.activity.Home;
 import comp4342.android.polyyou.model.Post;
-
-public class PostView extends RelativeLayout {
+public class PostView extends RelativeLayout{
     private Post post;
     private TextView post_title;
     private ImageView profile_photo;
@@ -181,4 +179,3 @@ public class PostView extends RelativeLayout {
 //    }
 
 }
-

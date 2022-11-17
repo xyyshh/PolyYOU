@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 
 import comp4342.android.polyyou.model.Post;
+import comp4342.android.polyyou.view.PostView;
 
 public class PostListAdapter extends BaseAdapter implements AdapterView.OnItemLongClickListener {
 

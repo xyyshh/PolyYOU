@@ -10,7 +10,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 
-import comp4342.android.polyyou.fragment.PostView;
+import comp4342.android.polyyou.view.PostView;
 import comp4342.android.polyyou.model.Post;
 
 public class PostAdapter extends BaseAdapter implements AdapterView.OnItemLongClickListener {

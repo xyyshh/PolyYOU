@@ -4,15 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+
+import com.bumptech.glide.util.Util;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import comp4342.android.polyyou.Config;
 import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.biz.PostBiz;
-import comp4342.android.polyyou.fragment.PostView;
+import comp4342.android.polyyou.view.PostView;
 import comp4342.android.polyyou.adapter.PostViewAdapter;
 import comp4342.android.polyyou.model.Comment;
 import comp4342.android.polyyou.model.Post;
@@ -47,6 +51,12 @@ public class Home extends BaseActivity {
     /** LinearLayout used for maintaining a list of Views that each display Posts. */
 //    protected ListView m_vwPostLayout;
 //    private ListView m_container;
+//    // 初始化
+//    public static void init(Context mContext) {
+//        Config.USERID = SharedUtil.getString(mContext, "USERID");
+//        if ( !Util.checkNULL(Config.USERID))
+//            getUserInfo();
+//    }
 
 
     @Override
@@ -234,8 +244,8 @@ public class Home extends BaseActivity {
         });
     }
 
-    public void addView(ListView listView, Post post) {
-        PostView child = new PostView(this, post);
-        listView.addView(child);
-    }
+//    public void addView(ListView listView, Post post) {
+//        PostView child = new PostView(this, post);
+//        listView.addView(child);
+//    }
 }
