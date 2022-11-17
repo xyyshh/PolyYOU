@@ -1,11 +1,13 @@
 package comp4342.android.polyyou.view;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+//import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 
@@ -67,7 +69,7 @@ public class PostView extends LinearLayout implements ListItemView {
     @Override
     @OnClick
     public void onItemClick() {
-        EventBus.getInstance().sendMessage(Event.Click.ON_POST_CLICK,
-                post.author.getId(), "on post click");
+//        EventBus.getInstance().sendMessage(Event.Click.ON_POST_CLICK,
+//                post.author.getId(), "on post click");
     }
 }

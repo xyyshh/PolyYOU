@@ -9,7 +9,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import comp4342.android.polyyou.R;
-import comp4342.android.polyyou.adapter.PostListAdapter;
+import comp4342.android.polyyou.adapter.PostAdapter;
 import comp4342.android.polyyou.model.Post;
 
 
@@ -27,7 +27,7 @@ public class PostList extends Activity{
     /**
      * Adapter used to bind an AdapterView to List of Posts.
      */
-    protected PostListAdapter m_postAdapter;
+    protected PostAdapter m_postAdapter;
 
     /** LinearLayout used for maintaining a list of Views that each display Posts. */
     protected ListView m_vwPostLayout;

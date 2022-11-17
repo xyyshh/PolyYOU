@@ -2,7 +2,7 @@ package comp4342.android.polyyou.event;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.UiThread;
+//import android.support.annotation.UiThread;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -34,14 +34,14 @@ public class EventBus {
         eventHandlers.add(eventHandler);
     }
 
-    @UiThread
-    public void sendMessage(int what, Object o, String msg) {
-        for (EventHandler handler : eventHandlers) {
-            if (handler.handleMsg(what, msg, o))
-                return;
-        }
-        throw new IllegalArgumentException("no handler found for msg: " + msg);
-    }
+//    @UiThread
+//    public void sendMessage(int what, Object o, String msg) {
+//        for (EventHandler handler : eventHandlers) {
+//            if (handler.handleMsg(what, msg, o))
+//                return;
+//        }
+//        throw new IllegalArgumentException("no handler found for msg: " + msg);
+//    }
 
     public void onMainThread(Runnable runnable) {
         handler.post(runnable);

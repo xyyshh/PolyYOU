@@ -3,8 +3,8 @@ package comp4342.android.polyyou.fragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+//import android.support.annotation.NonNull;
+//import android.support.annotation.Nullable;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import android.view.LayoutInflater;
