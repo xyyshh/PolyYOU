@@ -69,7 +69,7 @@ public class PostView extends LinearLayout implements ListItemView {
     @Override
     @OnClick
     public void onItemClick() {
-//        EventBus.getInstance().sendMessage(Event.Click.ON_POST_CLICK,
-//                post.author.getId(), "on post click");
+        EventBus.getInstance().sendMessage(Event.Click.ON_POST_CLICK,
+                post.author.getId(), "on post click");
     }
 }
