@@ -143,6 +143,24 @@ public class Home extends BaseActivity {
         post1.addComments(comment);
         m_arrPostList.add(post1);
 
+        Post post2=new Post();
+        User author1 = new User("haha11111111111111111111111111111111111111111111111111", "1235");
+        author.setHeadImage("ihih");
+        post2.setAuthor(author1);
+        post2.setPostTitle("Hello!!");
+        post2.setPostContent("ooooohohoo!");
+        post2.setTag_name("2");
+        Comment comment1 = new Comment("me","hha","2001-1226 12:00:00", "Cool!");
+        post2.addComments(comment1);
+        m_arrPostList.add(post2);
+        m_arrPostList.add(post1);
+        m_arrPostList.add(post2);
+        m_arrPostList.add(post1);
+        m_arrPostList.add(post2);
+        m_arrPostList.add(post1);
+        m_arrPostList.add(post2);
+        m_arrPostList.add(post1);
+
 
 //        m_arrPostList.add(new Post("2022-12-26 00:00:00", "Who can help me now aaaa aaaa aaaa aaa aaaaa aaa aaaaaa aaaaaa aaaaaa!","user name", "This is address", "This is the content of the post hahahahaha", "this is adreess"));
 //        m_arrPostList.add(new Post("2022-12-26 00:00:00", "Who can help me now aaaa aaaa aaaa aaa aaaaa aaa aaaaaa aaaaaa aaaaaa!","user name", "This is address", "This is the content of the post hahahahaha", "this is adreess"));

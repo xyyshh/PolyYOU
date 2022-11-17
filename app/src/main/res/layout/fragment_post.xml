@@ -6,7 +6,8 @@
     android:background="@drawable/shape_post_area"
     android:layout_centerInParent="true"
     android:layout_width="match_parent"
-    android:layout_height="120dp">
+    android:layout_height="120dp"
+    android:layout_marginBottom="20dp">
 
 
         <TextView
