@@ -90,12 +90,6 @@ public class Post implements ListItemModel {
 //        return res;
 //    }
 
-
-    /**
-     * Returns only the text of the joke. This method should mimic getJoke().
-     *
-     * @return	A string containing the text of the joke
-     */
 //    @Override
 //    public String toString() {
 //        return getJoke();

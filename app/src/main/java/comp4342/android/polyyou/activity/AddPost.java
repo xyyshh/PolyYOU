@@ -23,47 +23,37 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
 import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.model.Post;
 import comp4342.android.polyyou.adapter.PostAdapter;
+import comp4342.android.polyyou.model.User;
+import comp4342.android.polyyou.net.CommonCallBack;
+import comp4342.android.polyyou.biz.AddPostBiz;
 
 public class AddPost extends AppCompatActivity {
 
-    /**
-     * Contains the name of the Author for the posts.
-     */
     protected String m_strUserName;
+    protected EditText postEditText;
+    protected EditText postTitleEditText;
+    protected Button btnPost;
+    protected PostAdapter postAdapter;
 
-    /** EditText used for entering text for a new Post to be added to m_arrPostList. */
-    protected EditText m_vwPostEditText;
-    protected EditText m_vwPostTitleEditText;
-
-    /** Button used for creating and adding a new Post to m_arrPostList using the
-     * text entered in m_vwPostEditText. */
-    protected Button m_vwPostButton;
-    protected PostAdapter m_postAdapter;
-    protected ArrayList<Post> m_arrPostList = new ArrayList<Post>();
+    private AddPostBiz addPostBiz = new AddPostBiz();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
 
-        // Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        // Set that home is selected
         bottomNavigationView.setSelectedItemId(R.id.add);
-
-        // Perform  ItemSelectedListener
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuitem) {
-                switch (menuitem.getItemId()){
+                switch (menuitem.getItemId()) {
                     case R.id.home:
                         startActivity(new Intent(getApplicationContext(), Home.class));
                         overridePendingTransition(0, 0);
@@ -83,6 +73,7 @@ public class AddPost extends AppCompatActivity {
             }
         });
 
+        initAddPostListeners();
 //        Resources resources = getResources();
 //
 //        String[] strArray = resources.getStringArray(R.array.postList);
@@ -100,39 +91,39 @@ public class AddPost extends AppCompatActivity {
 //        initAddPostListeners();
     }
 
-    /**
-     * Method used for encapsulating the logic necessary to properly initialize
-     * a new post, add it to m_arrPostList, and display it on screen.
-     *
-     * @param post
-     *            A string containing the text of the Post to add.
-     */
-    protected void addPost(Post post) {
-        // TODO
-        m_arrPostList.add(post);
-        m_postAdapter.notifyDataSetChanged();
-    }
-    /**
-     * Method used to encapsulate the code that initializes and sets the Event
-     * Listeners which will respond to requests to "Add" a new Post to the
-     * list.
-     */
+//    protected void addPost(Post post) {
+//        // TODO
+//        m_arrPostList.add(post);
+//        m_postAdapter.notifyDataSetChanged();
+//    }
+
+
     protected void initAddPostListeners() {
-        // TODO
         //点击post button
-        m_vwPostButton.setOnClickListener(new View.OnClickListener(){
+        btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                String strPostContent = m_vwPostEditText.getText().toString();
-                String strPostTitle = m_vwPostTitleEditText.getText().toString();
+            public void onClick(View view) {
+                String strPostTitle = postTitleEditText.getText().toString();
+                String strPostContent = postEditText.getText().toString();
                 String strProfilePhotoAddress = "";
                 String strUploadPhotoAddress = "";
-                if(!strPostContent.isEmpty() && !strPostTitle.isEmpty()) {
+                if (!strPostContent.isEmpty() && !strPostTitle.isEmpty()) {
 //                    addPost(new Post(dateToStamp(System.currentTimeMillis()), strPostTitle, m_strUserName, strProfilePhotoAddress, strPostContent, strUploadPhotoAddress));
-                    m_vwPostEditText.setText("");
+                    //postEditText.setText("");
+                    addPostBiz.addpost(strPostTitle, strPostContent, new CommonCallBack<Post>() {
+                        @Override
+                        public void onError(Exception e) {
+                            Log.d("add post activity", e.getMessage());
+                        }
 
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(m_vwPostEditText.getWindowToken(), 0);
+                        @Override
+                        public void onSuccess(Post response) {
+                            Log.d("add post", "success");
+                            startActivity(new Intent(getApplicationContext(), Home.class));
+                        }
+                    });
+//                    ????InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//                    ????imm.hideSoftInputFromWindow(postEditText.getWindowToken(), 0);
                 }
             }
         });
@@ -153,6 +144,8 @@ public class AddPost extends AppCompatActivity {
 //        });
 
     }
+
+
     protected String dateToStamp(long s) {
         String res;
         try {
@@ -165,6 +158,7 @@ public class AddPost extends AppCompatActivity {
         return res;
     }
 
+}
 //    @Override
 //    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
 //        MenuItem menuItem1 = menu.add(menu.NONE, REMOVE_JOKE_MENUITEM, menu.NONE, R.string.remove_menuitem);
@@ -204,39 +198,39 @@ public class AddPost extends AppCompatActivity {
 ////        return true;
 //    }
 
-    protected void uploadPostToServer(Post post)  throws IOException {
-        String urladdress = "http://pc066.comp.polyu.edu.hk/addOnePost.php?";
-        String url = urladdress +"post_text=" + java.net.URLEncoder.encode(post.getPostContent(),"UTF-8")
-                + "&title=" + java.net.URLEncoder.encode(String.valueOf(post.getPostTitle()),"UTF-8")
-                + "&user=" + java.net.URLEncoder.encode(post.getUserName(),"UTF-8")
-                + "&time=" + java.net.URLEncoder.encode(post.getTime(),"UTF-8")
-                + "&profilePhoto=" + java.net.URLEncoder.encode(post.getProfilePhotoAddress(),"UTF-8")
-                + "&photo=" + java.net.URLEncoder.encode(post.getPhotoAddress(),"UTF-8");
-        Log.v("upload address", url);
-        try {
-            URL oburl = new URL(url);
-            HttpURLConnection conn = (HttpURLConnection)oburl.openConnection();
-            InputStream inputStream = new BufferedInputStream(conn.getInputStream());
-
-            Scanner sc = new Scanner(inputStream);
-            sc.useDelimiter("\n");
-            if (sc.hasNext()) {
-                String strOutput = sc.next();
-                Log.v("InputStream",strOutput);
-                if(strOutput.equalsIgnoreCase("1 record added")){
-                    Toast.makeText(getBaseContext(), "Upload Succeeded!", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Toast.makeText(getBaseContext(), "Upload Failed!", Toast.LENGTH_SHORT).show();
-                }
-            }
-            sc.close();
-
-        } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+//    protected void uploadPostToServer(Post post)  throws IOException {
+//        String urladdress = "http://pc066.comp.polyu.edu.hk/addOnePost.php?";
+//        String url = urladdress +"post_text=" + java.net.URLEncoder.encode(post.getPostContent(),"UTF-8")
+//                + "&title=" + java.net.URLEncoder.encode(String.valueOf(post.getPostTitle()),"UTF-8")
+//                + "&user=" + java.net.URLEncoder.encode(post.getUserName(),"UTF-8")
+//                + "&time=" + java.net.URLEncoder.encode(post.getTime(),"UTF-8")
+//                + "&profilePhoto=" + java.net.URLEncoder.encode(post.getProfilePhotoAddress(),"UTF-8")
+//                + "&photo=" + java.net.URLEncoder.encode(post.getPhotoAddress(),"UTF-8");
+//        Log.v("upload address", url);
+//        try {
+//            URL oburl = new URL(url);
+//            HttpURLConnection conn = (HttpURLConnection)oburl.openConnection();
+//            InputStream inputStream = new BufferedInputStream(conn.getInputStream());
+//
+//            Scanner sc = new Scanner(inputStream);
+//            sc.useDelimiter("\n");
+//            if (sc.hasNext()) {
+//                String strOutput = sc.next();
+//                Log.v("InputStream",strOutput);
+//                if(strOutput.equalsIgnoreCase("1 record added")){
+//                    Toast.makeText(getBaseContext(), "Upload Succeeded!", Toast.LENGTH_SHORT).show();
+//                }
+//                else {
+//                    Toast.makeText(getBaseContext(), "Upload Failed!", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//            sc.close();
+//
+//        } catch (MalformedURLException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//    }
 
 
 //    @Override
@@ -248,4 +242,3 @@ public class AddPost extends AppCompatActivity {
 //    public boolean onMenuItemClick(MenuItem menuItem) {
 //        return false;
 //    }
-}
