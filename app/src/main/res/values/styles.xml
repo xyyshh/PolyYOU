@@ -8,8 +8,13 @@
 		<item name="colorAccent">@color/colorAccent</item>
 	</style>
 
-	<style name="Hint" parent="Widget.AppCompat.EditText">
-		<item name="android:textSize">10sp</item>
+	<style name="hint_normal" parent="Widget.AppCompat.EditText">
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="hint_title" parent="Widget.AppCompat.EditText">
+		<item name="android:textSize">12sp</item>
+		<item name="android:textStyle">bold</item>item>
 	</style>
 
 </resources>

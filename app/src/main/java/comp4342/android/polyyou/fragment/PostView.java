@@ -50,8 +50,8 @@ public class PostView extends RelativeLayout {
 //        RelativeLayout postArea = getResources().getDrawable(R.layout.fragment_post);
 
         post_title = (TextView) findViewById(R.id.title);
-        user_name = (TextView) findViewById(R.id.user_name);
-        profile_photo = (ImageView) findViewById(R.id.user_profile_photo);
+        user_name = (TextView) findViewById(R.id.author_name);
+        profile_photo = (ImageView) findViewById(R.id.author_profile_photo);
         time = (TextView) findViewById(R.id.time);
         post_content = (TextView) findViewById(R.id.post_content);
         comment_icon = (ImageView) findViewById(R.id.comment_icon);
@@ -84,14 +84,14 @@ public class PostView extends RelativeLayout {
     @SuppressLint("UseCompatLoadingForDrawables")
     public void setPost(Post post) {
         // TODO
-        post_title.setText(post.getM_commentNum());
+        post_title.setText(post.getCommentNum());
         post_title.setTextSize(18);
         //profile_photo
-        user_name.setText(post.getM_strUserName());
-        time.setText(post.getM_strTime());
-        post_content.setText(post.getM_strPostContent());
+        user_name.setText(post.getUserName());
+        time.setText(post.getTime());
+        post_content.setText(post.getPostContent());
         comment_icon.setBackground(getResources().getDrawable(R.drawable.comment_icon));
-        comment_number.setText(post.getM_commentNum());
+        comment_number.setText(post.getCommentNum());
         //m_vwJokeText.setTextColor(getResources().getColor(R.color.text));
 
     }

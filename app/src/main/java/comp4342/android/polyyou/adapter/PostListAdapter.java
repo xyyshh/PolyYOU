@@ -1,4 +1,4 @@
-package comp4342.android.polyyou.fragment;
+package comp4342.android.polyyou.adapter;
 
 
 import java.util.List;
@@ -10,6 +10,9 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 
+import java.util.List;
+
+import comp4342.android.polyyou.fragment.PostView;
 import comp4342.android.polyyou.model.Post;
 
 public class PostListAdapter extends BaseAdapter implements AdapterView.OnItemLongClickListener {
