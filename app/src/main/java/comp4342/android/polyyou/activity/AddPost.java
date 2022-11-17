@@ -124,6 +124,7 @@ public class AddPost extends AppCompatActivity {
      */
     protected void initAddPostListeners() {
         // TODO
+        //点击post button
         m_vwPostButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
