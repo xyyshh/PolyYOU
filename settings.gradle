@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "PolyYOU"
-include ':app'
+include ':app', ':okhttputils'

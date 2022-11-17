@@ -61,7 +61,7 @@ public class PostList extends Activity{
 //        m_postAdapter = new PostListAdapter(getBaseContext(),m_arrPostList);
 //        m_vwPostLayout.setAdapter(m_postAdapter);
         setContentView(R.layout.activity_home);
-        m_container = m_container.findViewById(R.id.postListViewGroup);
+        m_container = m_container.findViewById(R.id.postRecycleView);
 //        Resources resources = getResources();
 //
 //        String[] strArray = resources.getStringArray(R.array.postList);
@@ -85,14 +85,10 @@ public class PostList extends Activity{
      */
     public void initLayout() {
         setContentView(R.layout.activity_home);
-        m_vwPostLayout = (ListView) findViewById(R.id.postListViewGroup);
+        m_vwPostLayout = (ListView) findViewById(R.id.postRecycleView);
 //        m_vwPostEditText = (EditText) findViewById(R.id.newPostEditText);
 //        m_vwPostButton = (Button) findViewById(R.id.addPostButton);
-
         m_arrPostList = new ArrayList<Post>();
     }
-
-
-
 
 }

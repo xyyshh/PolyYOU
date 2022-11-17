@@ -2,6 +2,8 @@ package comp4342.android.polyyou.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -15,6 +17,7 @@ import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.fragment.PostList;
 import comp4342.android.polyyou.fragment.PostListAdapter;
 import comp4342.android.polyyou.fragment.PostView;
+import comp4342.android.polyyou.fragment.RecycleViewAdapter;
 import comp4342.android.polyyou.model.Post;
 
 import android.app.Activity;
@@ -39,6 +42,7 @@ public class Home extends AppCompatActivity {
      * Adapter used to bind an AdapterView to List of Posts.
      */
     protected PostListAdapter m_postAdapter;
+    private RecycleViewAdapter mAdapter;
 
     /** LinearLayout used for maintaining a list of Views that each display Posts. */
 //    protected ListView m_vwPostLayout;
@@ -50,7 +54,7 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        ListView m_container = findViewById(R.id.postListViewGroup);
+//        ListView m_container = findViewById(R.id.postListViewGroup);
 //        m_container = findViewById(R.id.postListViewGroup);
 
         Intent intent_welcome = new Intent(this, Welcome.class);
@@ -90,7 +94,20 @@ public class Home extends AppCompatActivity {
                 return false;
             }
         });
-        initLayout(m_container);
+
+        RecyclerView mRecycleView = findViewById(R.id.postRecycleView);
+        //初始化数据
+        initData(m_arrPostList);
+        //创建布局管理器，垂直设置LinearLayoutManager.VERTICAL，水平设置LinearLayoutManager.HORIZONTAL
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        //创建适配器，将数据传递给适配器
+        mAdapter = new RecycleViewAdapter(m_arrPostList);
+        //设置布局管理器
+        mRecycleView.setLayoutManager(mLinearLayoutManager);
+        //设置适配器adapter
+        mRecycleView.setAdapter(mAdapter);
+
+//        initLayout(m_container);
 
 //        registerForContextMenu(m_vwPostLayout);
 //
@@ -110,8 +127,10 @@ public class Home extends AppCompatActivity {
      * Method used to encapsulate the code that initializes and sets the Layout
      * for this Activity.
      */
-    public void initLayout(ListView listView) {
-//        setContentView(R.layout.activity_home);
+    public void initData(ArrayList<Post> m_arrPostList) {
+//        for (int i = 1; i <= 40; i++) {
+//            m_arrPostList.add(new Post());
+//        }
         m_arrPostList = new ArrayList<Post>();
         m_arrPostList.add(new Post("2022-12-26 00:00:00", "Who can help me now aaaa aaaa aaaa aaa aaaaa aaa aaaaaa aaaaaa aaaaaa!","user name", "This is address", "This is the content of the post hahahahaha", "this is adreess"));
         m_arrPostList.add(new Post("2022-12-26 00:00:00", "Who can help me now aaaa aaaa aaaa aaa aaaaa aaa aaaaaa aaaaaa aaaaaa!","user name", "This is address", "This is the content of the post hahahahaha", "this is adreess"));
@@ -121,9 +140,22 @@ public class Home extends AppCompatActivity {
 
         for(int i=0; i<m_arrPostList.size(); i++){
             Post post=m_arrPostList.get(i);
-//            addView(listView, post);
         }
     }
+//    public void initLayout(ListView listView) {
+////        setContentView(R.layout.activity_home);
+//        m_arrPostList = new ArrayList<Post>();
+//        m_arrPostList.add(new Post("2022-12-26 00:00:00", "Who can help me now aaaa aaaa aaaa aaa aaaaa aaa aaaaaa aaaaaa aaaaaa!","user name", "This is address", "This is the content of the post hahahahaha", "this is adreess"));
+//        m_arrPostList.add(new Post("2022-12-26 00:00:00", "Who can help me now aaaa aaaa aaaa aaa aaaaa aaa aaaaaa aaaaaa aaaaaa!","user name", "This is address", "This is the content of the post hahahahaha", "this is adreess"));
+//        m_arrPostList.add(new Post("2022-12-26 00:00:00", "Who can help me now aaaa aaaa aaaa aaa aaaaa aaa aaaaaa aaaaaa aaaaaa!","user name", "This is address", "This is the content of the post hahahahaha", "this is adreess"));
+//        m_arrPostList.add(new Post("2022-12-26 00:00:00", "Who can help me now aaaa aaaa aaaa aaa aaaaa aaa aaaaaa aaaaaa aaaaaa!","user name", "This is address", "This is the content of the post hahahahaha", "this is adreess"));
+//        m_arrPostList.add(new Post("2022-12-26 00:00:00", "Who can help me now aaaa aaaa aaaa aaa aaaaa aaa aaaaaa aaaaaa aaaaaa!","user name", "This is address", "This is the content of the post hahahahaha", "this is adreess"));
+//
+//        for(int i=0; i<m_arrPostList.size(); i++){
+//            Post post=m_arrPostList.get(i);
+////            addView(listView, post);
+//        }
+//    }
 
     public void addView(ListView listView, Post post) {
         PostView child = new PostView(this, post);
