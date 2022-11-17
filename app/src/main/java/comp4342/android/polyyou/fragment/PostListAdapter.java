@@ -83,7 +83,8 @@ public class PostListAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
         Post post = m_postList.get(position);
-        PostView postView= new PostView(m_context,post);
+//        PostView postView= new PostView(m_context,post);
+        PostView postView= new PostView(m_context, post);
         return postView;
     }
 //
