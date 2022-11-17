@@ -61,34 +61,34 @@ public class Post implements ListItemModel {
     public String getPhotoAddress(){return attachedPhoto; }
     public ArrayList<Comment> getComments(){return comments;}
 
-//    public void setM_strPostTitle(String str) {m_strPostTitle=str;}
-//    public void setM_strPostContent(String str) {m_strPostContent =str;}
-////    public void setM_commentNum(int num) {m_commentNum = num;}
-//    public void setM_strProfilePhotoAddress(String str){m_strProfilePhotoAddress = str; }
-//    public void addComments(Comment comment){
-//        m_comments.add(comment);
-//    }
-//    public void setM_strTime(String str){
-////        m_strTime = dateToStamp(System.currentTimeMillis());
-//        m_strTime = str;
-//    }
+    public void setAuthor(User user){author = user;}
+    public void setPostTitle(String str) {postTitle=str;}
+    public void setPostContent(String str) {postContent =str;}
+//    public void setM_commentNum(int num) {m_commentNum = num;}
+//    public void setProfilePhotoAddress(String str){PhotoAddress = str; }
+    public void addComments(Comment comment){comments.add(comment);}
+    public void setTime(String str){
+        time=str;
+//        time = dateToStamp(System.currentTimeMillis());
+    }
+
 
     @Override
     public int getLayoutId() {
         return R.layout.fragment_post;
     }
 
-//    public String dateToStamp(long s) {
-//        String res;
-//        try {
-//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//            Date date = new Date(s);
-//            res = simpleDateFormat.format(date);
-//        } catch (Exception e) {
-//            return "";
-//        }
-//        return res;
-//    }
+    public String dateToStamp(long s) {
+        String res;
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = new Date(s);
+            res = simpleDateFormat.format(date);
+        } catch (Exception e) {
+            return "";
+        }
+        return res;
+    }
 
 //    @Override
 //    public String toString() {

@@ -110,8 +110,13 @@ public class AddPost extends AppCompatActivity {
                 if (!strPostContent.isEmpty() && !strPostTitle.isEmpty()) {
 //                    addPost(new Post(dateToStamp(System.currentTimeMillis()), strPostTitle, m_strUserName, strProfilePhotoAddress, strPostContent, strUploadPhotoAddress));
                     //postEditText.setText("");
-                    addPostBiz.addpost(strPostTitle, strPostContent, new CommonCallBack<Post>() {
-                        @Override
+                    Post post=new Post();
+//                    post.setAuthor();
+                    post.setTime(dateToStamp(System.currentTimeMillis()));
+                    post.setPostContent(strPostContent);
+                    post.setPostTitle(strPostTitle);
+
+                    addPostBiz.addpost(post, new CommonCallBack<Post>(){
                         public void onError(Exception e) {
                             Log.d("add post activity", e.getMessage());
                         }

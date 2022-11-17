@@ -4,18 +4,21 @@ import com.zhy.http.okhttp.OkHttpUtils;
 
 import comp4342.android.polyyou.Config;
 import comp4342.android.polyyou.model.Post;
+import comp4342.android.polyyou.model.User;
 import comp4342.android.polyyou.net.CommonCallBack;
 
 
 
 public class AddPostBiz {
-    public void addpost(String title, String content, CommonCallBack<Post> commonCallBack) {
+    public void addpost(Post post, CommonCallBack<Post> commonCallBack) {
         OkHttpUtils
                 .post()
                 .url(Config.baseUrl + "post")
                 .tag(this)
-                .addParams("title", title)
-                .addParams("content", content)
+                .addParams("authorName", post.author.getName())
+                .addParams("time", post.time)
+                .addParams("title", post.getPostTitle())
+                .addParams("content", post.postContent)
                 .build()
                 .execute(commonCallBack);
     }
