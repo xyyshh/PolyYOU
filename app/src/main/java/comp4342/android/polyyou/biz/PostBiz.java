@@ -3,6 +3,7 @@ package comp4342.android.polyyou.biz;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import comp4342.android.polyyou.Config;
+import comp4342.android.polyyou.model.Comment;
 import comp4342.android.polyyou.model.Post;
 import comp4342.android.polyyou.net.CommonCallBack;
 
@@ -31,7 +32,28 @@ public class PostBiz {
                 .build()
                 .execute(commonCallBack);
     }
+    public void addComment(Post post, Comment comment, CommonCallBack<Post> commonCallBack){
+        OkHttpUtils
+                .post()
+                .url(Config.baseUrl + "comment")
+                .tag(this)
+                .addParams("postId", String.valueOf(post.getId()))
+                .addParams("commentAuthor", comment.getCommenter())
+                .addParams("commentTime", comment.getCommentTime())
+                .addParams("commentContent", comment.getCommentContent())
+                .build()
+                .execute(commonCallBack);
+    }
 
+    public void loadComment(Post post, CommonCallBack<Post> commonCallBack){
+        OkHttpUtils
+                .post()
+                .url(Config.baseUrl + "comment")
+                .tag(this)
+                .addParams("postId", String.valueOf(post.getId()))
+                .build()
+                .execute(commonCallBack);
+    }
     public void onDestroy() {
         OkHttpUtils.getInstance().cancelTag(this);
     }

@@ -20,6 +20,7 @@ public class Post implements ListItemModel {
     public String time;
     public ArrayList<Comment> comments;
     public String tag_name;
+    public int id;
 
 //    private int m_commentNum;
 
@@ -31,6 +32,7 @@ public class Post implements ListItemModel {
         this.attachedPhoto = new String("");
 //        this.photoAddress = new String("");
         this.comments = new ArrayList<Comment>();
+
 //        this.m_commentNum = 0;
     }
 
@@ -64,6 +66,7 @@ public class Post implements ListItemModel {
     public String getProfilePhotoAddress(){return author.getHeadImage(); }
     public String getPhotoAddress(){return attachedPhoto; }
     public ArrayList<Comment> getComments(){return comments;}
+    public int getId(){return id;}
 
     public void setAuthor(User user){author = user;}
     public void setPostTitle(String str) {postTitle=str;}
@@ -79,10 +82,11 @@ public class Post implements ListItemModel {
     }
     public void setTag_name(String tag){tag_name=tag;}
 
+    public void setId(int i){id=i;}
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_post;
+        return R.layout.post_collapse;
     }
 
     public String dateToStamp(long s) {

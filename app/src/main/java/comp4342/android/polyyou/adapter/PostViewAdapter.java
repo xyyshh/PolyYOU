@@ -14,18 +14,13 @@ import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.model.Post;
 
 import android.content.Context;
-import android.content.Intent;
+
 import androidx.annotation.NonNull;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import com.bumptech.glide.Glide;
 
-import comp4342.android.polyyou.R;
-import comp4342.android.polyyou.activity.Home;
-import comp4342.android.polyyou.model.Post;
+import com.bumptech.glide.Glide;
 
 public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHolder> {
 
@@ -40,7 +35,7 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.fragment_post, viewGroup, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.post_collapse, viewGroup, false);
         return new ViewHolder(view);
     }
 

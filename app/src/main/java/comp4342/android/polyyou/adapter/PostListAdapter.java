@@ -1,4 +1,4 @@
-package comp4342.android.polyyou.fragment;
+package comp4342.android.polyyou.adapter;
 
 
 import java.util.List;
@@ -62,3 +62,4 @@ public class PostListAdapter extends BaseAdapter implements AdapterView.OnItemLo
         return false;
     }
 }
+

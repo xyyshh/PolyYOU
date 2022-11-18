@@ -27,8 +27,9 @@ import java.util.Date;
 import java.util.Scanner;
 
 import comp4342.android.polyyou.R;
+import comp4342.android.polyyou.adapter.PostViewAdapter;
 import comp4342.android.polyyou.model.Post;
-import comp4342.android.polyyou.adapter.PostAdapter;
+import comp4342.android.polyyou.adapter.PostViewAdapter;
 import comp4342.android.polyyou.model.User;
 import comp4342.android.polyyou.net.CommonCallBack;
 import comp4342.android.polyyou.biz.PostBiz;
@@ -39,7 +40,7 @@ public class AddPost extends AppCompatActivity {
     protected EditText postEditText;
     protected EditText postTitleEditText;
     protected Button btnPost;
-    protected PostAdapter postAdapter;
+    protected PostViewAdapter postAdapter;
 
     private PostBiz PostBiz = new PostBiz();
 
