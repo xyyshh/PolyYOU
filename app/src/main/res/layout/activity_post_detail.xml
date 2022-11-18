@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".activity.PostDetail">
 
-    <ImageButton
+    <Button
+        android:id = "@+id/button_post_back"
         android:layout_width="15dp"
         android:layout_height="20dp"
         android:background="@drawable/back_arrow"
