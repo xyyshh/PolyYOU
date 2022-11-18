@@ -9,7 +9,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -40,7 +43,10 @@ public class AddPost extends AppCompatActivity {
     protected EditText postEditText;
     protected EditText postTitleEditText;
     protected Button btnPost;
+    private RadioGroup topicGroup;
+    private RadioButton btnTopic;
     protected PostViewAdapter postAdapter;
+    //User user = new User();
 
     private PostBiz PostBiz = new PostBiz();
 
@@ -48,7 +54,6 @@ public class AddPost extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
-        initLayout();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.add);
@@ -74,42 +79,26 @@ public class AddPost extends AppCompatActivity {
                 return false;
             }
         });
-
-        initAddPostListeners();
-//        Resources resources = getResources();
-//
-//        String[] strArray = resources.getStringArray(R.array.postList);
-//        m_strUserName = resources.getString(R.string.user_name_string);
-//        String strPostContent = m_vwPostEditText.getText().toString();
-//        String strPostTitle = m_vwPostTitleEditText.getText().toString();
-//        String strProfilePhotoAddress = "";
-//        String strUploadPhotoAddress = "";
-//
-//        for (int i=0; i<strArray.length; i++) {
-//            Post newPost = new Post(dateToStamp(System.currentTimeMillis()), strPostTitle, m_strUserName, strProfilePhotoAddress, strPostContent, strUploadPhotoAddress);
-//            addPost(newPost);
-//        }
-//
-//        initAddPostListeners();
+        initLayout();
+        //initAddPostListeners();
     }
 
-//    protected void addPost(Post post) {
-//        // TODO
-//        m_arrPostList.add(post);
-//        m_postAdapter.notifyDataSetChanged();
-//    }
 
     public void initLayout() {
-        btnPost = findViewById(R.id.button_confirm_login);
+        topicGroup = (RadioGroup)findViewById(R.id.topic_group) ;
+        btnTopic = (RadioButton)findViewById(topicGroup.getCheckedRadioButtonId());
+        //onRadioButtonClicked(findViewById(R.id.topic_group));
+        postTitleEditText = findViewById(R.id.post_title_input);
+        postEditText = findViewById(R.id.post_text_input);
+        btnPost = findViewById(R.id.button_confirm_post);
     }
-
-
 
     protected void initAddPostListeners() {
         //点击post button
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String strPostTag = btnTopic.toString();
                 String strPostTitle = postTitleEditText.getText().toString();
                 String strPostContent = postEditText.getText().toString();
                 String strProfilePhotoAddress = "";
@@ -120,6 +109,7 @@ public class AddPost extends AppCompatActivity {
                     Post post=new Post();
 //                    post.setAuthor();
                     post.setTime(dateToStamp(System.currentTimeMillis()));
+                    post.setTag_name(strPostTag);
                     post.setPostContent(strPostContent);
                     post.setPostTitle(strPostTitle);
 
@@ -132,6 +122,7 @@ public class AddPost extends AppCompatActivity {
                         public void onSuccess(Post response) {
                             Log.d("add post", "success");
                             startActivity(new Intent(getApplicationContext(), Home.class));
+                            toHome();
                         }
                     });
 //                    ????InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -139,22 +130,10 @@ public class AddPost extends AppCompatActivity {
                 }
             }
         });
-
-//        m_vwPostEditText.setOnKeyListener(new View.OnKeyListener() {
-//            @Override
-//            public boolean onKey(View view, int i, KeyEvent keyEvent) {
-//                String postText = m_vwPostEditText.getText().toString();
-//                if ((keyEvent.getAction()==KeyEvent.ACTION_UP)&&(i==KeyEvent.KEYCODE_ENTER)){
-//                    addPost(new Post(postText.substring(0, postText.length()-1), m_strUserName));
-//                    m_vwPostEditText.setText("");
-//
-//                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//                    imm.hideSoftInputFromWindow(m_vwPostEditText.getWindowToken(), 0);
-//                }
-//                return false;
-//            }
-//        });
-
+    }
+    private void toHome() {
+        Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
     }
 
 
@@ -171,86 +150,3 @@ public class AddPost extends AppCompatActivity {
     }
 
 }
-//    @Override
-//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
-//        MenuItem menuItem1 = menu.add(menu.NONE, REMOVE_JOKE_MENUITEM, menu.NONE, R.string.remove_menuitem);
-//        MenuItem menuItem2 = menu.add(menu.NONE, UPLOAD_JOKE_MENUITEM, menu.NONE, R.string.upload_menuitem);
-//        menuItem1.setOnMenuItemClickListener(this);
-//        menuItem2.setOnMenuItemClickListener(this);
-//        super.onCreateContextMenu(menu, v, menuInfo);
-//    }
-
-//    @Override
-//    public boolean onMenuItemClick(MenuItem item) {
-//        Post post;
-////        switch(item.getItemId()){
-////            case REMOVE_JOKE_MENUITEM:
-////                int selectedPosition = m_postAdapter.getSelectedPosition();
-////                Log.v("Selected","selectedPosition");
-////                post = m_arrSelectedPostList.get(selectedPosition);
-////                m_arrSelectedPostList.remove(selectedPosition);
-////                m_arrPostList.remove(post);
-////                m_postAdapter.notifyDataSetChanged();
-////                break;
-////            case UPLOAD_JOKE_MENUITEM:
-////                int selectedPosition1 = m_postAdapter.getSelectedPosition();
-////                //Log.v("Selected",selectedPosition1);
-////                post = m_arrSelectedPostList.get(selectedPosition1);
-////                //Log.v("SelectedPost","post");
-////                try {
-////                    uploadPostToServer(post);
-////                } catch (IOException e) {
-////                    // TODO Auto-generated catch block
-////                    e.printStackTrace();
-////                }
-////                break;
-////            default:
-////                break;
-////        }
-////        return true;
-//    }
-
-//    protected void uploadPostToServer(Post post)  throws IOException {
-//        String urladdress = "http://pc066.comp.polyu.edu.hk/addOnePost.php?";
-//        String url = urladdress +"post_text=" + java.net.URLEncoder.encode(post.getPostContent(),"UTF-8")
-//                + "&title=" + java.net.URLEncoder.encode(String.valueOf(post.getPostTitle()),"UTF-8")
-//                + "&user=" + java.net.URLEncoder.encode(post.getUserName(),"UTF-8")
-//                + "&time=" + java.net.URLEncoder.encode(post.getTime(),"UTF-8")
-//                + "&profilePhoto=" + java.net.URLEncoder.encode(post.getProfilePhotoAddress(),"UTF-8")
-//                + "&photo=" + java.net.URLEncoder.encode(post.getPhotoAddress(),"UTF-8");
-//        Log.v("upload address", url);
-//        try {
-//            URL oburl = new URL(url);
-//            HttpURLConnection conn = (HttpURLConnection)oburl.openConnection();
-//            InputStream inputStream = new BufferedInputStream(conn.getInputStream());
-//
-//            Scanner sc = new Scanner(inputStream);
-//            sc.useDelimiter("\n");
-//            if (sc.hasNext()) {
-//                String strOutput = sc.next();
-//                Log.v("InputStream",strOutput);
-//                if(strOutput.equalsIgnoreCase("1 record added")){
-//                    Toast.makeText(getBaseContext(), "Upload Succeeded!", Toast.LENGTH_SHORT).show();
-//                }
-//                else {
-//                    Toast.makeText(getBaseContext(), "Upload Failed!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//            sc.close();
-//
-//        } catch (MalformedURLException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//    }
-
-
-//    @Override
-//    public boolean onMenuItemClick(MenuItem menuItem) {
-//        return false;
-//    }
-
-//    @Override
-//    public boolean onMenuItemClick(MenuItem menuItem) {
-//        return false;
-//    }
