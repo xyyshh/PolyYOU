@@ -82,7 +82,7 @@ public class Login extends BaseActivity {
                                         @Override
                                         public void onSuccess(User response) {
                                                 stopLoadingProgress();
-                                                Log.d("login activity", "success");
+                                                Log.d("login activity", response.toString());
                                                 toHome();
                                         }
                                 });
