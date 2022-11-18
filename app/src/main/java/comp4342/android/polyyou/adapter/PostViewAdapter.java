@@ -14,25 +14,20 @@ import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.model.Post;
 
 import android.content.Context;
-import android.content.Intent;
+
 import androidx.annotation.NonNull;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import com.bumptech.glide.Glide;
 
-import comp4342.android.polyyou.R;
-import comp4342.android.polyyou.activity.Home;
-import comp4342.android.polyyou.model.Post;
+import com.bumptech.glide.Glide;
 
 public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHolder> {
 
-    private final List<Post> posts;
+    private final ArrayList<Post> posts;
     private final Context context;
 
-    public PostViewAdapter(Context context, List<Post> posts) {
+    public PostViewAdapter(Context context, ArrayList<Post> posts) {
         this.posts = posts;
         this.context = context;
     }
@@ -40,10 +35,9 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.fragment_post, viewGroup, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.post_collapse, viewGroup, false);
         return new ViewHolder(view);
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
@@ -53,11 +47,11 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
                 .placeholder(R.drawable.user_profile_photo)
                 .error(R.drawable.user_profile_photo)
                 .into(viewHolder.avatar);
-        viewHolder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, Home.class);
-            intent.putExtra("id", post.author);
-            context.startActivity(intent);
-        });
+//        viewHolder.itemView.setOnClickListener(v -> {
+//            Intent intent = new Intent(context, Home.class);
+//            intent.putExtra("id", post.author);
+//            context.startActivity(intent);
+//        });
         viewHolder.content.setText(post.getPostContent());
         viewHolder.title.setText(post.getPostTitle());
         viewHolder.name.setText(post.author.getName());
@@ -67,6 +61,7 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
 
     @Override
     public int getItemCount() {
+        System.out.println("Post num is "+posts.size());
         return posts.size();
     }
 

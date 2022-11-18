@@ -10,16 +10,16 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 
-import comp4342.android.polyyou.fragment.PostView;
 import comp4342.android.polyyou.model.Post;
+import comp4342.android.polyyou.view.PostView;
 
-public class PostAdapter extends BaseAdapter implements AdapterView.OnItemLongClickListener {
+public class PostListAdapter extends BaseAdapter implements AdapterView.OnItemLongClickListener {
 
     private Context m_context;
     private List<Post> m_postList;
     private int m_nSelectedPosition;
 
-    public PostAdapter(Context context, List<Post> postList) {
+    public PostListAdapter(Context context, List<Post> postList) {
         //TODO
         m_context = context;
         m_postList = postList;
@@ -62,3 +62,4 @@ public class PostAdapter extends BaseAdapter implements AdapterView.OnItemLongCl
         return false;
     }
 }
+

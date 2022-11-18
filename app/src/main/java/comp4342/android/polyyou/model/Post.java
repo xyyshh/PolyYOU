@@ -19,19 +19,22 @@ public class Post implements ListItemModel {
     public String attachedPhoto;
     public String time;
     public ArrayList<Comment> comments;
+    public String tag_name;
+    public int id;
 
 //    private int m_commentNum;
 
 
 
-//    public Post() {
-//        this.m_strPostTitle = new String("");
-//        this.m_strPostContent = new String("");
-//        this.m_strProfilePhotoAddress = new String("");
-//        this.m_strPhotoAddress = new String("");
-//        this.m_comments = new ArrayList<Comment>();
-////        this.m_commentNum = 0;
-//    }
+    public Post() {
+        this.postTitle = new String("");
+        this.postContent = new String("");
+        this.attachedPhoto = new String("");
+//        this.photoAddress = new String("");
+        this.comments = new ArrayList<Comment>();
+
+//        this.m_commentNum = 0;
+    }
 
 
 //    public Post(String strTime, String strPostTitle, String strUserName, String strProfilePhotoAddress, String strPostContent, String strPhotoAddress) {
@@ -53,49 +56,51 @@ public class Post implements ListItemModel {
     public String getUserName() {
         return author.getName();
     }
-    public int getCommentNum() {
-        return comments.size();
+    public String getCommentNum() {
+        return "1";
+
+        //return comments.size();
     }
     public String getTime(){return time;}
+    public String getTag_name(){return tag_name;}
     public String getProfilePhotoAddress(){return author.getHeadImage(); }
     public String getPhotoAddress(){return attachedPhoto; }
     public ArrayList<Comment> getComments(){return comments;}
+    public int getId(){return id;}
 
-//    public void setM_strPostTitle(String str) {m_strPostTitle=str;}
-//    public void setM_strPostContent(String str) {m_strPostContent =str;}
-////    public void setM_commentNum(int num) {m_commentNum = num;}
-//    public void setM_strProfilePhotoAddress(String str){m_strProfilePhotoAddress = str; }
-//    public void addComments(Comment comment){
-//        m_comments.add(comment);
-//    }
-//    public void setM_strTime(String str){
-////        m_strTime = dateToStamp(System.currentTimeMillis());
-//        m_strTime = str;
-//    }
+    public void setAuthor(User user){author = user;}
+    public void setPostTitle(String str) {postTitle=str;}
+    public void setPostContent(String str) {postContent =str;}
+//    public void setM_commentNum(int num) {m_commentNum = num;}
+//    public void setProfilePhotoAddress(String str){PhotoAddress = str; }
+    public void addComments(Comment comment){
+        System.out.println("comment is: "+comment.getCommentContent());
+        comments.add(comment);}
+    public void setTime(String str){
+        time=str;
+//        time = dateToStamp(System.currentTimeMillis());
+    }
+    public void setTag_name(String tag){tag_name=tag;}
+
+    public void setId(int i){id=i;}
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_post;
+        return R.layout.post_collapse;
     }
 
-//    public String dateToStamp(long s) {
-//        String res;
-//        try {
-//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//            Date date = new Date(s);
-//            res = simpleDateFormat.format(date);
-//        } catch (Exception e) {
-//            return "";
-//        }
-//        return res;
-//    }
+    public String dateToStamp(long s) {
+        String res;
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = new Date(s);
+            res = simpleDateFormat.format(date);
+        } catch (Exception e) {
+            return "";
+        }
+        return res;
+    }
 
-
-    /**
-     * Returns only the text of the joke. This method should mimic getJoke().
-     *
-     * @return	A string containing the text of the joke
-     */
 //    @Override
 //    public String toString() {
 //        return getJoke();

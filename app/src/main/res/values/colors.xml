@@ -7,6 +7,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="post_color">#FFF3F3</color>
     <color name="post_grey">#F3F3F3</color>
     <color name="polyu_color">#750015</color>
     <color name="light_polyu_color">#DBC5C9</color>

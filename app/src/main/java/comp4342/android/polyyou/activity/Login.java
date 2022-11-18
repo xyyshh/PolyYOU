@@ -53,26 +53,26 @@ public class Login extends BaseActivity {
 
         private void initEvent() {
                 T.init(Login.this);
-                btnLoginBack.setOnClickListener(new View.OnClickListener() {
+                btnLoginBack.setOnClickListener(new View.OnClickListener(){
                         @Override
                         public void onClick(View view) {
                                 backToWelcome();
                         }
                 });
 
-                btnConfirmLogin.setOnClickListener(new View.OnClickListener() {
+                btnConfirmLogin.setOnClickListener(new View.OnClickListener(){
                         @Override
-                        public void onClick(View view) {
+                        public void onClick(View view){
                                 String email = etEmail.getText().toString();
                                 String password = etPassword.getText().toString();
-                                if(!Str.isValidEmail(email)) {
+                                if(!Str.isValidEmail(email)){
                                         T.showToast("Please enter a polyu email address");  return;
                                 }
-                                else if(password.isEmpty()) {
+                                else if(password.isEmpty()){
                                         T.showToast("Password cannot be empty");  return;
                                 }
                                 startLoadingProgress();
-                                userBiz.login(email, password, new CommonCallBack<User>() {
+                                userBiz.login(email, password, new CommonCallBack<User>(){
                                         @Override
                                         public void onError(Exception e) {
                                                 stopLoadingProgress();
@@ -80,7 +80,7 @@ public class Login extends BaseActivity {
                                         }
 
                                         @Override
-                                        public void onSuccess(User response) {
+                                        public void onSuccess(User response){
                                                 stopLoadingProgress();
                                                 Log.d("login activity", response.toString());
                                                 toHome();
@@ -91,7 +91,7 @@ public class Login extends BaseActivity {
         }
 
         private void toHome() {
-                Intent intent = new Intent(this, Signup.class);
+                Intent intent = new Intent(this, Home.class);
                 startActivity(intent);
         }
 
