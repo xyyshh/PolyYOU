@@ -44,7 +44,7 @@ public class Welcome extends AppCompatActivity {
     }
 
     private void toSignUpActivity() {
-        Intent intent = new Intent(this, Signup.class);
+        Intent intent = new Intent(this, SignupImage.class);
         startActivity(intent);
     }
 
