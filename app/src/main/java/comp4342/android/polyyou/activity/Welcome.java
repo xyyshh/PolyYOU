@@ -1,8 +1,12 @@
 package comp4342.android.polyyou.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +25,25 @@ public class Welcome extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
         initView();
         initEvent();
+        verifyPermission(Welcome.this);
+    }
+
+
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
+    public void verifyPermission(Context context){
+        int permission = ActivityCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    Welcome.this,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE);
+        }
     }
 
     private void initEvent() {
