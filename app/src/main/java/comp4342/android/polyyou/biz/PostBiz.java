@@ -38,7 +38,7 @@ public class PostBiz {
                 .url(Config.baseUrl + "comment")
                 .tag(this)
                 .addParams("postId", String.valueOf(post.getId()))
-                .addParams("commentAuthor", comment.getCommenter())
+                .addParams("commentAuthor", comment.getCommenter().getName())
                 .addParams("commentTime", comment.getCommentTime())
                 .addParams("commentContent", comment.getCommentContent())
                 .build()

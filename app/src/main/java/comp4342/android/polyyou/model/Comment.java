@@ -1,7 +1,8 @@
 package comp4342.android.polyyou.model;
 
 public class Comment {
-    private String commenter;
+    private User commenter;
+    private Post commentPost;
     private String commentee;
     private String commentTime;
     private String commentContent;
@@ -22,11 +23,11 @@ public class Comment {
         this.commentTime = commentTime;
     }
 
-    public String getCommenter() {
+    public User getCommenter() {
         return commenter;
     }
 
-    public void setCommenter(String commenter) {
+    public void setCommenter(User commenter) {
         this.commenter = commenter;
     }
 
@@ -38,7 +39,7 @@ public class Comment {
         this.commentee = commentee;
     }
 
-    public Comment(String commenter, String commentee, String commentTime, String commentContent) {
+    public Comment(User commenter, String commentee, String commentTime, String commentContent) {
         this.commenter = commenter;
         this.commentee = commentee;
         this.commentTime = commentTime;

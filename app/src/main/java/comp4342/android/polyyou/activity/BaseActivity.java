@@ -69,7 +69,7 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    protected boolean isPreviousUserExists() {
-
-    }
+//    protected boolean isPreviousUserExists() {
+//
+//    }
 }
