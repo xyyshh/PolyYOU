@@ -48,6 +48,7 @@ public class AddPost extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
+        initLayout();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.add);
@@ -97,6 +98,11 @@ public class AddPost extends AppCompatActivity {
 //        m_arrPostList.add(post);
 //        m_postAdapter.notifyDataSetChanged();
 //    }
+
+    public void initLayout() {
+        btnPost = findViewById(R.id.button_confirm_login);
+    }
+
 
 
     protected void initAddPostListeners() {

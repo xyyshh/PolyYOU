@@ -10,13 +10,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.bumptech.glide.util.Util;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import comp4342.android.polyyou.Config;
 import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.biz.PostBiz;
-import comp4342.android.polyyou.view.PostView;
 import comp4342.android.polyyou.adapter.PostViewAdapter;
 import comp4342.android.polyyou.model.Comment;
 import comp4342.android.polyyou.model.Post;
@@ -27,7 +24,6 @@ import comp4342.android.polyyou.utils.T;
 
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -47,16 +43,7 @@ public class Home extends BaseActivity {
      */
 //    protected PostAdapter m_postAdapter;
     private PostViewAdapter mAdapter;
-
-    /** LinearLayout used for maintaining a list of Views that each display Posts. */
-//    protected ListView m_vwPostLayout;
-//    private ListView m_container;
-//    // 初始化
-//    public static void init(Context mContext) {
-//        Config.USERID = SharedUtil.getString(mContext, "USERID");
-//        if ( !Util.checkNULL(Config.USERID))
-//            getUserInfo();
-//    }
+    private RecyclerView mRecycleView;
 
 
     @Override
@@ -67,17 +54,14 @@ public class Home extends BaseActivity {
         Intent intent_welcome = new Intent(this, Welcome.class);
         startActivity(intent_welcome);
 
-        RecyclerView mRecycleView = findViewById(R.id.postRecycleView);
-//        RecyclerView mRecycleView = getLayoutInflater().inflate(R.layout.fragment_post,R.id.postRecycleView);
+        mRecycleView = findViewById(R.id.postRecycleView);
         //初始化数据
         initData();
         System.out.println("m_arrPostList num is "+m_arrPostList.size());
-        //创建布局管理器，垂直设置LinearLayoutManager.VERTICAL，水平设置LinearLayoutManager.HORIZONTAL
-        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+//        //创建布局管理器，垂直设置LinearLayoutManager.VERTICAL，水平设置LinearLayoutManager.HORIZONTAL
+//        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 //        创建适配器，将数据传递给适配器
         mAdapter = new PostViewAdapter(this, m_arrPostList);
-        //设置布局管理器
-//        mRecycleView.setLayoutManager(mLinearLayoutManager);
         //设置适配器adapter
         mRecycleView.setAdapter(mAdapter);
         mRecycleView.setLayoutManager(new LinearLayoutManager(this,
@@ -115,22 +99,6 @@ public class Home extends BaseActivity {
                 return false;
             }
         });
-
-
-//        initLayout(m_container);
-
-//        registerForContextMenu(m_vwPostLayout);
-//
-//        Resources resources = getResources();
-
-//        String[] strArray = resources.getStringArray(R.array.postList);
-//        m_strAuthorName = resources.getString(R.string.author_name);
-//
-//        for (int i=0; i<strArray.length; i++) {
-//            Post newPost = new Post(strArray[i], m_strAuthorName);
-//            addPost(newPost);
-//        }
-
 
     }
     /**
@@ -170,17 +138,6 @@ public class Home extends BaseActivity {
         m_arrPostList.add(post1);
         m_arrPostList.add(post2);
         m_arrPostList.add(post1);
-
-
-//        m_arrPostList.add(new Post("2022-12-26 00:00:00", "Who can help me now aaaa aaaa aaaa aaa aaaaa aaa aaaaaa aaaaaa aaaaaa!","user name", "This is address", "This is the content of the post hahahahaha", "this is adreess"));
-//        m_arrPostList.add(new Post("2022-12-26 00:00:00", "Who can help me now aaaa aaaa aaaa aaa aaaaa aaa aaaaaa aaaaaa aaaaaa!","user name", "This is address", "This is the content of the post hahahahaha", "this is adreess"));
-//        m_arrPostList.add(new Post("2022-12-26 00:00:00", "Who can help me now aaaa aaaa aaaa aaa aaaaa aaa aaaaaa aaaaaa aaaaaa!","user name", "This is address", "This is the content of the post hahahahaha", "this is adreess"));
-//        m_arrPostList.add(new Post("2022-12-26 00:00:00", "Who can help me now aaaa aaaa aaaa aaa aaaaa aaa aaaaaa aaaaaa aaaaaa!","user name", "This is address", "This is the content of the post hahahahaha", "this is adreess"));
-//        m_arrPostList.add(new Post("2022-12-26 00:00:00", "Who can help me now aaaa aaaa aaaa aaa aaaaa aaa aaaaaa aaaaaa aaaaaa!","user name", "This is address", "This is the content of the post hahahahaha", "this is adreess"));
-
-//        for(int i=0; i<m_arrPostList.size(); i++){
-//            Post post=m_arrPostList.get(i);
-//        }
     }
 
     public void initLayout() {
@@ -211,41 +168,12 @@ public class Home extends BaseActivity {
         btn_help.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-//                String email = etEmail.getText().toString();
-//                String password = etPassword.getText().toString();
-//                if(!Str.isValidEmail(email)){
-//                    T.showToast("Please enter a polyu email address");  return;
-//                }
-//                else if(password.isEmpty()){
-//                    T.showToast("Password cannot be empty");  return;
-//                }
-//                startLoadingProgress();
-//                userBiz.login(email, password, new CommonCallBack<User>(){
-//                    @Override
-//                    public void onError(Exception e) {
-//                        stopLoadingProgress();
-//                        Log.d("login activity", e.getMessage());
-//                    }
-//
-//                    @Override
-//                    public void onSuccess(User response){
-//                        stopLoadingProgress();
-//                        Log.d("login activity", "success");
-//                        toHome();
-//                    }
-//                });
             }
         });
         btn_takeaway.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-
             }
         });
     }
-
-//    public void addView(ListView listView, Post post) {
-//        PostView child = new PostView(this, post);
-//        listView.addView(child);
-//    }
 }
