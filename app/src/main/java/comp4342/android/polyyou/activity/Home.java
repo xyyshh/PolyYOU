@@ -117,10 +117,10 @@ public class Home extends BaseActivity {
         post1.setPostTitle("Help! I need the help!");
         post1.setPostContent("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
         post1.setTag_name("1");
-        Comment comment = new Comment(author,null,"2001-12-26 12:00:00", "Cool!");
-        Comment comment1 = new Comment(author,null,"2001-12-26 12:00:00", "It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool!");
-        Comment comment2 = new Comment(author,"hihi","2001-12-26 12:00:00", "It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!");
-        Comment comment3 = new Comment(author,null,"2001-12-26 12:00:00", "Cool!");
+        Comment comment = new Comment(author,null,"Cool!");
+        Comment comment1 = new Comment(author,null,"It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool!");
+        Comment comment2 = new Comment(author,"hihi","It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!");
+        Comment comment3 = new Comment(author,null, "Cool!");
         post1.addComments(comment);
         post1.addComments(comment1);
         post1.addComments(comment2);

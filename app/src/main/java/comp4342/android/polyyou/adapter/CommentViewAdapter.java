@@ -67,20 +67,6 @@ public class CommentViewAdapter extends RecyclerView.Adapter<CommentViewAdapter.
         }
     }
 
-    //    private  CommentViewAdapter.ViewHolder getViewHolderByViewType(int viewType){
-//        //1 for comment; 2 for comment reply
-//        View comment = View.inflate(context, R.layout.comment_item,null);
-//        View comment_reply = View.inflate(context, R.layout.comment_reply,null);
-//        RecyclerView.ViewHolder holder = null;
-//        switch (viewType){
-//            case 1:
-//                return new CommentViewAdapter.ViewHolder(comment);
-//            case 2:
-//                return new CommentViewAdapter.ViewHolder(comment_reply);
-//            default:
-//                return null;
-//        }
-//    }
 
     @Override
     public void onBindViewHolder(@NonNull CommentViewAdapter.ViewHolder viewHolder, int i) {
@@ -90,6 +76,12 @@ public class CommentViewAdapter extends RecyclerView.Adapter<CommentViewAdapter.
                 .placeholder(R.drawable.user_profile_photo)
                 .error(R.drawable.user_profile_photo)
                 .into(viewHolder.avatar);
+        viewHolder.itemView.setOnClickListener(v -> {
+            int position = viewHolder.getLayoutPosition();
+            DeliverdInfo
+            System.out.println("click the commenter: "+comment.getCommenter());
+//            Intent intent = new Intent(context, PostDetail.class);
+        });
         viewHolder.content.setText(comment.getCommentContent());
         viewHolder.time.setText(comment.getCommentTime());
         viewHolder.commentee.setText(comment.getCommentee());
@@ -104,6 +96,7 @@ public class CommentViewAdapter extends RecyclerView.Adapter<CommentViewAdapter.
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
+
 
         @BindView(R.id.commenter_profile_photo)
         ImageView avatar;

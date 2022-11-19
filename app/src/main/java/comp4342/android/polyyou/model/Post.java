@@ -9,7 +9,7 @@ import comp4342.android.polyyou.R;
 /**
  * This class encapsulates the data pertaining to a Joke.
  */
-public class Post implements ListItemModel {
+public class Post{
 
     /** Contains the text of this post. */
     public String postTitle;
@@ -86,10 +86,6 @@ public class Post implements ListItemModel {
 
     public void setId(int i){id=i;}
 
-    @Override
-    public int getLayoutId() {
-        return R.layout.post_collapse;
-    }
 
     public String dateToStamp(long s) {
         String res;

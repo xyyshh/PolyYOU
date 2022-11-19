@@ -9,24 +9,30 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.adapter.CommentViewAdapter;
 import comp4342.android.polyyou.adapter.PostDetailedAdapter;
 import comp4342.android.polyyou.adapter.PostViewAdapter;
+import comp4342.android.polyyou.biz.PostBiz;
 import comp4342.android.polyyou.model.Comment;
 import comp4342.android.polyyou.model.Post;
 import comp4342.android.polyyou.model.User;
 import comp4342.android.polyyou.net.CommonCallBack;
+import comp4342.android.polyyou.utils.Str;
 import comp4342.android.polyyou.utils.T;
 
-public class PostDetail extends AppCompatActivity {
+public class PostDetail extends BaseActivity {
+    private PostBiz postBiz;
     private Button btn_back;
     private PostDetailedAdapter mPostAdapter;
     private Post post;
     private RecyclerView mpostView;
     private CommentViewAdapter mCommentAdapter;
     private RecyclerView mcommentView;
+    private EditText comment_input;
+    private Button btn_sendComment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +56,17 @@ public class PostDetail extends AppCompatActivity {
         mcommentView.setAdapter(mCommentAdapter);
         mcommentView.setLayoutManager(new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL,false));
+
+        comment_input = findViewById(R.id.comment_input_box);
+
         initLayout();
         initEvent();
     }
 
     public void initLayout() {
         btn_back = findViewById(R.id.button_post_back);
+        btn_sendComment = findViewById(R.id.button_comment_submit);
+        comment_input = findViewById(R.id.comment_input_box);
     }
     private void initEvent() {
         T.init(PostDetail.this);
@@ -67,6 +78,28 @@ public class PostDetail extends AppCompatActivity {
             }
 
         });
+
+        btn_sendComment.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                String comment_content = comment_input.getText().toString();
+                Comment comment = new Comment(post.author, post.author.getName(), comment_content);
+                startLoadingProgress();
+                postBiz.addComment(post, comment, new CommonCallBack<Post>(){
+                    @Override
+                    public void onError(Exception e) {
+                        stopLoadingProgress();
+                        Log.d("add comment", e.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(Post response) {
+                        stopLoadingProgress();
+                        Log.d("add comment", response.toString());
+                    }
+                });
+            }
+        });
     }
     private void initData(){
         post=new Post();
@@ -77,10 +110,10 @@ public class PostDetail extends AppCompatActivity {
         post.setPostContent("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
         post.setTag_name("1");
         post.setCurrentTime();
-        Comment comment = new Comment(author,null,"2001-12-26 12:00:00", "Cool!");
-        Comment comment1 = new Comment(author,null,"2001-12-26 12:00:00", "It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool!");
-        Comment comment2 = new Comment(author,"hihi","2001-12-26 12:00:00", "It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!");
-        Comment comment3 = new Comment(author,null,"2001-12-26 12:00:00", "Cool!");
+        Comment comment = new Comment(author,null,"Cool!");
+        Comment comment1 = new Comment(author,null, "It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool!");
+        Comment comment2 = new Comment(author,"hihi", "It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!");
+        Comment comment3 = new Comment(author,null, "Cool!");
         post.addComments(comment);
         post.addComments(comment1);
         post.addComments(comment2);
