@@ -4,14 +4,23 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import comp4342.android.polyyou.R;
+import comp4342.android.polyyou.model.CurrentUser;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Profile extends AppCompatActivity {
+public class Profile extends BaseActivity {
+
+    private ImageView imgvProfile;
+    private TextView tvUsername;
+    private Button btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +54,26 @@ public class Profile extends AppCompatActivity {
                         return true;
                 }
                 return false;
+            }
+        });
+
+        initView();
+        initEvent();
+        if(CurrentUser.getUser() != null)
+        tvUsername.setText(CurrentUser.getUser().getName() + CurrentUser.getUser().getId());
+    }
+
+    protected void initView() {
+        imgvProfile = findViewById(R.id.profile_pic);
+        tvUsername = findViewById(R.id.profile_username);
+        btnLogout = findViewById(R.id.button_logout);
+    }
+
+    protected void initEvent() {
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout();
             }
         });
     }
