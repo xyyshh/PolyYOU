@@ -9,7 +9,7 @@ import comp4342.android.polyyou.R;
 /**
  * This class encapsulates the data pertaining to a Joke.
  */
-public class Post implements ListItemModel {
+public class Post{
 
     /** Contains the text of this post. */
     public String postTitle;
@@ -57,7 +57,7 @@ public class Post implements ListItemModel {
         return author.getName();
     }
     public String getCommentNum() {
-        return "1";
+        return String.valueOf(comments.size());
 
         //return comments.size();
     }
@@ -74,20 +74,18 @@ public class Post implements ListItemModel {
 //    public void setM_commentNum(int num) {m_commentNum = num;}
 //    public void setProfilePhotoAddress(String str){PhotoAddress = str; }
     public void addComments(Comment comment){
-        System.out.println("comment is: "+comment.getCommentContent());
         comments.add(comment);}
     public void setTime(String str){
         time=str;
 //        time = dateToStamp(System.currentTimeMillis());
     }
+    public void setCurrentTime(){
+        time = dateToStamp(System.currentTimeMillis());
+    }
     public void setTag_name(String tag){tag_name=tag;}
 
     public void setId(int i){id=i;}
 
-    @Override
-    public int getLayoutId() {
-        return R.layout.post_collapse;
-    }
 
     public String dateToStamp(long s) {
         String res;

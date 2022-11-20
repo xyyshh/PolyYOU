@@ -2,7 +2,7 @@
 <resources>
 	<!-- post_page styles -->
 
-    <style name="hint_normal" parent="Widget.AppCompat.EditText">
+	<style name="hint_normal" parent="Widget.AppCompat.EditText">
 		<item name="android:textSize">12sp</item>
 	</style>
 

@@ -19,7 +19,9 @@ public class CurrentUser extends AppCompatActivity {
         return curUser;
     }
 
-    public static String getLastLoginTime() { return lastLoginTime; }
+    public static String getLastLoginTime() {
+        return lastLoginTime;
+    }
 
     public static void setUser(User user) {
         curUser = user;

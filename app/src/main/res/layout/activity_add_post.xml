@@ -45,7 +45,7 @@
             android:orientation="vertical">
 
             <RadioGroup
-                android:id="@+id/rg_main"
+                android:id="@+id/topic_group"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_centerHorizontal="true"
@@ -192,7 +192,7 @@
             </RelativeLayout>
 
             <Button
-                android:id="@+id/button_confirm_login"
+                android:id="@+id/button_confirm_post"
                 android:layout_width="327dp"
                 android:layout_height="49dp"
                 android:layout_centerHorizontal="true"

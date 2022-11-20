@@ -1,7 +1,11 @@
 package comp4342.android.polyyou.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Comment {
-    private String commenter;
+    private User commenter;
+    private Post commentPost;
     private String commentee;
     private String commentTime;
     private String commentContent;
@@ -22,11 +26,11 @@ public class Comment {
         this.commentTime = commentTime;
     }
 
-    public String getCommenter() {
+    public User getCommenter() {
         return commenter;
     }
 
-    public void setCommenter(String commenter) {
+    public void setCommenter(User commenter) {
         this.commenter = commenter;
     }
 
@@ -38,10 +42,21 @@ public class Comment {
         this.commentee = commentee;
     }
 
-    public Comment(String commenter, String commentee, String commentTime, String commentContent) {
+    public Comment(User commenter, String commentee, String commentContent) {
         this.commenter = commenter;
         this.commentee = commentee;
-        this.commentTime = commentTime;
+        this.commentTime = dateToStamp(System.currentTimeMillis());
         this.commentContent = commentContent;
+    }
+    public String dateToStamp(long s) {
+        String res;
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = new Date(s);
+            res = simpleDateFormat.format(date);
+        } catch (Exception e) {
+            return "";
+        }
+        return res;
     }
 }
