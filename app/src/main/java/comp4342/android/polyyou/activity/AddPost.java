@@ -38,7 +38,7 @@ import comp4342.android.polyyou.net.CommonCallBack;
 import comp4342.android.polyyou.biz.PostBiz;
 import comp4342.android.polyyou.model.CurrentUser;
 
-public class AddPost extends AppCompatActivity {
+public class AddPost extends BaseActivity {
 
     protected String m_strUserName;
     protected EditText postEditText;
@@ -81,7 +81,7 @@ public class AddPost extends AppCompatActivity {
             }
         });
         initLayout();
-        //initAddPostListeners();
+        initAddPostListeners();
     }
 
 
@@ -114,13 +114,17 @@ public class AddPost extends AppCompatActivity {
                     post.setPostContent(strPostContent);
                     post.setPostTitle(strPostTitle);
 
+                    startLoadingProgress();
                     PostBiz.addpost(post, new CommonCallBack<Post>(){
+                        @Override
                         public void onError(Exception e) {
+                            stopLoadingProgress();
                             Log.d("add post activity", e.getMessage());
                         }
 
                         @Override
                         public void onSuccess(Post response) {
+                            stopLoadingProgress();
                             Log.d("add post", "success");
                             startActivity(new Intent(getApplicationContext(), Home.class));
                             toHome();

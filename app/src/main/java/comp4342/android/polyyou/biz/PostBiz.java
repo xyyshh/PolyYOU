@@ -4,6 +4,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 
 import comp4342.android.polyyou.Config;
 import comp4342.android.polyyou.model.Comment;
+import comp4342.android.polyyou.model.CurrentUser;
 import comp4342.android.polyyou.model.Post;
 import comp4342.android.polyyou.net.CommonCallBack;
 
@@ -19,6 +20,17 @@ public class PostBiz {
                 .build()
                 .execute(commonCallBack);
     }
+
+    public void loadPostbyNotification(CurrentUser currentUser, CommonCallBack<Post> commonCallBack){
+        OkHttpUtils
+                .post()
+                .url(Config.baseUrl + "post")
+                .tag(this)
+                .addParams("postId", currentUser.getUser().getId())
+                .build()
+                .execute(commonCallBack);
+    }
+
     public void addpost(Post post, CommonCallBack<Post> commonCallBack) {
         OkHttpUtils
                 .post()
