@@ -145,12 +145,12 @@ public class BaseActivity extends AppCompatActivity {
             }
 
         }
-        Log.d("load_user", String.valueOf(content.length));
+
         if(content == null || content[0].equals("!")) {
             CurrentUser.setUser(null);
             return;
         }
-
+        Log.d("load_user", String.valueOf(content.length));
         if(CurrentUser.getUser() == null) {
             CurrentUser.setUser(new User());
         }
