@@ -34,7 +34,7 @@
             android:id="@+id/profile_username"
             android:layout_width="174dp"
             android:layout_height="38dp"
-            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_below="@id/profile_pic_area"
             android:layout_marginTop="15dp"
             android:layout_centerHorizontal="true"
@@ -76,6 +76,8 @@
         android:overScrollMode="never"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
