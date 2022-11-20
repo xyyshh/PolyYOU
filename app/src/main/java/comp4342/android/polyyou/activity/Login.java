@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.biz.UserBiz;
+import comp4342.android.polyyou.model.CurrentUser;
 import comp4342.android.polyyou.model.User;
 import comp4342.android.polyyou.net.CommonCallBack;
 import comp4342.android.polyyou.utils.Str;
@@ -82,7 +83,9 @@ public class Login extends BaseActivity {
                                         @Override
                                         public void onSuccess(User response){
                                                 stopLoadingProgress();
-                                                Log.d("login activity", response.toString());
+                                                Log.d("login_activity_user", response.toString());
+                                                saveUser(response);
+                                                CurrentUser.setUser(response);
                                                 toHome();
                                         }
                                 });

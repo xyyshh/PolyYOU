@@ -3,6 +3,7 @@ package comp4342.android.polyyou.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EdgeEffect;
@@ -14,10 +15,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.BufferedReader;
 
 import comp4342.android.polyyou.R;
+import comp4342.android.polyyou.biz.UserBiz;
+import comp4342.android.polyyou.model.CurrentUser;
+import comp4342.android.polyyou.model.Response;
+import comp4342.android.polyyou.model.User;
+import comp4342.android.polyyou.net.CommonCallBack;
 import comp4342.android.polyyou.utils.Str;
 import comp4342.android.polyyou.utils.T;
 
-public class Signup extends AppCompatActivity {
+public class Signup extends BaseActivity {
 
     private Button btnSignBack;
     private EditText etName;
@@ -26,6 +32,7 @@ public class Signup extends AppCompatActivity {
     private EditText etPassword2;
     private Button btnNext;
 
+    private UserBiz userBiz = new UserBiz();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +74,30 @@ public class Signup extends AppCompatActivity {
                 else if(!Str.isValidPassword(password1)) {
                     T.showToast( "Please enter valid password");
                 }
+                startLoadingProgress();
+                userBiz.register(username, email, password1, "", new CommonCallBack<User>(){
+                    @Override
+                    public void onError(Exception e) {
+                        stopLoadingProgress();
+                        Log.d("login activity", e.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(User response){
+                        stopLoadingProgress();
+                        Log.d("register_activity", response.toString());
+                        saveUser(response);
+                        CurrentUser.setUser(response);
+                        toHome();
+                    }
+                });
             }
         });
+    }
+
+    private void toHome() {
+        Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
     }
 
     private void backToWelcome() {

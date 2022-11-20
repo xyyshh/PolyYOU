@@ -16,6 +16,7 @@ import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.biz.PostBiz;
 import comp4342.android.polyyou.adapter.PostViewAdapter;
 import comp4342.android.polyyou.model.Comment;
+import comp4342.android.polyyou.model.CurrentUser;
 import comp4342.android.polyyou.model.Post;
 import comp4342.android.polyyou.model.User;
 import comp4342.android.polyyou.net.CommonCallBack;
@@ -51,8 +52,12 @@ public class Home extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Intent intent_welcome = new Intent(this, Welcome.class);
-        startActivity(intent_welcome);
+        // find whether the user has logged in in the last 30 days
+        loadLastUser();
+        if(CurrentUser.getUser() == null || loginTimeout()) {
+            Intent intent_welcome = new Intent(this, Welcome.class);
+            startActivity(intent_welcome);
+        }
 
         mRecycleView = findViewById(R.id.postRecycleView);
         //初始化数据
@@ -111,7 +116,7 @@ public class Home extends BaseActivity {
 //        }
 //        ArrayList<Post> postList = new ArrayList<Post>();
         Post post1=new Post();
-        User author = new User("Yooki", "1234");
+        User author = new User("Yooki", "1234", "", "");
         author.setHeadImage("hihih");
         post1.setAuthor(author);
         post1.setPostTitle("Help! I need the help!");
@@ -122,7 +127,7 @@ public class Home extends BaseActivity {
         m_arrPostList.add(post1);
 
         Post post2=new Post();
-        User author1 = new User("haha11111111111111111111111111111111111111111111111111", "1235");
+        User author1 = new User("haha11111111111111111111111111111111111111111111111111", "1235", "", "");
         author.setHeadImage("ihih");
         post2.setAuthor(author1);
         post2.setPostTitle("Hello!!");

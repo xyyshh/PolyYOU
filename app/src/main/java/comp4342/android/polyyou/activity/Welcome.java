@@ -13,8 +13,9 @@ import android.view.View;
 import android.widget.Button;
 
 import comp4342.android.polyyou.R;
+import comp4342.android.polyyou.model.User;
 
-public class Welcome extends AppCompatActivity {
+public class Welcome extends BaseActivity {
 
     private Button btnLogin;
     private Button btnSignUp;
@@ -67,7 +68,7 @@ public class Welcome extends AppCompatActivity {
     }
 
     private void toSignUpActivity() {
-        Intent intent = new Intent(this, SignupImage.class);
+        Intent intent = new Intent(this, Signup.class);
         startActivity(intent);
     }
 

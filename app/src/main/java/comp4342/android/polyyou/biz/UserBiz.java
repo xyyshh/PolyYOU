@@ -12,6 +12,20 @@ import comp4342.android.polyyou.model.User;
 import comp4342.android.polyyou.net.CommonCallBack;
 
 public class UserBiz {
+
+    public void register(String name, String email, String password, String image, CommonCallBack<User> commonCallBack) {
+        OkHttpUtils
+                .post()
+                .url(Config.baseUrl + "login-center/register/")
+                .tag(this)
+                .addParams("nickname", name)
+                .addParams("email", email)
+                .addParams("pwd", password)
+                .addParams("profileImage", image)
+                .build()
+                .execute(commonCallBack);
+    }
+
     public void login(String email, String password, CommonCallBack<User> commonCallBack) {
         OkHttpUtils
                 .get()

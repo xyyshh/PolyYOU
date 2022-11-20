@@ -5,12 +5,26 @@ import java.io.Serializable;
 public class User implements Serializable {
     private String name;
     private String id;
+    private String email;
     private String headImage;
-    private String password;
 
-    public User(String name, String id) {
+    public User() {
+        this.name = null;
+        id = null; email = null; headImage = null;
+    }
+
+    public User(String name, String id, String email, String headImage) {
         this.name = name;
         this.id = id;
+        this.email = email;
+        this.headImage = headImage;
+    }
+
+    public void updateUser(String[] content) {
+        this.name = content[0];
+        this.id = content[1];
+        this.email = content[2];
+        this.headImage = content[3];
     }
 
     public void setName(String name) {
@@ -29,6 +43,10 @@ public class User implements Serializable {
         return this.id;
     }
 
+    public void setEmail(String email) { this.email = email; }
+
+    public String getEmail() { return this.email; }
+
     public void setHeadImage(String headImage) {
         this.headImage = headImage;
     }
@@ -37,21 +55,16 @@ public class User implements Serializable {
         return this.headImage;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
                 ", id='" + id + '\'' +
                 ", headImage='" + headImage + '\'' +
-                ", password='" + password + '\'' +
                 '}';
+    }
+
+    public String toString1() {
+        return name + " " + id + " " + email + " " + headImage;
     }
 }

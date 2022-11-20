@@ -12,8 +12,8 @@ import java.io.OutputStreamWriter;
 
 public class CurrentUser extends AppCompatActivity {
 
-    private static User curUser;
-    private static String lastLoginTime;
+    private static User curUser = new User();
+    private static String lastLoginTime = null;
 
     public static User getUser() {
         return curUser;

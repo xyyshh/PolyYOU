@@ -60,7 +60,7 @@ public class Profile extends BaseActivity {
         initView();
         initEvent();
         if(CurrentUser.getUser() != null)
-        tvUsername.setText(CurrentUser.getUser().getName() + CurrentUser.getUser().getId());
+            tvUsername.setText(CurrentUser.getUser().getName() + CurrentUser.getUser().getId());
     }
 
     protected void initView() {
@@ -74,7 +74,13 @@ public class Profile extends BaseActivity {
             @Override
             public void onClick(View view) {
                 logout();
+                toHome();
             }
         });
+    }
+
+    private void toHome() {
+        Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
     }
 }
