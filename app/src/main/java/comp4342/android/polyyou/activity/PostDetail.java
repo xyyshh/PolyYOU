@@ -103,7 +103,7 @@ public class PostDetail extends BaseActivity {
     }
     private void initData(){
         post=new Post();
-        User author = new User("Yooki", "1234");
+        User author = new User("Yooki", "1234", "", "");
         author.setHeadImage("hihih");
         post.setAuthor(author);
         post.setPostTitle("Help! I need the help!");
