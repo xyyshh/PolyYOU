@@ -34,7 +34,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/postNotificationRecycleView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/post_notification"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
@@ -61,7 +61,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/commentNotificationRecycleView"
         android:layout_width="350dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/comment_notification"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"

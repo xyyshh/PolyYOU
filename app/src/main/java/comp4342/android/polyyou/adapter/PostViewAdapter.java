@@ -34,7 +34,6 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
     public PostViewAdapter(Context context, ArrayList<Post> posts) {
         this.posts = posts;
         this.context = context;
-
     }
 
 
