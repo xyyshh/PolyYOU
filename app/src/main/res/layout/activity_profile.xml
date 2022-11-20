@@ -6,60 +6,83 @@
     android:layout_height="match_parent"
     tools:context=".activity.Profile">
 
-    <RelativeLayout android:id="@+id/content_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+    <RelativeLayout
+        android:id="@+id/personal_info_area"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
 
-
-
-        <RelativeLayout android:id="@+id/page_self_page_no_need_now__ek1"
-            android:layout_marginTop="30dp"
+        <FrameLayout
+            android:id="@+id/profile_pic_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true">
-
-            <ImageView
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp">
+            <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/profile_pic"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_marginStart="95dp"
-                android:layout_marginTop="59dp"
-                android:contentDescription="profile_pic"
-                android:gravity="center" />
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:background="@drawable/shape_profile_image"
+                android:scaleType="centerCrop"
+                app:riv_oval="true"/>
 
-            <TextView
-                android:id="@+id/profile_username"
-                android:layout_width="174dp"
-                android:layout_height="38dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="98dp"
-                android:layout_marginTop="246dp"
-                android:text="Name:"
-                android:textColor="@color/polyu_color"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <View
-                android:id="@+id/line_1"
-                android:layout_width="360.01dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="319dp"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-            <Button
-                android:id="@+id/button_logout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/input_blanket"
-                android:text="Log out"
-                android:textColor="@color/polyu_color"/>
+        </FrameLayout>
 
 
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/profile_username"
+            android:layout_width="174dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:layout_below="@id/profile_pic_area"
+            android:layout_marginTop="15dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/polyu_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+<!--           <View-->
+<!--               android:id="@+id/line_1"-->
+<!--               android:layout_width="360.01dp"-->
+<!--               android:layout_height="20dp"-->
+<!--               android:layout_marginStart="0dp"-->
+<!--               android:layout_marginTop="319dp"-->
+<!--               tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />-->
+        <Button
+            android:id="@+id/button_logout"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/profile_username"
+            android:background="@drawable/input_blanket"
+            android:text="Log out"
+            android:textColor="@color/polyu_color"/>
+        <View
+            android:id="@+id/seperate_line"
+            android:layout_below="@id/button_logout"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="25dp"
+            android:background="@color/polyu_color"/>
 
     </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/postRecycleView"
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/personal_info_area"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_marginBottom="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:fadeScrollbars="true"
+        android:fastScrollEnabled="false"
+        android:overScrollMode="never"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
