@@ -5,10 +5,12 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -57,7 +59,7 @@ public class SignupImage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("---------", Environment.getExternalStorageDirectory().toString());
-                String imagePath = "storage/emulated/0/DCIM/Camera/IMG_20221118_120225.jpg";
+                String imagePath = "storage/emulated/0/Pictures/IMG_20221118_180839.jpg";
                 Uri uri = Uri.fromFile(new File(imagePath));
                 mImageView.setImageURI(uri);
                 File file = new File(imagePath);
@@ -65,60 +67,12 @@ public class SignupImage extends AppCompatActivity {
                     T.showToast("file does not exist");
                     return;
                 }
-//                Map<String, String> params = new HashMap<>();
-//                params.put("username", "Jackyhhh");
-//                params.put("password", "123");
-
                 String url = Config.baseUrl+"login-center/image/";
                 OkHttpUtils.post()
                         .addFile("image", "server_afu.png", file)
                         .url(url)
-//                        .params(params)
                         .build()
                         .execute(new MyStringCallback());
-
-                //////
-//                try {
-//                    String data = UploadImage.uploadImage(Config.baseUrl+"login-center/image/", imagePath);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-
-
-
-//                try{
-//                    OkHttpClient client = new OkHttpClient();
-//                    File file = new File(imagePath);
-//                    if (!file.exists()){
-//                        T.showToast("file does not exist");
-//                        System.out.println("doPostAImage失败");
-//
-//                    }else{
-////                RequestBody requestBody2 = RequestBody.create(MediaType.parse("application/octet-stream"), file);
-//
-//
-//
-//                        RequestBody requestBody = new MultipartBody.Builder()
-//                                //一定要设置这句
-//                                .setType(MultipartBody.FORM)
-//                                .addFormDataPart("image", imagePath, RequestBody.create(MediaType.parse("application/octet-stream"), file))
-//                                .build();
-//                        final Request request = new Request.Builder()
-//                                .url(Config.baseUrl+"login-center/image/")
-//                                .post(requestBody)
-//                                .build();
-//
-//                        Response response=client.newCall(request).execute();//执行
-////                Call call = client.newCall(request);
-//                    }
-//
-//
-//
-//                }catch (Exception e){
-//                    e.printStackTrace();
-//                }
             }
         });
     }
