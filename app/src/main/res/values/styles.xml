@@ -6,6 +6,10 @@
 		<item name="android:textSize">12sp</item>
 	</style>
 
+	<style name="line" parent="Widget.AppCompat.EditText">
+		<item name="android:color">@color/polyu_color</item>
+	</style>
+
 	<style name="hint_title" parent="Widget.AppCompat.EditText">
 		<item name="android:textSize">12sp</item>
 		<item name="android:textStyle">bold</item>item>
