@@ -20,6 +20,7 @@
         />
 
     <TextView
+        android:id = "@+id/post_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
@@ -30,18 +31,47 @@
         android:textColor="@color/black"
         />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/postNotificationRecycleView"
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/post_notification"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:fadeScrollbars="true"
+        android:fastScrollEnabled="false"
+        android:overScrollMode="never"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
     <TextView
+        android:id="@+id/comment_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="338dp"
-        android:text="New comments in Your Post"
+        android:layout_marginTop="30dp"
+        android:text="New comments in your Comments"
+        android:layout_below="@+id/postNotificationRecycleView"
         android:textSize="15sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         />
 
-    <!--        android:layout_centerInParent="true" -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/commentNotificationRecycleView"
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/comment_notification"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:fadeScrollbars="true"
+        android:fastScrollEnabled="false"
+        android:overScrollMode="never"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
@@ -53,5 +83,6 @@
         app:itemIconTint="@drawable/selector"
         app:menu="@menu/menu_navigation"
         android:layout_alignParentBottom="true"/>
+
 
 </RelativeLayout>

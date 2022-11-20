@@ -26,8 +26,7 @@
                 android:layout_marginStart="95dp"
                 android:layout_marginTop="59dp"
                 android:contentDescription="profile_pic"
-                android:gravity="center"
-                android:src="@drawable/profile_pic" />
+                android:gravity="center" />
 
             <TextView
                 android:id="@+id/profile_username"
@@ -43,7 +42,6 @@
 
             <View
                 android:id="@+id/line_1"
-                style="@style/line"
                 android:layout_width="360.01dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="0dp"
