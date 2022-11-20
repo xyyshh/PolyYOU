@@ -41,13 +41,7 @@
             android:textColor="@color/polyu_color"
             android:textSize="20sp"
             android:textStyle="bold" />
-<!--           <View-->
-<!--               android:id="@+id/line_1"-->
-<!--               android:layout_width="360.01dp"-->
-<!--               android:layout_height="20dp"-->
-<!--               android:layout_marginStart="0dp"-->
-<!--               android:layout_marginTop="319dp"-->
-<!--               tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />-->
+
         <Button
             android:id="@+id/button_logout"
             android:layout_width="70dp"
