@@ -2,8 +2,12 @@
 <resources>
 	<!-- post_page styles -->
 
-    <style name="hint_normal" parent="Widget.AppCompat.EditText">
+	<style name="hint_normal" parent="Widget.AppCompat.EditText">
 		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="line" parent="Widget.AppCompat.EditText">
+		<item name="android:color">@color/polyu_color</item>
 	</style>
 
 	<style name="hint_title" parent="Widget.AppCompat.EditText">

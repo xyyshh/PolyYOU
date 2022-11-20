@@ -78,7 +78,7 @@ public class CommentViewAdapter extends RecyclerView.Adapter<CommentViewAdapter.
                 .into(viewHolder.avatar);
         viewHolder.itemView.setOnClickListener(v -> {
             int position = viewHolder.getLayoutPosition();
-            DeliverdInfo
+            //DeliverdInfo
             System.out.println("click the commenter: "+comment.getCommenter());
 //            Intent intent = new Intent(context, PostDetail.class);
         });

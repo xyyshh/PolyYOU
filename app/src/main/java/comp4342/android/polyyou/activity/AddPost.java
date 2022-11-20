@@ -36,6 +36,7 @@ import comp4342.android.polyyou.adapter.PostViewAdapter;
 import comp4342.android.polyyou.model.User;
 import comp4342.android.polyyou.net.CommonCallBack;
 import comp4342.android.polyyou.biz.PostBiz;
+import comp4342.android.polyyou.model.CurrentUser;
 
 public class AddPost extends AppCompatActivity {
 
@@ -46,7 +47,7 @@ public class AddPost extends AppCompatActivity {
     private RadioGroup topicGroup;
     private RadioButton btnTopic;
     protected PostViewAdapter postAdapter;
-    //User user = new User();
+    User user = CurrentUser.getUser();
 
     private PostBiz PostBiz = new PostBiz();
 
@@ -107,7 +108,7 @@ public class AddPost extends AppCompatActivity {
 //                    addPost(new Post(dateToStamp(System.currentTimeMillis()), strPostTitle, m_strUserName, strProfilePhotoAddress, strPostContent, strUploadPhotoAddress));
                     //postEditText.setText("");
                     Post post=new Post();
-//                    post.setAuthor();
+                    post.setAuthor(user);
                     post.setTime(dateToStamp(System.currentTimeMillis()));
                     post.setTag_name(strPostTag);
                     post.setPostContent(strPostContent);
