@@ -73,8 +73,9 @@ public class PostDetail extends BaseActivity {
         btn_back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PostDetail.this, Home.class);
-                startActivity(intent);
+                PostDetail.this.finish();
+//                Intent intent = new Intent(PostDetail.this, Home.class);
+//                startActivity(intent);
             }
 
         });
