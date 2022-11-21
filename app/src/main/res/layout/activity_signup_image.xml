@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.SignupImage">
+    tools:context=".activity.ImageTest">
 
     <Button
-        android:id="@+id/button_signup_1"
+        android:id="@+id/button_image_next"
         android:layout_width="306dp"
         android:layout_height="49dp"
         android:layout_centerHorizontal="true"

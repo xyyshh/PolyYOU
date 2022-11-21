@@ -58,213 +58,227 @@
         android:textSize="24sp"
         android:textStyle="bold"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="100dp">
 
-    <RelativeLayout
-        android:id="@+id/nameinput"
-        android:layout_width="306dp"
-        android:layout_height="49dp"
-        android:layout_centerInParent="false"
-        android:layout_centerVertical="false"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="173dp"
-        android:background="@drawable/input_blanket"
-        android:radius="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <EditText
-            android:id="@+id/edittext_sign_name"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="12sp"
-            android:background="@null"
-            android:inputType="text"
-            style="@style/hint_normal"/>
-    </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:layout_alignStart="@+id/nameinput"
-        android:layout_marginTop="135dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="User Name"
-        android:textColor="@color/black"
-        android:textSize="14sp" />
+            <RelativeLayout
+                android:id="@+id/nameinput"
+                android:layout_width="306dp"
+                android:layout_height="49dp"
+                android:layout_centerInParent="false"
+                android:layout_centerVertical="false"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="53dp"
+                android:background="@drawable/input_blanket"
+                android:radius="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <EditText
+                    android:id="@+id/edittext_sign_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="12sp"
+                    android:background="@null"
+                    android:inputType="text"
+                    style="@style/hint_normal"/>
+            </RelativeLayout>
 
-    <TextView
-        android:layout_alignStart="@+id/nameinput"
-        android:layout_marginTop="156dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="You cannot change the name after successful registration."
-        android:textColor="@color/time_color"
-        android:textSize="10sp" />
+            <TextView
+                android:layout_alignStart="@+id/nameinput"
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User Name"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
 
-
-    <RelativeLayout
-        android:id="@+id/addressinput"
-        android:layout_width="306dp"
-        android:layout_height="49dp"
-        android:layout_centerInParent="false"
-        android:layout_centerVertical="false"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="273dp"
-        android:background="@drawable/input_blanket"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <EditText
-            android:id="@+id/edittext_sign_email"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="12sp"
-            android:background="@null"
-            android:inputType="text"
-            android:hint="Please enter a PolyU email address"
-            style="@style/hint_normal"/>
-    </RelativeLayout>
+            <TextView
+                android:layout_alignStart="@+id/nameinput"
+                android:layout_marginTop="36dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You cannot change the name after successful registration."
+                android:textColor="@color/time_color"
+                android:textSize="10sp" />
 
 
-    <TextView
-        android:layout_alignStart="@+id/addressinput"
-        android:layout_marginTop="235dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email Address"
-        android:textColor="@color/black"
-        android:textSize="14sp" />
+            <RelativeLayout
+                android:id="@+id/addressinput"
+                android:layout_width="306dp"
+                android:layout_height="49dp"
+                android:layout_centerInParent="false"
+                android:layout_centerVertical="false"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="153dp"
+                android:background="@drawable/input_blanket"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <EditText
+                    android:id="@+id/edittext_sign_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="12sp"
+                    android:background="@null"
+                    android:inputType="text"
+                    android:hint="Please enter a PolyU email address"
+                    style="@style/hint_normal"/>
+            </RelativeLayout>
 
-    <TextView
-        android:layout_alignStart="@+id/addressinput"
-        android:layout_marginTop="256dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Please Input your PolyU email."
-        android:textColor="@color/time_color"
-        android:textSize="10sp" />
+
+            <TextView
+                android:layout_alignStart="@+id/addressinput"
+                android:layout_marginTop="115dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email Address"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_alignStart="@+id/addressinput"
+                android:layout_marginTop="136dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please Input your PolyU email."
+                android:textColor="@color/time_color"
+                android:textSize="10sp" />
 
 
-    <RelativeLayout
-        android:id="@+id/create_password_input"
-        android:layout_width="306dp"
-        android:layout_height="49dp"
-        android:layout_centerInParent="false"
-        android:layout_centerVertical="false"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="469dp"
-        android:background="@drawable/input_blanket"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <EditText
-            android:id="@+id/edittext_sign_password1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="12sp"
-            android:background="@null"
-            android:inputType="text"
-            style="@style/hint_normal"/>
-    </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/create_password_input"
+                android:layout_width="306dp"
+                android:layout_height="49dp"
+                android:layout_centerInParent="false"
+                android:layout_centerVertical="false"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="349dp"
+                android:background="@drawable/input_blanket"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <EditText
+                    android:id="@+id/edittext_sign_password1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="12sp"
+                    android:background="@null"
+                    android:inputType="text"
+                    style="@style/hint_normal"/>
+            </RelativeLayout>
 
-    <TextView
-        android:layout_alignStart="@+id/create_password_input"
-        android:layout_marginTop="431dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password"
-        android:textColor="@color/black"
-        android:textSize="14sp" />
+            <TextView
+                android:layout_alignStart="@+id/create_password_input"
+                android:layout_marginTop="311dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
 
-    <TextView
-        android:layout_alignStart="@+id/create_password_input"
-        android:layout_marginTop="452dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="8-16 characters; contain numbers and letters; no space."
-        android:textColor="@color/time_color"
-        android:textSize="10sp" />
+            <TextView
+                android:layout_alignStart="@+id/create_password_input"
+                android:layout_marginTop="332dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8-16 characters; contain numbers and letters; no space."
+                android:textColor="@color/time_color"
+                android:textSize="10sp" />
 
-    <RelativeLayout
-        android:id="@+id/confirm_password_input"
-        android:layout_width="306dp"
-        android:layout_height="49dp"
-        android:layout_centerInParent="false"
-        android:layout_centerVertical="false"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="559dp"
-        android:background="@drawable/input_blanket"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <EditText
-            android:id="@+id/edittext_sign_password2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="12sp"
-            android:background="@null"
-            android:inputType="text"
-            style="@style/hint_normal"/>
-    </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/confirm_password_input"
+                android:layout_width="306dp"
+                android:layout_height="49dp"
+                android:layout_centerInParent="false"
+                android:layout_centerVertical="false"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="439dp"
+                android:background="@drawable/input_blanket"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <EditText
+                    android:id="@+id/edittext_sign_password2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="12sp"
+                    android:background="@null"
+                    android:inputType="text"
+                    style="@style/hint_normal"/>
+            </RelativeLayout>
 
-    <TextView
-        android:layout_alignStart="@+id/confirm_password_input"
-        android:layout_marginTop="539dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Confirm Password"
-        android:textColor="@color/black"
-        android:textSize="14sp" />
+            <TextView
+                android:layout_alignStart="@+id/confirm_password_input"
+                android:layout_marginTop="419dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirm Password"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
 
-    <RelativeLayout
-        android:id="@+id/verification_input"
-        android:layout_width="306dp"
-        android:layout_height="49dp"
-        android:layout_centerInParent="false"
-        android:layout_centerVertical="false"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="365dp"
-        android:background="@drawable/input_blanket"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <EditText
-            android:id="@+id/edittext_verification"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="12sp"
-            android:background="@null"
-            android:inputType="text"
-            style="@style/hint_normal" />
-    </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/verification_input"
+                android:layout_width="306dp"
+                android:layout_height="49dp"
+                android:layout_centerInParent="false"
+                android:layout_centerVertical="false"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="245dp"
+                android:background="@drawable/input_blanket"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <EditText
+                    android:id="@+id/edittext_verification"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="12sp"
+                    android:background="@null"
+                    android:inputType="text"
+                    style="@style/hint_normal" />
+            </RelativeLayout>
 
-    <Button
-        android:id="@+id/send_verification"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/verification_input"
+            <Button
+                android:id="@+id/send_verification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/verification_input"
 
-        android:layout_alignRight="@id/verification_input"
-        android:stateListAnimator="@null"
-        android:text="VERIFY"
-        android:textStyle="bold"
-        android:textColor="@color/polyu_color"
-        android:textAllCaps="false"
-        android:background="#00FF0000"
-        tools:ignore="HardcodedText,SpUsage"
-        android:textSize="14dp" />
+                android:layout_alignRight="@id/verification_input"
+                android:stateListAnimator="@null"
+                android:text="VERIFY"
+                android:textStyle="bold"
+                android:textColor="@color/polyu_color"
+                android:textAllCaps="false"
+                android:background="#00FF0000"
+                tools:ignore="HardcodedText,SpUsage"
+                android:textSize="14dp" />
 
-    <TextView
-        android:layout_alignStart="@+id/confirm_password_input"
-        android:layout_marginTop="344dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Verification code"
-        android:textColor="@color/black"
-        android:textSize="14sp" />
+            <TextView
+                android:layout_alignStart="@+id/confirm_password_input"
+                android:layout_marginTop="224dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Verification code"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </RelativeLayout>
+    </ScrollView>
+
+
 
 </RelativeLayout>
