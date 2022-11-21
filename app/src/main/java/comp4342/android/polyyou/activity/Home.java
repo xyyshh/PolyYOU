@@ -195,7 +195,7 @@ public class Home extends BaseActivity {
         postBiz.loadPost("1", new CommonCallBack<Data>() {
             @Override
             public void onError(Exception e) {
-                Log.e("second hand post get", "success");
+                Log.e("second hand post get", e.toString());
             }
             @Override
             public void onSuccess(Data response) {
