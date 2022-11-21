@@ -57,8 +57,6 @@ public class Home extends BaseActivity {
         verifyPermission(Home.this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Log.d("11", "11");
-        toLoginActivity();
         // find whether the user has logged in in the last 30 days
         loadLastUser();
         if(CurrentUser.getUser() == null || loginTimeout()) {
