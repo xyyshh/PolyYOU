@@ -30,7 +30,6 @@ public class ImageTest extends AppCompatActivity {
         btnUpload.setOnClickListener(v -> mGetContent.launch("image/*"));
 
     }
-
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(
             new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
