@@ -43,27 +43,30 @@ public class PostDetail extends BaseActivity {
 //        answerService.getAnswer(id);
 //        answerService.setAnswerCallback(this);
         initData();
-        mpostView = findViewById(R.id.post_detailed_view);
+
+        initView();
+        initLayout();
+        initEvent();
+    }
+
+    public void initView() {
         mPostAdapter = new PostDetailedAdapter(this, post);
         //设置适配器adapter
         mpostView.setAdapter(mPostAdapter);
         mpostView.setLayoutManager(new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL,false));
 
-        mcommentView = findViewById(R.id.commentRecycleView);
         mCommentAdapter = new CommentViewAdapter(this, post.comments);
         //设置适配器adapter
         mcommentView.setAdapter(mCommentAdapter);
         mcommentView.setLayoutManager(new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL,false));
-
-        comment_input = findViewById(R.id.comment_input_box);
-
-        initLayout();
-        initEvent();
     }
 
     public void initLayout() {
+        comment_input = findViewById(R.id.comment_input_box);
+        mcommentView = findViewById(R.id.commentRecycleView);
+        mpostView = findViewById(R.id.post_detailed_view);
         btn_back = findViewById(R.id.button_post_back);
         btn_sendComment = findViewById(R.id.button_comment_submit);
         comment_input = findViewById(R.id.comment_input_box);
