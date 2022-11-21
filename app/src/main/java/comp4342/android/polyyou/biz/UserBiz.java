@@ -9,6 +9,7 @@ import com.zhy.http.okhttp.request.OkHttpRequest;
 
 import comp4342.android.polyyou.Config;
 import comp4342.android.polyyou.model.Comment;
+import comp4342.android.polyyou.model.Data;
 import comp4342.android.polyyou.model.User;
 import comp4342.android.polyyou.net.CommonCallBack;
 
@@ -23,6 +24,16 @@ public class UserBiz {
                 .addParams("email", email)
                 .addParams("pwd", password)
                 .addParams("profileImage", image)
+                .build()
+                .execute(commonCallBack);
+    }
+
+    public void sendVerificationCode(String email, CommonCallBack<Data> commonCallBack) {
+        OkHttpUtils
+                .post()
+                .url(Config.baseUrl + "logic-center/email-verify/")
+                .tag(this)
+                .addParams("to", email)
                 .build()
                 .execute(commonCallBack);
     }
