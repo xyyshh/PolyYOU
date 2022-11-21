@@ -20,6 +20,7 @@ import comp4342.android.polyyou.biz.PostBiz;
 import comp4342.android.polyyou.adapter.PostViewAdapter;
 import comp4342.android.polyyou.model.Comment;
 import comp4342.android.polyyou.model.CurrentUser;
+import comp4342.android.polyyou.model.Data;
 import comp4342.android.polyyou.model.Post;
 import comp4342.android.polyyou.model.User;
 import comp4342.android.polyyou.net.CommonCallBack;
@@ -30,6 +31,7 @@ import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //public class Home extends AppCompatActivity {
 public class Home extends BaseActivity {
@@ -181,20 +183,51 @@ public class Home extends BaseActivity {
         btn_secondhand = findViewById(R.id.sh_filter_button);
 
     }
+    private int index;
     private void initEvent() {
         T.init(Home.this);
         btn_secondhand.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                postBiz.loadPost("secondHand", new CommonCallBack<Post>() {
+                // second hand = 1
+                postBiz.loadPost("1", new CommonCallBack<Data>() {
                     @Override
                     public void onError(Exception e) {
-                        Log.d("second hand post get", "success");
+                        Log.e("second hand post get", "success");
                     }
                     @Override
-                    public void onSuccess(Post response) {
+                    public void onSuccess(Data response) {
                         stopLoadingProgress();
-                        Log.d("login activity", "success");
+                        Log.d("get_post_activity", response.getData());
+                        m_arrPostList = response.toArrayListPost();
+
+                        for(index = 0; index < m_arrPostList.size(); index++){
+                            postBiz.loadComment(m_arrPostList.get(index), new CommonCallBack<Data>() {
+                                @Override
+                                public void onError(Exception e) {
+                                    Log.e("get_comments", "get comments error");
+                                    T.showToast(e.toString());
+                                }
+
+                                @Override
+                                public void onSuccess(Data response) {
+                                    if(index < m_arrPostList.size()) {
+                                        List<Comment> lst = response.toArrayListComment(m_arrPostList.get(index));
+                                        for(Comment c: lst) {
+                                            Log.d("load_comments", c.toString());
+                                            m_arrPostList.get(index).addComments(c);
+                                        }
+                                    }
+                                }
+                            });
+
+                        }
+
+                        mAdapter = new PostViewAdapter(Home.this, m_arrPostList);
+                        //设置适配器adapter
+                        mRecycleView.setAdapter(mAdapter);
+                        mRecycleView.setLayoutManager(new LinearLayoutManager(Home.this,
+                                LinearLayoutManager.VERTICAL,false));
                     }
                 });
             }

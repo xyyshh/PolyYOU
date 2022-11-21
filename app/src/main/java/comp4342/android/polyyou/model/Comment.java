@@ -4,6 +4,23 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Comment {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Post getPost() {
+        return commentPost;
+    }
+
+    public void setPost(Post post) {
+        this.commentPost = post;
+    }
+
+    private String id;
     private User commenter;
     private Post commentPost;
     private String commentee;
@@ -43,12 +60,15 @@ public class Comment {
         this.commentee = commentee;
     }
 
+    public Comment() {}
+
     public Comment(User commenter, String commentee, String commentContent) {
         this.commenter = commenter;
         this.commentee = commentee;
         this.commentTime = dateToStamp(System.currentTimeMillis());
         this.commentContent = commentContent;
     }
+
     public String dateToStamp(long s) {
         String res;
         try {
@@ -59,5 +79,17 @@ public class Comment {
             return "";
         }
         return res;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id='" + id + '\'' +
+                ", commenter=" + commenter +
+                ", commentPost=" + commentPost +
+                ", commentee='" + commentee + '\'' +
+                ", commentTime='" + commentTime + '\'' +
+                ", commentContent='" + commentContent + '\'' +
+                '}';
     }
 }
