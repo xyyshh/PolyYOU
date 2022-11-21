@@ -100,7 +100,7 @@ public class Profile extends BaseActivity {
         initView();
         initEvent();
         if(CurrentUser.getUser() != null)
-            tvUsername.setText(CurrentUser.getUser().getName() + CurrentUser.getUser().getId());
+            tvUsername.setText(CurrentUser.getUser().getName());
     }
     public void initData() {
 //        for (int i = 1; i <= 40; i++) {
