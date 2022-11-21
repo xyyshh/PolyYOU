@@ -23,7 +23,6 @@ import androidx.annotation.NonNull;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import comp4342.android.polyyou.view.PostView;
 
 import com.bumptech.glide.Glide;
 
