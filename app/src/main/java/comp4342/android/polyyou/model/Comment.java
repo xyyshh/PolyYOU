@@ -33,6 +33,7 @@ public class Comment {
     public void setCommenter(User commenter) {
         this.commenter = commenter;
     }
+    public String getProfilePhotoAddress(){return commenter.getHeadImage(); }
 
     public String getCommentee() {
         return commentee;

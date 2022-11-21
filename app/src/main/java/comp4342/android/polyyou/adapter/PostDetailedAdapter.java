@@ -55,7 +55,6 @@ public class PostDetailedAdapter extends RecyclerView.Adapter<PostDetailedAdapte
         viewHolder.title.setText(post.getPostTitle());
         viewHolder.name.setText(post.author.getName());
         viewHolder.time.setText(post.getTime());
-//        viewHolder.comment_number.setText(post.getCommentNum());
     }
 
     @Override

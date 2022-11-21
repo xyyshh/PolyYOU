@@ -1,6 +1,7 @@
 package comp4342.android.polyyou.adapter;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,9 +49,7 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Post post = posts.get(i);
         Glide.with(context)
-                .load(post.author.getHeadImage())
-                .placeholder(R.drawable.user_profile_photo)
-                .error(R.drawable.user_profile_photo)
+                .load(post.getProfilePhotoAddress())
                 .into(viewHolder.avatar);
         viewHolder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, PostDetail.class);
@@ -62,7 +61,7 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
         viewHolder.title.setText(post.getPostTitle());
         viewHolder.name.setText(post.author.getName());
         viewHolder.time.setText(post.getTime());
-        System.out.println("Comment number is: "+ post.getCommentNum());
+        //System.out.println("Comment number is: "+ post.getCommentNum());
         viewHolder.comment_number.setText(post.getCommentNum());
     }
 

@@ -1,6 +1,7 @@
 package comp4342.android.polyyou.adapter;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,9 +71,7 @@ public class CommentViewAdapter extends RecyclerView.Adapter<CommentViewAdapter.
     public void onBindViewHolder(@NonNull CommentViewAdapter.ViewHolder viewHolder, int i) {
         Comment comment = comments.get(i);
         Glide.with(context)
-                .load(comment.getCommenter().getHeadImage())
-                .placeholder(R.drawable.user_profile_photo)
-                .error(R.drawable.user_profile_photo)
+                .load(comment.getProfilePhotoAddress())
                 .into(viewHolder.avatar);
         viewHolder.itemView.setOnClickListener(v -> {
             int position = viewHolder.getLayoutPosition();
@@ -83,6 +82,7 @@ public class CommentViewAdapter extends RecyclerView.Adapter<CommentViewAdapter.
         viewHolder.time.setText(comment.getCommentTime());
         viewHolder.commentee.setText(comment.getCommentee());
         viewHolder.commenter.setText(comment.getCommenter().getName());
+//        viewHolder.avatar.setImageURI(Uri.parse(comment.getProfilePhotoAddress()));
 
     }
 
