@@ -62,7 +62,7 @@ public class Data implements Serializable {
         else if(key.equals("postTitle")) post.setPostTitle(value);
         else if(key.equals("createTime"))   post.setTime(value);
         else if(key.equals("postContent"))  post.setPostContent(value);
-        else if(key.equals("tag"))  post.setTag_name(value);
+        else if(key.equals("tag"))  post.setTag_id(Long.valueOf(value));
         else if(key.equals("postImage"))    post.setAttachedPhoto(value);
         else if(key.equals("ownerId"))  post.setAuthor(new User("xy", value, "12", "33"));
     }

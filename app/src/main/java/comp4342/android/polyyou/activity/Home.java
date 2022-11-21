@@ -64,17 +64,8 @@ public class Home extends BaseActivity {
             startActivity(intent_welcome);
         }
         mRecycleView = findViewById(R.id.postRecycleView);
-        //初始化数据
-        //initData();
-        System.out.println("m_arrPostList num is "+m_arrPostList.size());
-//        //创建布局管理器，垂直设置LinearLayoutManager.VERTICAL，水平设置LinearLayoutManager.HORIZONTAL
-//        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-//        创建适配器，将数据传递给适配器
-        mAdapter = new PostViewAdapter(this, m_arrPostList);
-        //设置适配器adapter
-        mRecycleView.setAdapter(mAdapter);
-        mRecycleView.setLayoutManager(new LinearLayoutManager(this,
-                LinearLayoutManager.VERTICAL,false));
+        findAllPosts();
+        initView();
 
         initLayout();
         initEvent();
@@ -197,64 +188,88 @@ public class Home extends BaseActivity {
 
     }
     private List<Comment> m_commentList = null;
+
+    private void findAllPosts() {
+        m_commentList = null;
+        // second hand = 1
+        postBiz.loadPost("1", new CommonCallBack<Data>() {
+            @Override
+            public void onError(Exception e) {
+                Log.e("second hand post get", "success");
+            }
+            @Override
+            public void onSuccess(Data response) {
+                stopLoadingProgress();
+                Log.d("get_post_activity", response.getData());
+                m_arrPostList = response.toArrayListPost();
+
+                int ind = 0;
+                for(; ind < m_arrPostList.size();ind++){
+                    Log.d("number_of_comment", String.valueOf(ind));
+                    postBiz.loadComment(m_arrPostList.get(ind), new CommonCallBack<Data>() {
+                        @Override
+                        public void onError(Exception e) {
+                            Log.e("get_comments", "get comments error");
+                            T.showToast(e.toString());
+                        }
+
+                        @Override
+                        public void onSuccess(Data response) {
+                            List<Comment> lst = response.toArrayListComment();
+                            for(Comment comment: lst) {
+                                Log.d("load_comments", comment.toString());
+                                addComments(comment);
+                            }
+                        }
+                    });
+
+                }
+
+            }
+        });
+    }
     private void initEvent() {
         T.init(Home.this);
         btn_secondhand.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                m_commentList = null;
-                // second hand = 1
-                postBiz.loadPost("1", new CommonCallBack<Data>() {
-                    @Override
-                    public void onError(Exception e) {
-                        Log.e("second hand post get", "success");
-                    }
-                    @Override
-                    public void onSuccess(Data response) {
-                        stopLoadingProgress();
-                        Log.d("get_post_activity", response.getData());
-                        m_arrPostList = response.toArrayListPost();
-
-                        int ind = 0;
-                        for(; ind < m_arrPostList.size();ind++){
-                            Log.d("number_of_comment", String.valueOf(ind));
-                            postBiz.loadComment(m_arrPostList.get(ind), new CommonCallBack<Data>() {
-                                @Override
-                                public void onError(Exception e) {
-                                    Log.e("get_comments", "get comments error");
-                                    T.showToast(e.toString());
-                                }
-
-                                @Override
-                                public void onSuccess(Data response) {
-                                    List<Comment> lst = response.toArrayListComment();
-                                    for(Comment comment: lst) {
-                                        Log.d("load_comments", comment.toString());
-                                        addComments(comment);
-                                        initView();
-                                        Log.d("---------", m_arrPostList.get(0).getCommentNum());
-                                    }
-                                }
-                            });
-
-                        }
-
-                    }
-                });
-
+                findAllPosts();
+                ArrayList<Post> tmp = new ArrayList<Post>();
+                for(Post post: m_arrPostList){
+                    Log.d("post_id", post.toString());
+                    if(post.getTag_id().toString().equals("1"))
+                        tmp.add(post);
+                }
+                m_arrPostList = tmp;
                 initView();
             }
         });
-
-
         btn_help.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                findAllPosts();
+                ArrayList<Post> tmp = new ArrayList<Post>();
+                for(Post post: m_arrPostList){
+                    Log.d("post_id", post.toString());
+                    if(post.getTag_id().toString().equals("2"))
+                        tmp.add(post);
+                }
+                m_arrPostList = tmp;
+                initView();
             }
         });
         btn_takeaway.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                findAllPosts();
+                ArrayList<Post> tmp = new ArrayList<Post>();
+                for(Post post: m_arrPostList){
+                    Log.d("post_id", post.toString());
+                    if(post.getTag_id().toString().equals("3"))
+                        tmp.add(post);
+                }
+                m_arrPostList = tmp;
+                initView();
             }
         });
     }
