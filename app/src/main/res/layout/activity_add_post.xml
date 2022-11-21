@@ -189,6 +189,18 @@
                     android:contentDescription="add"
                     android:src="@drawable/ic_add"
                     app:tint="@color/light_polyu_color" />
+
+                <Button
+                    android:id="@+id/button_choose_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Button" />
+
+                <ImageView
+                    android:id="@+id/imageview_post_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="237dp"
+                    tools:srcCompat="@tools:sample/avatars" />
             </RelativeLayout>
 
             <Button
