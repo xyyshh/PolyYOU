@@ -17,6 +17,7 @@ import java.io.BufferedReader;
 import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.biz.UserBiz;
 import comp4342.android.polyyou.model.CurrentUser;
+import comp4342.android.polyyou.model.Data;
 import comp4342.android.polyyou.model.Response;
 import comp4342.android.polyyou.model.User;
 import comp4342.android.polyyou.net.CommonCallBack;
@@ -33,6 +34,7 @@ public class Signup extends BaseActivity {
     private EditText etPassword2;
     private Button btnNext;
     private Button btnVeri;
+    private EditText verification;
 
     private UserBiz userBiz = new UserBiz();
 
@@ -59,6 +61,19 @@ public class Signup extends BaseActivity {
             @Override
             public void onClick(View view) {
                 if(Str.isValidEmail(etEmail.getText().toString())){
+                    userBiz.requestVerificationCode(etEmail.getText().toString(), new CommonCallBack<Data>() {
+                        @Override
+                        public void onError(Exception e) {
+                            stopLoadingProgress();
+                            Log.d("sign up activity", e.getMessage());
+                        }
+
+                        @Override
+                        public void onSuccess(Data response) {
+                            stopLoadingProgress();
+                            Log.d("sign_up_user", "success");
+                        }
+                    });
                     new CountDownUtils(
                             60 * 1000,
                             1000,
@@ -77,6 +92,7 @@ public class Signup extends BaseActivity {
                 String password1 = etPassword1.getText().toString();
                 String password2 = etPassword2.getText().toString();
                 String email = etEmail.getText().toString();
+                String code = verification.getText().toString();
                 if(TextUtils.isEmpty(username)) {
                     T.showToast( "User Name cannot be empty"); return;
                 }
@@ -89,6 +105,9 @@ public class Signup extends BaseActivity {
                 else if(TextUtils.isEmpty(password1) || TextUtils.isEmpty(password2)) {
                     T.showToast( "Password cannot be empty");  return;
                 }
+                else if (TextUtils.isEmpty(code)) {
+                    T.showToast("Please enter the verification code"); return;
+                }
                 else if(!password1.equals(password2)) {
                     T.showToast( "Please enter the same passwords");  return;
                 }
@@ -96,7 +115,7 @@ public class Signup extends BaseActivity {
                     T.showToast( "Please enter valid password");
                 }
                 startLoadingProgress();
-                userBiz.register(username, email, password1, "", new CommonCallBack<User>(){
+                userBiz.register(username, email, password1, code, new CommonCallBack<User>(){
                     @Override
                     public void onError(Exception e) {
                         stopLoadingProgress();
@@ -109,15 +128,16 @@ public class Signup extends BaseActivity {
                         Log.d("register_activity", response.toString());
                         saveUser(response);
                         CurrentUser.setUser(response);
-                        toHome();
+                        toProfileImage();
                     }
                 });
             }
         });
+
     }
 
-    private void toHome() {
-        Intent intent = new Intent(this, Home.class);
+    private void toProfileImage() {
+        Intent intent = new Intent(this, ImageTest.class);
         startActivity(intent);
     }
 
@@ -134,5 +154,6 @@ public class Signup extends BaseActivity {
         etPassword2 = findViewById(R.id.edittext_sign_password2);
         btnNext = findViewById(R.id.button_signup_1);
         btnVeri = findViewById(R.id.send_verification);
+        verification = findViewById(R.id.edittext_verification);
     }
 }

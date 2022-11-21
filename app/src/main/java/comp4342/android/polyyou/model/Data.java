@@ -67,9 +67,9 @@ public class Data implements Serializable {
         else if(key.equals("ownerId"))  post.setAuthor(new User("xy", value, "12", "33"));
     }
 
-    public ArrayList<Comment> toArrayListComment(Post post) {
+    public ArrayList<Comment> toArrayListComment() {
         ArrayList<Comment> a = new ArrayList<Comment>();
-        int i =10;
+        int i = 0;
         int len = this.data.length();
         while(i < len) {
             StringBuilder s = new StringBuilder();
@@ -85,21 +85,24 @@ public class Data implements Serializable {
             for(String ss: comment_content) {
                 String[] pair = ss.split("=");
                 if(pair.length == 2) {
-                    convertToComment(pair[0], pair[1], comment, post);
+                    convertToComment(pair[0], pair[1], comment);
                 }
             }
-            if(comment.getCommentContent() != null && comment.getCommentTime() != null)
+            if(comment.getCommentContent() != null && comment.getCommentTime() != null){
                 a.add(comment);
+                Log.d("get_cmt_with_post_id", comment.toString());
+            }
+
         }
         return a;
     }
 
     private User user = null;
 
-    private void convertToComment(String k, String v, Comment comment, Post post) {
+    private void convertToComment(String k, String v, Comment comment) {
 
         if(k.equals("id"))  comment.setId(v);
-        else if(k.equals("postId")) comment.setPost(post);
+        else if(k.equals("postId")) comment.setPostId(v);
         else if(k.equals("commentUserId")) {
             UserBiz userBiz = new UserBiz();
             userBiz.getUserById(v, new CommonCallBack<User>() {
@@ -112,9 +115,9 @@ public class Data implements Serializable {
                 public void onSuccess(User response) {
                     Log.d("get_user_by_id_result", response.toString());
                     user = response;
+                    comment.setCommenter(user);
                 }
             });
-            comment.setCommenter(user);
         }
         else if(k.equals("content"))    comment.setCommentContent(v);
         else if(k.equals("createTime")) comment.setCommentTime(v);

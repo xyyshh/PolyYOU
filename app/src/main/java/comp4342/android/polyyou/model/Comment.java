@@ -26,6 +26,10 @@ public class Comment {
     private String commentee;
     private String commentTime;
     private String commentContent;
+    private String postId;
+
+    public void setPostId(String postId) { this.postId = postId; }
+    public String getPostId() { return this.postId; }
 
     public String getCommentContent() {
         return commentContent;
