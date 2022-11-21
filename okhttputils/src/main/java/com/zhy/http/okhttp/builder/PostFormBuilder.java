@@ -71,17 +71,13 @@ public class PostFormBuilder extends OkHttpRequestBuilder<PostFormBuilder> imple
     }
 
     @Override
-    public PostFormBuilder addParams(String key, String val)
-    {
-        if (this.params == null)
-        {
+    public PostFormBuilder addParams(String key, String val) {
+        if (this.params == null) {
             params = new LinkedHashMap<>();
         }
         params.put(key, val);
         return this;
     }
-
-
 
 
 }

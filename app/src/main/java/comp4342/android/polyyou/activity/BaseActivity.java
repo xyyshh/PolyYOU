@@ -150,10 +150,11 @@ public class BaseActivity extends AppCompatActivity {
             CurrentUser.setUser(null);
             return;
         }
-        Log.d("load_user", String.valueOf(content.length));
+
         if(CurrentUser.getUser() == null) {
             CurrentUser.setUser(new User());
         }
+        Log.d("load_user", String.valueOf(content.length));
         CurrentUser.getUser().updateUser(content);
         CurrentUser.setLastLoginTime(content[4]);
         return;

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,20 +8,134 @@
     tools:context=".activity.SignupImage">
 
     <Button
-        android:id="@+id/upload_img"
+        android:id="@+id/button_signup_1"
+        android:layout_width="306dp"
+        android:layout_height="49dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="34dp"
+        android:background="@drawable/red_next_button"
+        android:stateListAnimator="@null"
+        android:text="Next"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText,SpUsage"
+        android:textSize="18dp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/ic_left"
+            android:contentDescription="@string/back"
+            app:tint="@color/black"/>
+        <Button
+            android:id="@+id/button_sign_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="55dp"
+            android:background="@android:color/transparent"
+            tools:ignore="InvalidId" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="90dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="upload"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="308dp"></Button>
+        android:text="Profile Image"
+        android:textColor="@color/polyu_color"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
 
-
-    <ImageView
-        android:id="@+id/img"
+    <TextView
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="120dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
+        android:text="Please select one Image"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"/>
 
-    </ImageView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="140dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You cannot change the image after successful registration."
+        android:textColor="@color/time_color"
+        android:textSize="10sp"
+        />
+
+
+
+    <RelativeLayout
+        android:id="@+id/personal_info_area"
+        android:layout_marginTop="180dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+
+
+
+<!--        <Button-->
+<!--            android:id="@+id/upload_img"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:background="@drawable/narrowinput"-->
+<!--            android:text="upload from your phone"-->
+<!--            android:backgroundTint=""-->
+<!--            tools:ignore="MissingConstraints"-->
+<!--            tools:layout_editor_absoluteX="161dp"-->
+<!--            tools:layout_editor_absoluteY="308dp" />-->
+
+        <Button
+            android:id="@+id/add_profile_pic"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:background="@android:color/transparent"
+            tools:ignore="MissingConstraints" />
+
+        <FrameLayout
+            android:id="@+id/img_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/profile_pic"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:background="@drawable/shape_profile_image"
+                android:scaleType="centerCrop"
+                app:riv_oval="true"/>
+        </FrameLayout>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_add"
+            android:contentDescription="add"
+            app:tint="@color/polyu_color"/>
+
+
+
+    </RelativeLayout>
+
+<!--    <ImageView-->
+<!--        android:id="@+id/img"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        tools:ignore="MissingConstraints">-->
+<!--    </ImageView>-->
+
+</RelativeLayout>
