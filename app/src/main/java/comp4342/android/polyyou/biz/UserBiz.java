@@ -8,6 +8,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.request.OkHttpRequest;
 
 import comp4342.android.polyyou.Config;
+import comp4342.android.polyyou.model.Comment;
 import comp4342.android.polyyou.model.User;
 import comp4342.android.polyyou.net.CommonCallBack;
 
@@ -43,6 +44,16 @@ public class UserBiz {
                 .tag(this)
                 .addParams("email", email)
                 .addParams("pwd", password)
+                .build()
+                .execute(commonCallBack);
+    }
+
+    public void getUserById(String id, CommonCallBack<User> commonCallBack) {
+        OkHttpUtils
+                .get()
+                .url(Config.baseUrl + "login-center/show-by-id")
+                .tag(this)
+                .addParams("id", id)
                 .build()
                 .execute(commonCallBack);
     }

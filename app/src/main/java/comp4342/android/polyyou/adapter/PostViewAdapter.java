@@ -1,7 +1,7 @@
 package comp4342.android.polyyou.adapter;
 
 import android.content.Intent;
-import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +47,7 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Post post = posts.get(i);
+        Log.d("load_photo", post.toString());
         Glide.with(context)
                 .load(post.getProfilePhotoAddress())
                 .into(viewHolder.avatar);
