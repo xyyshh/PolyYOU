@@ -175,14 +175,24 @@
                 android:layout_centerInParent="false"
                 android:layout_centerVertical="false"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="435dp"
+                android:layout_marginTop="410dp"
                 android:background="@drawable/input_blanket"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <TextView
+                    android:id="@+id/text_select_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select one Image (optional)"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+
                 <ImageView
+                    android:layout_marginTop="25dp"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_centerInParent="true"
@@ -192,14 +202,17 @@
 
                 <Button
                     android:id="@+id/button_choose_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:layout_marginTop="25dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
+                    android:background="#00FF0000"/>
 
                 <ImageView
                     android:id="@+id/imageview_post_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="237dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_width="327dp"
+                    android:layout_height="250dp"
                     tools:srcCompat="@tools:sample/avatars" />
             </RelativeLayout>
 
