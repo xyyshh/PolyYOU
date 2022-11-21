@@ -26,6 +26,16 @@ public class UserBiz {
                 .execute(commonCallBack);
     }
 
+    public void sendVerificationCode(String email, CommonCallBack<User> commonCallBack) {
+        OkHttpUtils
+                .post()
+                .url(Config.baseUrl + "logic-center/email-verify/")
+                .tag(this)
+                .addParams("to", email)
+                .build()
+                .execute(commonCallBack);
+    }
+
     public void login(String email, String password, CommonCallBack<User> commonCallBack) {
         OkHttpUtils
                 .get()
