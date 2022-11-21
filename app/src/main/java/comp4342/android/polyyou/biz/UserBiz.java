@@ -2,10 +2,13 @@ package comp4342.android.polyyou.biz;
 
 import static android.content.ContentValues.TAG;
 
+import android.net.Uri;
 import android.util.Log;
 
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.request.OkHttpRequest;
+
+import java.io.File;
 
 import comp4342.android.polyyou.Config;
 import comp4342.android.polyyou.model.Comment;
@@ -28,6 +31,19 @@ public class UserBiz {
                 .build()
                 .execute(commonCallBack);
     }
+
+    public void updateProfileImage(String email, String imagePath, CommonCallBack<Data> commonCallBack) {
+        File file = new File(imagePath);
+        OkHttpUtils
+                .post()
+                .url(Config.baseUrl + "login-center/register-image")
+                .addParams("email", email)
+                .addFile("image", file.getName(), file)
+                .build()
+                .execute(commonCallBack);
+    }
+
+
 
     public void sendVerificationCode(String email, CommonCallBack<Data> commonCallBack) {
         OkHttpUtils
