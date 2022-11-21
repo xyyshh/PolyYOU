@@ -126,13 +126,13 @@ public class AddPost extends BaseActivity {
                     T.showToast("Post's content cannot be empty");
                     return;
                 }
-                String strPostTag = "";
+                Long strPostTag = (long)0;
                 if(topicGroup.getCheckedRadioButtonId()==btnSecondhand.getId()){
-                    strPostTag = btnSecondhand.getText().toString();
+                    strPostTag = (long)1;
                 }else if(topicGroup.getCheckedRadioButtonId()==btnHelp.getId()){
-                    strPostTag = btnHelp.getText().toString();
+                    strPostTag = (long)2;
                 }else if(topicGroup.getCheckedRadioButtonId()==btnTakeaway.getId()){
-                    strPostTag = btnTakeaway.getText().toString();
+                    strPostTag = (long)3;
                 }
                 String strPostTitle = postTitleEditText.getText().toString();
                 String strPostContent = postEditText.getText().toString();
@@ -149,7 +149,7 @@ public class AddPost extends BaseActivity {
                     Post post=new Post();
                     post.setAuthor(user);
                     post.setTime(dateToStamp(System.currentTimeMillis()));
-                    post.setTag_name(strPostTag);
+                    post.setTag_id(strPostTag);
                     post.setPostContent(strPostContent);
                     post.setPostTitle(strPostTitle);
 

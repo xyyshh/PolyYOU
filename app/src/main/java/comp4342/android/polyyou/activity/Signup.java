@@ -22,6 +22,7 @@ import comp4342.android.polyyou.model.User;
 import comp4342.android.polyyou.net.CommonCallBack;
 import comp4342.android.polyyou.utils.Str;
 import comp4342.android.polyyou.utils.T;
+import comp4342.android.polyyou.utils.CountDownUtils;
 
 public class Signup extends BaseActivity {
 
@@ -31,6 +32,7 @@ public class Signup extends BaseActivity {
     private EditText etPassword1;
     private EditText etPassword2;
     private Button btnNext;
+    private Button btnVeri;
 
     private UserBiz userBiz = new UserBiz();
 
@@ -49,6 +51,25 @@ public class Signup extends BaseActivity {
                 backToWelcome();
             }
         });
+
+        if(Str.isValidEmail(etEmail.getText().toString())){
+
+        }
+        btnVeri.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Str.isValidEmail(etEmail.getText().toString())){
+                    new CountDownUtils(
+                            60 * 1000,
+                            1000,
+                            btnVeri)
+                            .start();
+                }else{
+                    T.showToast( "You should input a valid PolyU email first!"); return;
+                }
+            }
+        });
+
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,5 +133,6 @@ public class Signup extends BaseActivity {
         etPassword1 = findViewById(R.id.edittext_sign_password1);
         etPassword2 = findViewById(R.id.edittext_sign_password2);
         btnNext = findViewById(R.id.button_signup_1);
+        btnVeri = findViewById(R.id.send_verification);
     }
 }
