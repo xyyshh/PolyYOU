@@ -65,7 +65,7 @@ public class Home extends BaseActivity {
         }
         mRecycleView = findViewById(R.id.postRecycleView);
         //初始化数据
-        initData();
+        //initData();
         System.out.println("m_arrPostList num is "+m_arrPostList.size());
 //        //创建布局管理器，垂直设置LinearLayoutManager.VERTICAL，水平设置LinearLayoutManager.HORIZONTAL
 //        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -177,18 +177,27 @@ public class Home extends BaseActivity {
         m_arrPostList.add(post1);
     }
 
+    public void initView() {
+        mAdapter = new PostViewAdapter(Home.this, m_arrPostList);
+        //设置适配器adapter
+        mRecycleView.setAdapter(mAdapter);
+        mRecycleView.setLayoutManager(new LinearLayoutManager(Home.this,
+                LinearLayoutManager.VERTICAL,false));
+    }
+
     public void initLayout() {
         btn_takeaway = findViewById(R.id.ta_filter_button);
         btn_help = findViewById(R.id.help_filter_button);
         btn_secondhand = findViewById(R.id.sh_filter_button);
 
     }
-    private int index;
+    private List<Comment> m_commentList = null;
     private void initEvent() {
         T.init(Home.this);
         btn_secondhand.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                m_commentList = null;
                 // second hand = 1
                 postBiz.loadPost("1", new CommonCallBack<Data>() {
                     @Override
@@ -201,8 +210,10 @@ public class Home extends BaseActivity {
                         Log.d("get_post_activity", response.getData());
                         m_arrPostList = response.toArrayListPost();
 
-                        for(index = 0; index < m_arrPostList.size(); index++){
-                            postBiz.loadComment(m_arrPostList.get(index), new CommonCallBack<Data>() {
+                        int ind = 0;
+                        for(; ind < m_arrPostList.size();ind++){
+                            Log.d("number_of_comment", String.valueOf(ind));
+                            postBiz.loadComment(m_arrPostList.get(ind), new CommonCallBack<Data>() {
                                 @Override
                                 public void onError(Exception e) {
                                     Log.e("get_comments", "get comments error");
@@ -211,27 +222,25 @@ public class Home extends BaseActivity {
 
                                 @Override
                                 public void onSuccess(Data response) {
-                                    if(index < m_arrPostList.size()) {
-                                        List<Comment> lst = response.toArrayListComment(m_arrPostList.get(index));
-                                        for(Comment c: lst) {
-                                            Log.d("load_comments", c.toString());
-                                            m_arrPostList.get(index).addComments(c);
-                                        }
+                                    List<Comment> lst = response.toArrayListComment();
+                                    for(Comment comment: lst) {
+                                        Log.d("load_comments", comment.toString());
+                                        addComments(comment);
+                                        initView();
+                                        Log.d("---------", m_arrPostList.get(0).getCommentNum());
                                     }
                                 }
                             });
 
                         }
 
-                        mAdapter = new PostViewAdapter(Home.this, m_arrPostList);
-                        //设置适配器adapter
-                        mRecycleView.setAdapter(mAdapter);
-                        mRecycleView.setLayoutManager(new LinearLayoutManager(Home.this,
-                                LinearLayoutManager.VERTICAL,false));
                     }
                 });
+
+                initView();
             }
         });
+
 
         btn_help.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -243,5 +252,13 @@ public class Home extends BaseActivity {
             public void onClick(View view) {
             }
         });
+    }
+    private void addComments(Comment comment) {
+        for (int i = 0; i < m_arrPostList.size(); i++) {
+            Post post = m_arrPostList.get(i);
+            Log.d("compare", String.valueOf(post.getId())+" "+comment.getPostId());
+            if (String.valueOf(post.getId()).equals(comment.getPostId()))
+                m_arrPostList.get(i).addComments(comment);
+        }
     }
 }
