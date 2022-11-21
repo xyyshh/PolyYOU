@@ -57,8 +57,6 @@ public class CommentViewAdapter extends RecyclerView.Adapter<CommentViewAdapter.
     @Override
     public int getItemViewType(int i) {
         Comment comment = comments.get(i);
-        System.out.println("commentee is: "+i+" "+comment.getCommentee());
-        System.out.println("comment length is: "+i+" "+comment.getCommentee());
         if(comment.getCommentee()==null){
             return 1;
         }
@@ -79,7 +77,6 @@ public class CommentViewAdapter extends RecyclerView.Adapter<CommentViewAdapter.
         viewHolder.itemView.setOnClickListener(v -> {
             int position = viewHolder.getLayoutPosition();
             //DeliverdInfo
-            System.out.println("click the commenter: "+comment.getCommenter());
 //            Intent intent = new Intent(context, PostDetail.class);
         });
         viewHolder.content.setText(comment.getCommentContent());
@@ -91,7 +88,6 @@ public class CommentViewAdapter extends RecyclerView.Adapter<CommentViewAdapter.
 
     @Override
     public int getItemCount() {
-        System.out.println("Comment num is "+comments.size());
         return comments.size();
     }
 

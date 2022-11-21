@@ -58,9 +58,11 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
             context.startActivity(intent);
         });
         viewHolder.content.setText(post.getPostContent());
+        System.out.println("post content is: "+ post.getPostContent());
         viewHolder.title.setText(post.getPostTitle());
         viewHolder.name.setText(post.author.getName());
         viewHolder.time.setText(post.getTime());
+        System.out.println("Comment number is: "+ post.getCommentNum());
         viewHolder.comment_number.setText(post.getCommentNum());
     }
 
