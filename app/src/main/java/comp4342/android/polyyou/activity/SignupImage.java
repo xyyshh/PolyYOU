@@ -67,8 +67,9 @@ public class SignupImage extends AppCompatActivity {
                     T.showToast("file does not exist");
                     return;
                 }
-                String url = Config.baseUrl+"login-center/image/";
+                String url = Config.baseUrl+"login-center/register-image/";
                 OkHttpUtils.post()
+                        .addParams("email", "20074794d@connect.polyu.hk")
                         .addFile("image", "server_afu.png", file)
                         .url(url)
                         .build()

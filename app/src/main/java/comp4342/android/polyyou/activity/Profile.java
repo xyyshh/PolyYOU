@@ -94,8 +94,11 @@ public class Profile extends BaseActivity {
 
         initView();
         initEvent();
-        if(currentUser.getUser() != null)
-            tvUsername.setText(currentUser.getUser().getName() + currentUser.getUser().getId());
+        if(CurrentUser.getUser() != null) {
+            tvUsername.setText(CurrentUser.getUser().getName());
+
+        }
+
     }
     public void initData() {
 //        for (int i = 1; i <= 40; i++) {

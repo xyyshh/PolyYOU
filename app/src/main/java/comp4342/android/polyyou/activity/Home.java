@@ -112,7 +112,7 @@ public class Home extends BaseActivity {
     }
 
     private void toLoginActivity() {
-        Intent intent = new Intent(this, ImageTest.class);
+        Intent intent = new Intent(this, SignupImage.class);
         startActivity(intent);
     }
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
