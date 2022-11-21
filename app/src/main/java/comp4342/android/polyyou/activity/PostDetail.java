@@ -11,12 +11,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.List;
+
 import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.adapter.CommentViewAdapter;
 import comp4342.android.polyyou.adapter.PostDetailedAdapter;
 import comp4342.android.polyyou.adapter.PostViewAdapter;
 import comp4342.android.polyyou.biz.PostBiz;
 import comp4342.android.polyyou.model.Comment;
+import comp4342.android.polyyou.model.Data;
 import comp4342.android.polyyou.model.Post;
 import comp4342.android.polyyou.model.User;
 import comp4342.android.polyyou.net.CommonCallBack;
@@ -24,7 +27,6 @@ import comp4342.android.polyyou.utils.Str;
 import comp4342.android.polyyou.utils.T;
 
 public class PostDetail extends BaseActivity {
-    private PostBiz postBiz;
     private Button btn_back;
     private PostDetailedAdapter mPostAdapter;
     private Post post;
@@ -33,6 +35,7 @@ public class PostDetail extends BaseActivity {
     private RecyclerView mcommentView;
     private EditText comment_input;
     private Button btn_sendComment;
+    private PostBiz postBiz = new PostBiz();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +45,33 @@ public class PostDetail extends BaseActivity {
 //        HtmlRender.render("http://47.94.134.55:8080/answer/" + id + ".html", this);
 //        answerService.getAnswer(id);
 //        answerService.setAnswerCallback(this);
-        initData();
 
-        initView();
+        post = new Post();
+        getPostById(String.valueOf(id));
+
         initLayout();
         initEvent();
+    }
+
+    public void getPostById(String id) {
+        postBiz.loadComment(String.valueOf(id), new CommonCallBack<Data>() {
+            @Override
+            public void onError(Exception e) {
+                Log.e("get_comments", "get comments error");
+                T.showToast(e.toString());
+            }
+
+            @Override
+            public void onSuccess(Data response) {
+                List<Comment> lst = response.toArrayListComment();
+                for(Comment comment: lst) {
+                    Log.d("load_comments", comment.toString());
+                    post.addComments(comment);
+                }
+
+                initView();
+            }
+        });
     }
 
     public void initView() {
@@ -120,13 +145,13 @@ public class PostDetail extends BaseActivity {
         Comment comment3 = new Comment(author,null, "Cool!");
         post.addComments(comment);
         post.addComments(comment1);
-        post.addComments(comment2);
-        post.addComments(comment3);
-        post.addComments(comment2);
-        post.addComments(comment3);
-        post.addComments(comment2);
-        post.addComments(comment3);
-        post.addComments(comment2);
-        post.addComments(comment3);
+//        post.addComments(comment2);
+//        post.addComments(comment3);
+//        post.addComments(comment2);
+//        post.addComments(comment3);
+//        post.addComments(comment2);
+//        post.addComments(comment3);
+//        post.addComments(comment2);
+//        post.addComments(comment3);
     }
 }

@@ -58,12 +58,12 @@ public class PostBiz {
                 .execute(commonCallBack);
     }
 
-    public void loadComment(Post post, CommonCallBack<Data> commonCallBack){
+    public void loadComment(String postId, CommonCallBack<Data> commonCallBack){
         OkHttpUtils
                 .get()
                 .url(Config.baseUrl + "comments/list")
                 .tag(this)
-                .addParams("postId", String.valueOf(post.getId()))
+                .addParams("postId", String.valueOf(postId))
                 .build()
                 .execute(commonCallBack);
     }

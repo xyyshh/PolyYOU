@@ -57,6 +57,7 @@ public class Home extends BaseActivity {
         verifyPermission(Home.this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        findAllPosts();
         // find whether the user has logged in in the last 30 days
         loadLastUser();
         if(CurrentUser.getUser() == null || loginTimeout()) {
@@ -64,7 +65,6 @@ public class Home extends BaseActivity {
             startActivity(intent_welcome);
         }
         mRecycleView = findViewById(R.id.postRecycleView);
-        findAllPosts();
         initView();
 
         initLayout();
@@ -206,7 +206,7 @@ public class Home extends BaseActivity {
                 int ind = 0;
                 for(; ind < m_arrPostList.size();ind++){
                     Log.d("number_of_comment", String.valueOf(ind));
-                    postBiz.loadComment(m_arrPostList.get(ind), new CommonCallBack<Data>() {
+                    postBiz.loadComment(String.valueOf(m_arrPostList.get(ind).getId()), new CommonCallBack<Data>() {
                         @Override
                         public void onError(Exception e) {
                             Log.e("get_comments", "get comments error");

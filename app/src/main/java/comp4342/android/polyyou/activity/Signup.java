@@ -53,10 +53,6 @@ public class Signup extends BaseActivity {
                 backToWelcome();
             }
         });
-
-        if(Str.isValidEmail(etEmail.getText().toString())){
-
-        }
         btnVeri.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

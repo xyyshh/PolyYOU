@@ -11,6 +11,7 @@ import comp4342.android.polyyou.net.CommonCallBack;
 
 public class Data implements Serializable {
     private String data;
+    private Comment comment;
     public Data(String s) {
         this.data = data;
     }
@@ -80,12 +81,12 @@ public class Data implements Serializable {
                 s.append(data.charAt(i));
                 i++;
             }
-            Comment comment = new Comment();
+            comment = new Comment();
             String[] comment_content = s.toString().split(", ");
             for(String ss: comment_content) {
                 String[] pair = ss.split("=");
                 if(pair.length == 2) {
-                    convertToComment(pair[0], pair[1], comment);
+                    convertToComment(pair[0], pair[1]);
                 }
             }
             if(comment.getCommentContent() != null && comment.getCommentTime() != null){
@@ -99,7 +100,7 @@ public class Data implements Serializable {
 
     private User user = null;
 
-    private void convertToComment(String k, String v, Comment comment) {
+    private void convertToComment(String k, String v) {
 
         if(k.equals("id"))  comment.setId(v);
         else if(k.equals("postId")) comment.setPostId(v);

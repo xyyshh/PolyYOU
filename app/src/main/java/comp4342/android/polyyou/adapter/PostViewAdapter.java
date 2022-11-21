@@ -53,7 +53,7 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
                 .into(viewHolder.avatar);
         viewHolder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, PostDetail.class);
-            intent.putExtra("id", post.id);
+            intent.putExtra("id", post.getId());
             context.startActivity(intent);
         });
         viewHolder.content.setText(post.getPostContent());
