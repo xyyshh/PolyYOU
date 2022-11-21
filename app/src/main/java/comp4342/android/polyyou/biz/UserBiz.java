@@ -15,7 +15,7 @@ import comp4342.android.polyyou.net.CommonCallBack;
 
 public class UserBiz {
 
-    public void register(String name, String email, String password, String image, CommonCallBack<User> commonCallBack) {
+    public void register(String name, String email, String password, String verificationCode, CommonCallBack<User> commonCallBack) {
         OkHttpUtils
                 .post()
                 .url(Config.baseUrl + "login-center/register/")
@@ -23,7 +23,8 @@ public class UserBiz {
                 .addParams("nickname", name)
                 .addParams("email", email)
                 .addParams("pwd", password)
-                .addParams("profileImage", image)
+                .addParams("profileImage", "")
+                .addParams("verificationCode", verificationCode)
                 .build()
                 .execute(commonCallBack);
     }
@@ -55,6 +56,15 @@ public class UserBiz {
                 .url(Config.baseUrl + "login-center/show-by-id")
                 .tag(this)
                 .addParams("id", id)
+                .build()
+                .execute(commonCallBack);
+    }
+    public void requestVerificationCode(String email, CommonCallBack<Data> commonCallBack) {
+        OkHttpUtils
+                .get()
+                .url(Config.baseUrl + "login-center/email-verify")
+                .tag(this)
+                .addParams("to", email)
                 .build()
                 .execute(commonCallBack);
     }
