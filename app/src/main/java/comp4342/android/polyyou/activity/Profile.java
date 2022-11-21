@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import comp4342.android.polyyou.Config;
 import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.adapter.PostViewAdapter;
 import comp4342.android.polyyou.biz.PostBiz;
@@ -12,10 +13,15 @@ import comp4342.android.polyyou.model.Comment;
 import comp4342.android.polyyou.model.CurrentUser;
 import comp4342.android.polyyou.model.Post;
 import comp4342.android.polyyou.model.User;
+import comp4342.android.polyyou.utils.T;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +29,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.zhy.http.okhttp.utils.L;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class Profile extends BaseActivity {
@@ -95,6 +105,13 @@ public class Profile extends BaseActivity {
         mRecycleView.setAdapter(mAdapter);
         mRecycleView.setLayoutManager(new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL,false));
+        URL url = null;
+        try {
+            url = new URL(Config.baseUrl+"uploadTest.jpg");
+            requestImg(url);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         initView();
@@ -108,7 +125,11 @@ public class Profile extends BaseActivity {
 //        }
 //        ArrayList<Post> postList = new ArrayList<Post>();
         Post post1=new Post();
-        User author = new User("Yooki", "1234", "", "");
+        User author = new User("Yooki", "1234", "", "uploadTest.jpg");
+
+
+
+
         author.setHeadImage("hihih");
         post1.setAuthor(author);
         post1.setPostTitle("Help! I need the help!");
@@ -148,6 +169,31 @@ public class Profile extends BaseActivity {
         m_arrPostList.add(post1);
         m_arrPostList.add(post2);
         m_arrPostList.add(post1);
+    }
+
+    private void requestImg(final URL imgUrl)
+    {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Bitmap bitmap = null;
+                try {
+                    bitmap = BitmapFactory.decodeStream(imgUrl.openStream());
+
+                    showImg(bitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+    private void showImg(final Bitmap bitmap){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                profileImageView.setImageBitmap(bitmap);
+            }
+        });
     }
 
     protected void initView() {
