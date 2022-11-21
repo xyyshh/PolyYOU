@@ -1,10 +1,14 @@
 package comp4342.android.polyyou.activity;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -12,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -51,6 +56,8 @@ public class AddPost extends BaseActivity {
     private RadioButton btnSecondhand;
     private RadioButton btnHelp;
     private RadioButton btnTakeaway;
+    private Button btnImage;
+    private ImageView imageView;
     protected PostViewAdapter postAdapter;
     User user = CurrentUser.getUser();
 
@@ -89,6 +96,7 @@ public class AddPost extends BaseActivity {
 
         initLayout();
         initAddPostListeners();
+        initChooseImage();
     }
 
 
@@ -102,6 +110,29 @@ public class AddPost extends BaseActivity {
         btnSecondhand = findViewById(R.id.sh_button);
         btnHelp = findViewById(R.id.help_button);
         btnTakeaway = findViewById(R.id.ta_button);
+        btnImage = findViewById(R.id.button_choose_image);
+        imageView = findViewById(R.id.imageview_post_image);
+    }
+
+    ActivityResultLauncher<String> mGetContent = registerForActivityResult(
+            new ActivityResultContracts.GetContent(),
+            new ActivityResultCallback<Uri>() {
+                @Override
+                public void onActivityResult(Uri result) {
+                    if (result != null)
+                        imageView.setImageURI(result);
+                }
+            }
+    );
+
+    protected void initChooseImage() {
+        T.init(AddPost.this);
+        btnImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mGetContent.launch("image/*");
+            }
+        });
     }
 
     protected void initAddPostListeners() {
