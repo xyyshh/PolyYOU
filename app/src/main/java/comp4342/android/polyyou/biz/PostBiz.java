@@ -37,7 +37,7 @@ public class PostBiz {
                 .post()
                 .url(Config.baseUrl + "post")
                 .tag(this)
-                .addParams("tag_name", post.getTag_name())
+                .addParams("tag", post.getTag_id().toString())
                 .addParams("authorName", post.author.getId())
                 .addParams("time", post.time)
                 .addParams("title", post.getPostTitle())

@@ -20,6 +20,7 @@ public class Post{
     public String time;
     public ArrayList<Comment> comments;
     public String tag_name;
+    public Long tag_id;
     public int id;
 
 //    private int m_commentNum;
@@ -48,7 +49,10 @@ public class Post{
 //
 //    }
 
-
+    public void setTag_id(Long tagid){
+        tag_id=tagid;
+    }
+    public Long getTag_id(){return tag_id;}
     public String getPostTitle() {
         return postTitle;
     }
