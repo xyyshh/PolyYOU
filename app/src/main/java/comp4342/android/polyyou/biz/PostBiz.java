@@ -5,18 +5,18 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import comp4342.android.polyyou.Config;
 import comp4342.android.polyyou.model.Comment;
 import comp4342.android.polyyou.model.CurrentUser;
+import comp4342.android.polyyou.model.Data;
 import comp4342.android.polyyou.model.Post;
 import comp4342.android.polyyou.net.CommonCallBack;
 
 
 
 public class PostBiz {
-    public void loadPost(String postType, CommonCallBack<Post> commonCallBack){
+    public void loadPost(String postType, CommonCallBack<Data> commonCallBack){
         OkHttpUtils
-                .post()
-                .url(Config.baseUrl + "post")
+                .get()
+                .url(Config.baseUrl + "posts/list")
                 .tag(this)
-                .addParams("postType", postType)
                 .build()
                 .execute(commonCallBack);
     }
@@ -57,10 +57,10 @@ public class PostBiz {
                 .execute(commonCallBack);
     }
 
-    public void loadComment(Post post, CommonCallBack<Post> commonCallBack){
+    public void loadComment(Post post, CommonCallBack<Data> commonCallBack){
         OkHttpUtils
-                .post()
-                .url(Config.baseUrl + "comment")
+                .get()
+                .url(Config.baseUrl + "comments/list")
                 .tag(this)
                 .addParams("postId", String.valueOf(post.getId()))
                 .build()

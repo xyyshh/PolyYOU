@@ -65,13 +65,31 @@ public class Post{
     public String getTag_name(){return tag_name;}
     public String getProfilePhotoAddress(){return author.getHeadImage(); }
     public String getPhotoAddress(){return attachedPhoto; }
+
     public ArrayList<Comment> getComments(){return comments;}
     public int getId(){return id;}
+    public User getAuthor() { return this.author; }
 
+    public void setAttachedPhoto(String photo) { this.attachedPhoto = photo; }
     public void setAuthor(User user){author = user;}
     public void setPostTitle(String str) {postTitle=str;}
     public void setPostContent(String str) {postContent =str;}
-//    public void setM_commentNum(int num) {m_commentNum = num;}
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "postTitle='" + postTitle + '\'' +
+                ", author=" + author +
+                ", postContent='" + postContent + '\'' +
+                ", attachedPhoto='" + attachedPhoto + '\'' +
+                ", time='" + time + '\'' +
+                ", comments=" + comments +
+                ", tag_name='" + tag_name + '\'' +
+                ", id=" + id +
+                '}';
+    }
+
+    //    public void setM_commentNum(int num) {m_commentNum = num;}
 //    public void setProfilePhotoAddress(String str){PhotoAddress = str; }
     public void addComments(Comment comment){
         comments.add(comment);}

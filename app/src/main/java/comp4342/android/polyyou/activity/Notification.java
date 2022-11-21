@@ -87,7 +87,7 @@ public class Notification extends BaseActivity {
     }
 
     public void initData() {
-        User author = new User("Jehan","123");
+        User author = new User("Jehan","123", "", "");
         currentUser.setUser(author);
         Post post1=new Post();
         author.setHeadImage("hihih");
@@ -113,7 +113,7 @@ public class Notification extends BaseActivity {
         m_arrPostList.add(post1);
 
         Post post2=new Post();
-        User author1 = new User("haha11111111111111111111111111111111111111111111111111", "1235");
+        User author1 = new User("haha11111111111111111111111111111111111111111111111111", "1235", "", "");
         author.setHeadImage("ihih");
         post2.setAuthor(author1);
         post2.setPostTitle("Hello!!");
