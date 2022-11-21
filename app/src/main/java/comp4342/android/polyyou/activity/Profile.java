@@ -14,6 +14,7 @@ import comp4342.android.polyyou.model.Post;
 import comp4342.android.polyyou.model.User;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,13 +41,15 @@ public class Profile extends BaseActivity {
 //    protected PostAdapter m_postAdapter;
     private PostViewAdapter mAdapter;
     private RecyclerView mRecycleView;
-    private CurrentUser currentUser;
+    private ImageView profileImageView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        profileImageView = findViewById(R.id.profile_pic);
+//        profileImageView.setImageURI(Uri.parse(CurrentUser.getUser().getHeadImage()));
 
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -78,6 +81,8 @@ public class Profile extends BaseActivity {
             }
         });
 
+
+
         mRecycleView = findViewById(R.id.postRecycleView);
         //初始化数据
         initData();
@@ -96,9 +101,7 @@ public class Profile extends BaseActivity {
         initEvent();
         if(CurrentUser.getUser() != null) {
             tvUsername.setText(CurrentUser.getUser().getName());
-
         }
-
     }
     public void initData() {
 //        for (int i = 1; i <= 40; i++) {

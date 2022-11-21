@@ -34,7 +34,6 @@ public class Notification extends BaseActivity {
     private PostViewAdapter mAdapter;
     private RecyclerView commentUnderPost;
     private RecyclerView commentUnderComment;
-    CurrentUser currentUser = new CurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,10 +95,10 @@ public class Notification extends BaseActivity {
     }
 
     public void initData() {
-        User author = new User("Jehan","123","","");
-        currentUser.setUser(author);
+//        User author = new User("Jehan","123","","");
+        User author=CurrentUser.getUser();
         Post post1=new Post();
-        author.setHeadImage("hihih");
+//        author.setHeadImage("hihih");
         post1.setAuthor(author);
         post1.setPostTitle("Jehan. Help! I need the help!");
         post1.setPostContent("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
@@ -117,7 +116,7 @@ public class Notification extends BaseActivity {
     public void get_notify(){
         //T.init(Notification.this);
         startLoadingProgress();
-        postBiz.loadPostbyNotification(currentUser,new CommonCallBack<Post>(){
+        postBiz.loadPostbyNotification(CurrentUser.getUser(),new CommonCallBack<Post>(){
             @Override
             public void onError(Exception e) {
                 stopLoadingProgress();
