@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,6 +38,7 @@ import comp4342.android.polyyou.model.User;
 import comp4342.android.polyyou.net.CommonCallBack;
 import comp4342.android.polyyou.biz.PostBiz;
 import comp4342.android.polyyou.model.CurrentUser;
+import comp4342.android.polyyou.utils.T;
 
 public class AddPost extends BaseActivity {
 
@@ -46,6 +48,9 @@ public class AddPost extends BaseActivity {
     protected Button btnPost;
     private RadioGroup topicGroup;
     private RadioButton btnTopic;
+    private RadioButton btnSecondhand;
+    private RadioButton btnHelp;
+    private RadioButton btnTakeaway;
     protected PostViewAdapter postAdapter;
     User user = CurrentUser.getUser();
 
@@ -55,6 +60,7 @@ public class AddPost extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.add);
@@ -80,6 +86,7 @@ public class AddPost extends BaseActivity {
                 return false;
             }
         });
+
         initLayout();
         initAddPostListeners();
     }
@@ -92,18 +99,50 @@ public class AddPost extends BaseActivity {
         postTitleEditText = findViewById(R.id.post_title_input);
         postEditText = findViewById(R.id.post_text_input);
         btnPost = findViewById(R.id.button_confirm_post);
+        btnSecondhand = findViewById(R.id.sh_button);
+        btnHelp = findViewById(R.id.help_button);
+        btnTakeaway = findViewById(R.id.ta_button);
     }
 
     protected void initAddPostListeners() {
+        T.init(AddPost.this);
+
+//        btnSecondhand.setOnClickListener(new View.OnClickListener(){
+//
+//        });
         //点击post button
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String strPostTag = btnTopic.toString();
+                if(topicGroup.getCheckedRadioButtonId()==-1){
+                    T.showToast("You need to choose a tag!");
+                    return;
+                }
+                if(postTitleEditText.getText().toString().equals("")){
+                    T.showToast("Post's title cannot be empty");
+                    return;
+                }
+                if(postEditText.getText().toString().equals("")){
+                    T.showToast("Post's content cannot be empty");
+                    return;
+                }
+                String strPostTag = "";
+                if(topicGroup.getCheckedRadioButtonId()==btnSecondhand.getId()){
+                    strPostTag = btnSecondhand.getText().toString();
+                }else if(topicGroup.getCheckedRadioButtonId()==btnHelp.getId()){
+                    strPostTag = btnHelp.getText().toString();
+                }else if(topicGroup.getCheckedRadioButtonId()==btnTakeaway.getId()){
+                    strPostTag = btnTakeaway.getText().toString();
+                }
                 String strPostTitle = postTitleEditText.getText().toString();
                 String strPostContent = postEditText.getText().toString();
                 String strProfilePhotoAddress = "";
                 String strUploadPhotoAddress = "";
+//                if(topicGroup.getCheckedRadioButtonId()==-1){
+//                    T.showToast("You should choose a tag!");  return;
+//                }
+
+
                 if (!strPostContent.isEmpty() && !strPostTitle.isEmpty()) {
 //                    addPost(new Post(dateToStamp(System.currentTimeMillis()), strPostTitle, m_strUserName, strProfilePhotoAddress, strPostContent, strUploadPhotoAddress));
                     //postEditText.setText("");
@@ -119,6 +158,7 @@ public class AddPost extends BaseActivity {
                         @Override
                         public void onError(Exception e) {
                             stopLoadingProgress();
+                            T.showToast("Post failed");
                             Log.d("add post activity", e.getMessage());
                         }
 
@@ -126,8 +166,6 @@ public class AddPost extends BaseActivity {
                         public void onSuccess(Post response) {
                             stopLoadingProgress();
                             Log.d("add post", "success");
-                            startActivity(new Intent(getApplicationContext(), Home.class));
-                            toHome();
                         }
                     });
 //                    ????InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -136,12 +174,6 @@ public class AddPost extends BaseActivity {
             }
         });
     }
-    private void toHome() {
-        Intent intent = new Intent(this, Home.class);
-        startActivity(intent);
-    }
-
-
     protected String dateToStamp(long s) {
         String res;
         try {

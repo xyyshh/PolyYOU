@@ -54,7 +54,7 @@
         <TextView
             android:id="@+id/author_name"
             android:layout_width="wrap_content"
-            android:maxWidth="195dp"
+            android:maxWidth="160dp"
             android:layout_height="18dp"
             android:layout_gravity="center_horizontal|center"
             android:layout_marginStart="35dp"
@@ -68,8 +68,8 @@
 
         <TextView
             android:id="@+id/time"
-            android:layout_width="110dp"
-            android:layout_height="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center"
             android:layout_toRightOf="@id/author_name"
             android:layout_marginStart="15dp"
@@ -96,25 +96,26 @@
 
         <TextView
             android:id="@+id/comment_number"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="9dp"
             android:text="@string/comment_number_string"
             android:textColor="@color/polyu_color"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:textStyle="normal" />
 
         <ImageView
             android:id="@+id/comment_icon"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginEnd="30dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="10dp"
             android:contentDescription="comment_icon"
             android:src="@drawable/comment_icon" />
 

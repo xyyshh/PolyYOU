@@ -1,11 +1,14 @@
 package comp4342.android.polyyou.activity;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -51,16 +54,15 @@ public class Home extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        verifyPermission(Home.this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         // find whether the user has logged in in the last 30 days
         loadLastUser();
         if(CurrentUser.getUser() == null || loginTimeout()) {
             Intent intent_welcome = new Intent(this, Welcome.class);
             startActivity(intent_welcome);
         }
-
         mRecycleView = findViewById(R.id.postRecycleView);
         //初始化数据
         initData();
@@ -107,6 +109,21 @@ public class Home extends BaseActivity {
             }
         });
 
+    }
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+    public void verifyPermission(Context context){
+        int permission = ActivityCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    Home.this,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE);
+        }
     }
     /**
      * Method used to encapsulate the code that initializes and sets the Layout

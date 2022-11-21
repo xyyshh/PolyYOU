@@ -23,7 +23,6 @@ import androidx.annotation.NonNull;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import comp4342.android.polyyou.view.PostView;
 
 import com.bumptech.glide.Glide;
 
@@ -50,9 +49,7 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
         Post post = posts.get(i);
         Log.d("load_photo", post.toString());
         Glide.with(context)
-                .load(post.author.getHeadImage())
-                .placeholder(R.drawable.user_profile_photo)
-                .error(R.drawable.user_profile_photo)
+                .load(post.getProfilePhotoAddress())
                 .into(viewHolder.avatar);
         viewHolder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, PostDetail.class);
@@ -60,9 +57,11 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
             context.startActivity(intent);
         });
         viewHolder.content.setText(post.getPostContent());
+        System.out.println("post content is: "+ post.getPostContent());
         viewHolder.title.setText(post.getPostTitle());
         viewHolder.name.setText(post.author.getName());
         viewHolder.time.setText(post.getTime());
+        //System.out.println("Comment number is: "+ post.getCommentNum());
         viewHolder.comment_number.setText(post.getCommentNum());
     }
 

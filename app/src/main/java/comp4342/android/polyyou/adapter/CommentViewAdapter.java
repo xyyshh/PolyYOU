@@ -1,6 +1,7 @@
 package comp4342.android.polyyou.adapter;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,6 @@ import androidx.annotation.NonNull;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import comp4342.android.polyyou.view.PostView;
 
 import com.bumptech.glide.Glide;
 
@@ -57,8 +57,6 @@ public class CommentViewAdapter extends RecyclerView.Adapter<CommentViewAdapter.
     @Override
     public int getItemViewType(int i) {
         Comment comment = comments.get(i);
-        System.out.println("commentee is: "+i+" "+comment.getCommentee());
-        System.out.println("comment length is: "+i+" "+comment.getCommentee());
         if(comment.getCommentee()==null){
             return 1;
         }
@@ -72,26 +70,23 @@ public class CommentViewAdapter extends RecyclerView.Adapter<CommentViewAdapter.
     public void onBindViewHolder(@NonNull CommentViewAdapter.ViewHolder viewHolder, int i) {
         Comment comment = comments.get(i);
         Glide.with(context)
-                .load(comment.getCommenter().getHeadImage())
-                .placeholder(R.drawable.user_profile_photo)
-                .error(R.drawable.user_profile_photo)
+                .load(comment.getProfilePhotoAddress())
                 .into(viewHolder.avatar);
         viewHolder.itemView.setOnClickListener(v -> {
             int position = viewHolder.getLayoutPosition();
             //DeliverdInfo
-            System.out.println("click the commenter: "+comment.getCommenter());
 //            Intent intent = new Intent(context, PostDetail.class);
         });
         viewHolder.content.setText(comment.getCommentContent());
         viewHolder.time.setText(comment.getCommentTime());
         viewHolder.commentee.setText(comment.getCommentee());
         viewHolder.commenter.setText(comment.getCommenter().getName());
+//        viewHolder.avatar.setImageURI(Uri.parse(comment.getProfilePhotoAddress()));
 
     }
 
     @Override
     public int getItemCount() {
-        System.out.println("Comment num is "+comments.size());
         return comments.size();
     }
 

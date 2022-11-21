@@ -1,3 +1,5 @@
+
+
 package comp4342.android.polyyou.activity;
 
 import androidx.annotation.NonNull;
@@ -28,9 +30,10 @@ public class Notification extends BaseActivity {
     private PostBiz postBiz = new PostBiz();
 
     private ArrayList<Post> m_arrPostList = new ArrayList<Post>();
+    private ArrayList<Post> m_arrCommentList = new ArrayList<Post>();
     private PostViewAdapter mAdapter;
-    private RecyclerView mRecycleView;
-    CurrentUser currentUser = new CurrentUser();
+    private RecyclerView commentUnderPost;
+    private RecyclerView commentUnderComment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +41,19 @@ public class Notification extends BaseActivity {
         setContentView(R.layout.activity_notification);
 
         initData();
-        mRecycleView = findViewById(R.id.commentNotificationRecycleView);
+        commentUnderPost = findViewById(R.id.postNotificationRecycleView);
+        commentUnderComment = findViewById(R.id.commentNotificationRecycleView);
 //        //创建布局管理器，垂直设置LinearLayoutManager.VERTICAL，水平设置LinearLayoutManager.HORIZONTAL
 //        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 //        创建适配器，将数据传递给适配器
         mAdapter = new PostViewAdapter(this, m_arrPostList);
+        mAdapter = new PostViewAdapter(this, m_arrCommentList);
         //设置适配器adapter
-        mRecycleView.setAdapter(mAdapter);
-        mRecycleView.setLayoutManager(new LinearLayoutManager(this,
+        commentUnderPost.setAdapter(mAdapter);
+        commentUnderPost.setLayoutManager(new LinearLayoutManager(this,
+                LinearLayoutManager.VERTICAL,false));
+        commentUnderComment.setAdapter(mAdapter);
+        commentUnderComment.setLayoutManager(new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL,false));
 
         get_notify();
@@ -87,53 +95,28 @@ public class Notification extends BaseActivity {
     }
 
     public void initData() {
-        User author = new User("Jehan","123", "", "");
-        currentUser.setUser(author);
+//        User author = new User("Jehan","123","","");
+        User author=CurrentUser.getUser();
         Post post1=new Post();
-        author.setHeadImage("hihih");
+//        author.setHeadImage("hihih");
         post1.setAuthor(author);
-        post1.setPostTitle("Help! I need the help!");
+        post1.setPostTitle("Jehan. Help! I need the help!");
         post1.setPostContent("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
         post1.setTag_name("1");
         Comment comment = new Comment(author,null,"Cool!");
         Comment comment1 = new Comment(author,null,"It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool!");
-        Comment comment2 = new Comment(author,"hihi","It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!");
-        Comment comment3 = new Comment(author,null, "Cool!");
+        Comment comment2 = new Comment(author,"Yooki","It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!");
         post1.addComments(comment);
         post1.addComments(comment1);
         post1.addComments(comment2);
-        post1.addComments(comment3);
-        post1.addComments(comment2);
-        post1.addComments(comment3);
-        post1.addComments(comment2);
-        post1.addComments(comment3);
-        post1.addComments(comment2);
-        post1.addComments(comment3);
         post1.setCurrentTime();
         m_arrPostList.add(post1);
-
-        Post post2=new Post();
-        User author1 = new User("haha11111111111111111111111111111111111111111111111111", "1235", "", "");
-        author.setHeadImage("ihih");
-        post2.setAuthor(author1);
-        post2.setPostTitle("Hello!!");
-        post2.setPostContent("ooooohohoo!");
-        post2.setTag_name("2");
-        post2.setCurrentTime();
-        post2.addComments(comment1);
-        m_arrPostList.add(post2);
-        m_arrPostList.add(post1);
-        m_arrPostList.add(post2);
-        m_arrPostList.add(post1);
-        m_arrPostList.add(post2);
-        m_arrPostList.add(post1);
-        m_arrPostList.add(post2);
-        m_arrPostList.add(post1);
+        m_arrCommentList.add(post1);
     }
     public void get_notify(){
         //T.init(Notification.this);
         startLoadingProgress();
-        postBiz.loadPostbyNotification(currentUser,new CommonCallBack<Post>(){
+        postBiz.loadPostbyNotification(CurrentUser.getUser(),new CommonCallBack<Post>(){
             @Override
             public void onError(Exception e) {
                 stopLoadingProgress();
