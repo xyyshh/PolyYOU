@@ -3,7 +3,6 @@
 package comp4342.android.polyyou.activity;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,7 +19,6 @@ import android.view.MenuItem;
 import comp4342.android.polyyou.model.CurrentUser;
 import comp4342.android.polyyou.model.User;
 import comp4342.android.polyyou.net.CommonCallBack;
-import comp4342.android.polyyou.utils.T;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -116,7 +114,7 @@ public class Notification extends BaseActivity {
     public void get_notify(){
         //T.init(Notification.this);
         startLoadingProgress();
-        postBiz.loadPostbyNotification(CurrentUser.getUser(),new CommonCallBack<Post>(){
+        postBiz.loadPostByNotification(CurrentUser.getUser(),new CommonCallBack<Post>(){
             @Override
             public void onError(Exception e) {
                 stopLoadingProgress();

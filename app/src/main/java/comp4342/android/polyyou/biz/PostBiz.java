@@ -1,10 +1,13 @@
 package comp4342.android.polyyou.biz;
 
+import android.net.Uri;
+
 import com.zhy.http.okhttp.OkHttpUtils;
+
+import java.io.File;
 
 import comp4342.android.polyyou.Config;
 import comp4342.android.polyyou.model.Comment;
-import comp4342.android.polyyou.model.CurrentUser;
 import comp4342.android.polyyou.model.Data;
 import comp4342.android.polyyou.model.Post;
 import comp4342.android.polyyou.model.User;
@@ -22,7 +25,7 @@ public class PostBiz {
                 .execute(commonCallBack);
     }
 
-    public void loadPostbyNotification(User currentUser, CommonCallBack<Post> commonCallBack){
+    public void loadPostByNotification(User currentUser, CommonCallBack<Post> commonCallBack){
         OkHttpUtils
                 .post()
                 .url(Config.baseUrl + "post")
@@ -32,16 +35,17 @@ public class PostBiz {
                 .execute(commonCallBack);
     }
 
-    public void addpost(Post post, CommonCallBack<Post> commonCallBack) {
+    public void addPost(Post post, File file, CommonCallBack<Post> commonCallBack) {
         OkHttpUtils
                 .post()
-                .url(Config.baseUrl + "post")
+                .url(Config.baseUrl + "posts/sent-post")
                 .tag(this)
                 .addParams("tag", post.getTag_id().toString())
-                .addParams("authorName", post.author.getId())
-                .addParams("time", post.time)
-                .addParams("title", post.getPostTitle())
-                .addParams("content", post.postContent)
+                .addParams("ownerId", post.author.getId())
+                .addParams("creteTime", post.time)
+                .addParams("postTitle", post.getPostTitle())
+                .addParams("postContent", post.postContent)
+                .addFile("image", file.getName(), file)
                 .build()
                 .execute(commonCallBack);
     }

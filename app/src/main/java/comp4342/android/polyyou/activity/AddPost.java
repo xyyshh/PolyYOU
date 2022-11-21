@@ -4,41 +4,36 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.os.FileUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
 
 import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.adapter.PostViewAdapter;
 import comp4342.android.polyyou.model.Post;
-import comp4342.android.polyyou.adapter.PostViewAdapter;
 import comp4342.android.polyyou.model.User;
 import comp4342.android.polyyou.net.CommonCallBack;
 import comp4342.android.polyyou.biz.PostBiz;
@@ -59,6 +54,7 @@ public class AddPost extends BaseActivity {
     private Button btnImage;
     private ImageView imageView;
     protected PostViewAdapter postAdapter;
+    private Uri imageUri;
     User user = CurrentUser.getUser();
 
     private PostBiz PostBiz = new PostBiz();
@@ -119,8 +115,10 @@ public class AddPost extends BaseActivity {
             new ActivityResultCallback<Uri>() {
                 @Override
                 public void onActivityResult(Uri result) {
-                    if (result != null)
+                    if (result != null) {
                         imageView.setImageURI(result);
+                        imageUri = result;
+                    }
                 }
             }
     );
@@ -185,7 +183,7 @@ public class AddPost extends BaseActivity {
                     post.setPostTitle(strPostTitle);
 
                     startLoadingProgress();
-                    PostBiz.addpost(post, new CommonCallBack<Post>(){
+                    PostBiz.addPost(post, uriToFileApiQ(imageUri, AddPost.this), new CommonCallBack<Post>(){
                         @Override
                         public void onError(Exception e) {
                             stopLoadingProgress();
@@ -197,6 +195,7 @@ public class AddPost extends BaseActivity {
                         public void onSuccess(Post response) {
                             stopLoadingProgress();
                             Log.d("add post", "success");
+                            toHome(AddPost.this);
                         }
                     });
 //                    ????InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -205,6 +204,41 @@ public class AddPost extends BaseActivity {
             }
         });
     }
+
+    public void toHome(Context context){
+        Intent intent = new Intent(context, Home.class);
+        startActivity(intent);
+    }
+    public static File uriToFileApiQ(Uri uri, Context context) {
+        File file = null;
+        if (uri == null) return file;
+        //android10以上转换
+        if (uri.getScheme().equals(ContentResolver.SCHEME_FILE)) {
+            file = new File(uri.getPath());
+        } else if (uri.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {
+            //把文件复制到沙盒目录
+            ContentResolver contentResolver = context.getContentResolver();
+            String displayName = System.currentTimeMillis() + Math.round((Math.random() + 1) * 1000)
+                    + "." + MimeTypeMap.getSingleton().getExtensionFromMimeType(contentResolver.getType(uri));
+
+            try {
+                InputStream is = contentResolver.openInputStream(uri);
+                File cache = new File(context.getCacheDir().getAbsolutePath(), displayName);
+                FileOutputStream fos = new FileOutputStream(cache);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    FileUtils.copy(is, fos);
+                }
+                file = cache;
+                fos.close();
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return file;
+    }
+
+
     protected String dateToStamp(long s) {
         String res;
         try {
