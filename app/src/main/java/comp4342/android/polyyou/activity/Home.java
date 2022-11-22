@@ -137,40 +137,40 @@ public class Home extends BaseActivity {
         post1.setPostTitle("Help! I need the help!");
         post1.setPostContent("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
         post1.setTag_name("1");
-        Comment comment = new Comment(author,null,"Cool!");
-        Comment comment1 = new Comment(author,null,"It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool!");
-        Comment comment2 = new Comment(author,"hihi","It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!");
-        Comment comment3 = new Comment(author,null, "Cool!");
-        post1.addComments(comment);
-        post1.addComments(comment1);
-        post1.addComments(comment2);
-        post1.addComments(comment3);
-        post1.addComments(comment2);
-        post1.addComments(comment3);
-        post1.addComments(comment2);
-        post1.addComments(comment3);
-        post1.addComments(comment2);
-        post1.addComments(comment3);
-        post1.setCurrentTime();
-        m_arrPostList.add(post1);
-
-        Post post2=new Post();
-        User author1 = new User("haha11111111111111111111111111111111111111111111111111", "1235", "", "");
-        author.setHeadImage("ihih");
-        post2.setAuthor(author1);
-        post2.setPostTitle("Hello!!");
-        post2.setPostContent("ooooohohoo!");
-        post2.setTag_name("2");
-        post2.setCurrentTime();
-        post2.addComments(comment1);
-        m_arrPostList.add(post2);
-        m_arrPostList.add(post1);
-        m_arrPostList.add(post2);
-        m_arrPostList.add(post1);
-        m_arrPostList.add(post2);
-        m_arrPostList.add(post1);
-        m_arrPostList.add(post2);
-        m_arrPostList.add(post1);
+//        Comment comment = new Comment(author,null,"Cool!");
+//        Comment comment1 = new Comment(author,null,"It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool!");
+//        Comment comment2 = new Comment(author,"hihi","It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!");
+//        Comment comment3 = new Comment(author,null, "Cool!");
+//        post1.addComments(comment);
+//        post1.addComments(comment1);
+//        post1.addComments(comment2);
+//        post1.addComments(comment3);
+//        post1.addComments(comment2);
+//        post1.addComments(comment3);
+//        post1.addComments(comment2);
+//        post1.addComments(comment3);
+//        post1.addComments(comment2);
+//        post1.addComments(comment3);
+//        post1.setCurrentTime();
+//        m_arrPostList.add(post1);
+//
+//        Post post2=new Post();
+//        User author1 = new User("haha11111111111111111111111111111111111111111111111111", "1235", "", "");
+//        author.setHeadImage("ihih");
+//        post2.setAuthor(author1);
+//        post2.setPostTitle("Hello!!");
+//        post2.setPostContent("ooooohohoo!");
+//        post2.setTag_name("2");
+//        post2.setCurrentTime();
+////        post2.addComments(comment1);
+//        m_arrPostList.add(post2);
+//        m_arrPostList.add(post1);
+//        m_arrPostList.add(post2);
+//        m_arrPostList.add(post1);
+//        m_arrPostList.add(post2);
+//        m_arrPostList.add(post1);
+//        m_arrPostList.add(post2);
+//        m_arrPostList.add(post1);
     }
 
     public void initView() {
@@ -187,11 +187,12 @@ public class Home extends BaseActivity {
         btn_secondhand = findViewById(R.id.sh_filter_button);
 
     }
-    private List<Comment> m_commentList = null;
+//    private List<Comment> m_commentList = null;
 
     private void findAllPosts() {
-        m_commentList = null;
+//        m_commentList = null;
         // second hand = 1
+        m_arrPostList = null;
         postBiz.loadPost("1", new CommonCallBack<Data>() {
             @Override
             public void onError(Exception e) {
@@ -203,27 +204,26 @@ public class Home extends BaseActivity {
                 Log.d("get_post_activity", response.getData());
                 m_arrPostList = response.toArrayListPost();
 
-                int ind = 0;
-                for(; ind < m_arrPostList.size();ind++){
-                    Log.d("number_of_comment", String.valueOf(ind));
-                    postBiz.loadComment(String.valueOf(m_arrPostList.get(ind).getId()), new CommonCallBack<Data>() {
-                        @Override
-                        public void onError(Exception e) {
-                            Log.e("get_comments", "get comments error");
-                            T.showToast(e.toString());
-                        }
-
-                        @Override
-                        public void onSuccess(Data response) {
-                            List<Comment> lst = response.toArrayListComment();
-                            for(Comment comment: lst) {
-                                Log.d("load_comments", comment.toString());
-                                addComments(comment);
-                            }
-                        }
-                    });
-
-                }
+//                int ind = 0;
+//                for(; ind < m_arrPostList.size();ind++){
+//                    Log.d("number_of_comment", String.valueOf(ind));
+//                    postBiz.loadComment(String.valueOf(m_arrPostList.get(ind).getId()), new CommonCallBack<Data>() {
+//                        @Override
+//                        public void onError(Exception e) {
+//                            Log.e("get_comments", "get comments error");
+//                            T.showToast(e.toString());
+//                        }
+//
+//                        @Override
+//                        public void onSuccess(Data response) {
+//                            List<Comment> lst = response.toArrayListComment();
+//                            for(Comment comment: lst) {
+//                                Log.d("load_comments", comment.toString());
+//                                addComments(comment);
+//                            }
+//                        }
+//                    });
+//                }
 
             }
         });
@@ -273,12 +273,12 @@ public class Home extends BaseActivity {
             }
         });
     }
-    private void addComments(Comment comment) {
-        for (int i = 0; i < m_arrPostList.size(); i++) {
-            Post post = m_arrPostList.get(i);
-            Log.d("compare", String.valueOf(post.getId())+" "+comment.getPostId());
-            if (String.valueOf(post.getId()).equals(comment.getPostId()))
-                m_arrPostList.get(i).addComments(comment);
-        }
-    }
+//    private void addComments(Comment comment) {
+//        for (int i = 0; i < m_arrPostList.size(); i++) {
+//            Post post = m_arrPostList.get(i);
+//            Log.d("compare", String.valueOf(post.getId())+" "+comment.getPostId());
+//            if (String.valueOf(post.getId()).equals(comment.getPostId()))
+//                m_arrPostList.get(i).addComments(comment);
+//        }
+//    }
 }

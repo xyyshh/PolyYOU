@@ -8,6 +8,7 @@ import java.io.File;
 
 import comp4342.android.polyyou.Config;
 import comp4342.android.polyyou.model.Comment;
+import comp4342.android.polyyou.model.CurrentUser;
 import comp4342.android.polyyou.model.Data;
 import comp4342.android.polyyou.model.Post;
 import comp4342.android.polyyou.model.User;
@@ -25,12 +26,22 @@ public class PostBiz {
                 .execute(commonCallBack);
     }
 
-    public void loadPostByNotification(User currentUser, CommonCallBack<Post> commonCallBack){
+    public void loadPostByNotification(CommonCallBack<Data> commonCallBack){
         OkHttpUtils
                 .post()
                 .url(Config.baseUrl + "post")
                 .tag(this)
-                .addParams("postId", currentUser.getId())
+                .addParams("postId", CurrentUser.getUser().getId())
+                .build()
+                .execute(commonCallBack);
+    }
+
+    public void loadPostByUserId(CommonCallBack<Data> commonCallBack){
+        OkHttpUtils
+                .post()
+                .url(Config.baseUrl + "post")
+                .tag(this)
+                .addParams("postId", CurrentUser.getUser().getId())
                 .build()
                 .execute(commonCallBack);
     }
@@ -71,6 +82,7 @@ public class PostBiz {
                 .build()
                 .execute(commonCallBack);
     }
+
     public void onDestroy() {
         OkHttpUtils.getInstance().cancelTag(this);
     }

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import comp4342.android.polyyou.R;
@@ -19,6 +20,7 @@ import comp4342.android.polyyou.adapter.PostDetailedAdapter;
 import comp4342.android.polyyou.adapter.PostViewAdapter;
 import comp4342.android.polyyou.biz.PostBiz;
 import comp4342.android.polyyou.model.Comment;
+import comp4342.android.polyyou.model.CurrentUser;
 import comp4342.android.polyyou.model.Data;
 import comp4342.android.polyyou.model.Post;
 import comp4342.android.polyyou.model.User;
@@ -36,6 +38,7 @@ public class PostDetail extends BaseActivity {
     private EditText comment_input;
     private Button btn_sendComment;
     private PostBiz postBiz = new PostBiz();
+    private ArrayList<Comment> commentArrayList = new ArrayList<Comment>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +66,12 @@ public class PostDetail extends BaseActivity {
 
             @Override
             public void onSuccess(Data response) {
-                List<Comment> lst = response.toArrayListComment();
-                for(Comment comment: lst) {
-                    Log.d("load_comments", comment.toString());
-                    post.addComments(comment);
-                }
-
+//                List<Comment> lst = response.toArrayListComment();
+                commentArrayList = response.toArrayListComment();
+//                for(Comment comment: lst) {
+//                    Log.d("load_comments", comment.toString());
+////                    post.addComments(comment);
+//                }
                 initView();
             }
         });
@@ -81,7 +84,7 @@ public class PostDetail extends BaseActivity {
         mpostView.setLayoutManager(new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL,false));
 
-        mCommentAdapter = new CommentViewAdapter(this, post.comments);
+        mCommentAdapter = new CommentViewAdapter(this, commentArrayList);
         //设置适配器adapter
         mcommentView.setAdapter(mCommentAdapter);
         mcommentView.setLayoutManager(new LinearLayoutManager(this,
@@ -112,7 +115,7 @@ public class PostDetail extends BaseActivity {
             @Override
             public void onClick(View view) {
                 String comment_content = comment_input.getText().toString();
-                Comment comment = new Comment(post.author, post.author.getName(), comment_content);
+                Comment comment = new Comment(CurrentUser.getUser(), comment_content);
                 startLoadingProgress();
                 postBiz.addComment(post, comment, new CommonCallBack<Post>(){
                     @Override
@@ -131,27 +134,6 @@ public class PostDetail extends BaseActivity {
         });
     }
     private void initData(){
-        post=new Post();
-        User author = new User("Yooki", "1234", "", "");
-        author.setHeadImage("hihih");
-        post.setAuthor(author);
-        post.setPostTitle("Help! I need the help!");
-        post.setPostContent("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
-        post.setTag_name("1");
-        post.setCurrentTime();
-        Comment comment = new Comment(author,null,"Cool!");
-        Comment comment1 = new Comment(author,null, "It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool!");
-        Comment comment2 = new Comment(author,"hihi", "It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!");
-        Comment comment3 = new Comment(author,null, "Cool!");
-        post.addComments(comment);
-        post.addComments(comment1);
-//        post.addComments(comment2);
-//        post.addComments(comment3);
-//        post.addComments(comment2);
-//        post.addComments(comment3);
-//        post.addComments(comment2);
-//        post.addComments(comment3);
-//        post.addComments(comment2);
-//        post.addComments(comment3);
+
     }
 }

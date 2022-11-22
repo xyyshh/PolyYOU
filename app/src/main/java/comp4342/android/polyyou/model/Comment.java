@@ -12,18 +12,18 @@ public class Comment {
         this.id = id;
     }
 
-    public Post getPost() {
-        return commentPost;
-    }
-
-    public void setPost(Post post) {
-        this.commentPost = post;
-    }
+//    public Post getPost() {
+//        return commentPost;
+//    }
+//
+//    public void setPost(Post post) {
+//        this.commentPost = post;
+//    }
 
     private String id;
     private User commenter;
-    private Post commentPost;
-    private String commentee;
+//    private Post commentPost;
+//    private String commentee;
     private String commentTime;
     private String commentContent;
     private String postId;
@@ -56,19 +56,19 @@ public class Comment {
     }
     public String getProfilePhotoAddress(){return commenter.getHeadImage(); }
 
-    public String getCommentee() {
-        return commentee;
-    }
-
-    public void setCommentee(String commentee) {
-        this.commentee = commentee;
-    }
+//    public String getCommentee() {
+//        return commentee;
+//    }
+//
+//    public void setCommentee(String commentee) {
+//        this.commentee = commentee;
+//    }
 
     public Comment() {}
 
-    public Comment(User commenter, String commentee, String commentContent) {
+    public Comment(User commenter, String commentContent) {
         this.commenter = commenter;
-        this.commentee = commentee;
+//        this.commentee = commentee;
         this.commentTime = dateToStamp(System.currentTimeMillis());
         this.commentContent = commentContent;
     }
@@ -90,8 +90,8 @@ public class Comment {
         return "Comment{" +
                 "id='" + id + '\'' +
                 ", commenter=" + commenter +
-                ", commentPost=" + commentPost +
-                ", commentee='" + commentee + '\'' +
+//                ", commentPost=" + commentPost +
+//                ", commentee='" + commentee + '\'' +
                 ", commentTime='" + commentTime + '\'' +
                 ", commentContent='" + commentContent + '\'' +
                 '}';
