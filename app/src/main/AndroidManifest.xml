@@ -27,14 +27,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.ImageTest"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".activity.SignupImage"
+            android:name=".activity.SignUpImage"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

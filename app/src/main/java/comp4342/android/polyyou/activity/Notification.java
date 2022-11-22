@@ -1,5 +1,3 @@
-
-
 package comp4342.android.polyyou.activity;
 
 import androidx.annotation.NonNull;
@@ -31,8 +29,8 @@ import java.util.ArrayList;
 public class Notification extends BaseActivity {
     private PostBiz postBiz = new PostBiz();
 
-    private ArrayList<Post> m_arrPostList = new ArrayList<Post>();
-//    private ArrayList<Post> m_arrCommentList = new ArrayList<Post>();
+    private ArrayList<Post> m_arrPostList = new ArrayList<>();
+    //    private ArrayList<Post> m_arrCommentList = new ArrayList<Post>();
     private PostViewAdapter mAdapter;
     private RecyclerView commentUnderPost;
     private TextView notificationView;
@@ -44,51 +42,18 @@ public class Notification extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
 
-        initData();
-        commentUnderPost = findViewById(R.id.postNotificationRecycleView);
-        notificationView = findViewById(R.id.post_notification);
-        noNotificationsView = findViewById(R.id.noNotificationView);
-//        commentUnderComment = findViewById(R.id.commentNotificationRecycleView);
-//        //创建布局管理器，垂直设置LinearLayoutManager.VERTICAL，水平设置LinearLayoutManager.HORIZONTAL
-//        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-//        创建适配器，将数据传递给适配器
-
-        //No notification
-        if(m_arrPostList==null){
-            noNotificationsView.setVisibility(View.VISIBLE);
-            commentUnderPost.setVisibility(View.INVISIBLE);
-            commentUnderPost.setVisibility(View.INVISIBLE);
-        }
-        else{
-            noNotificationsView.setVisibility(View.INVISIBLE);
-            commentUnderPost.setVisibility(View.VISIBLE);
-            commentUnderPost.setVisibility(View.VISIBLE);
-            mAdapter = new PostViewAdapter(this, m_arrPostList);
-//        mAdapter = new PostViewAdapter(this, m_arrCommentList);
-            //设置适配器adapter
-            commentUnderPost.setAdapter(mAdapter);
-            commentUnderPost.setLayoutManager(new LinearLayoutManager(this,
-                    LinearLayoutManager.VERTICAL,false));
-//        commentUnderComment.setAdapter(mAdapter);
-//        commentUnderComment.setLayoutManager(new LinearLayoutManager(this,
-//                LinearLayoutManager.VERTICAL,false));
-
-//        get_notify();
-        }
-
-
+        initLayout();
+        loadNotificationPosts(CurrentUser.getUser().getId());
 
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
         // Set that home is selected
         bottomNavigationView.setSelectedItemId(R.id.notification);
-
         // Perform  ItemSelectedListener
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuitem) {
-                switch (menuitem.getItemId()){
+                switch (menuitem.getItemId()) {
                     case R.id.home:
                         startActivity(new Intent(getApplicationContext(), Home.class));
                         overridePendingTransition(0, 0);
@@ -107,13 +72,9 @@ public class Notification extends BaseActivity {
                 return false;
             }
         });
-
-
-//        Intent intent = new Intent(this, Home.class);
-//        startActivity(intent);
     }
 
-    public void initData() {
+    private void loadNotificationPosts(String owner_id) {
         m_arrPostList = null;
         // second hand = 1
         postBiz.loadPostByNotification(new CommonCallBack<Data>() {
@@ -121,30 +82,52 @@ public class Notification extends BaseActivity {
             public void onError(Exception e) {
                 Log.e("notification post get", e.toString());
             }
+
             @Override
             public void onSuccess(Data response) {
                 stopLoadingProgress();
                 Log.d("get_post_activity", response.getData());
                 m_arrPostList = response.toArrayListPost();
+                initView();
             }
         });
     }
 
-//    public void get_notify(){
-//        //T.init(Notification.this);
-//        startLoadingProgress();
-//        postBiz.loadPostByNotification(CurrentUser.getUser(),new CommonCallBack<Data>(){
-//            @Override
-//            public void onError(Exception e) {
-//                stopLoadingProgress();
-//                Log.d("load post notification", e.getMessage());
-//
-//            }
-//            @Override
-//            public void onSuccess(Post response) {
-//                stopLoadingProgress();
-//                Log.d("login activity",  response.toString());
-//            }
-//        });
-//    }
+    private void initView() {
+        if(m_arrPostList!=null){
+            notificationView.setVisibility(View.INVISIBLE);
+            mAdapter = new PostViewAdapter(Notification.this, m_arrPostList);
+            //设置适配器adapter
+            commentUnderPost.setAdapter(mAdapter);
+            commentUnderPost.setLayoutManager(new LinearLayoutManager(Notification.this,
+                    LinearLayoutManager.VERTICAL,false));
+        }
+        else{
+            notificationView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void initLayout() {
+        commentUnderPost = findViewById(R.id.postNotificationRecycleView);
+        notificationView = findViewById(R.id.post_notification);
+        noNotificationsView = findViewById(R.id.noNotificationView);
+        //No notification
+        if (m_arrPostList == null) {
+            noNotificationsView.setVisibility(View.VISIBLE);
+            commentUnderPost.setVisibility(View.INVISIBLE);
+            commentUnderPost.setVisibility(View.INVISIBLE);
+        } else {
+            noNotificationsView.setVisibility(View.INVISIBLE);
+            commentUnderPost.setVisibility(View.VISIBLE);
+            commentUnderPost.setVisibility(View.VISIBLE);
+            mAdapter = new PostViewAdapter(this, m_arrPostList);
+
+            commentUnderPost.setAdapter(mAdapter);
+            commentUnderPost.setLayoutManager(new LinearLayoutManager(this,
+                    LinearLayoutManager.VERTICAL, false));
+
+        }
+    }
 }
+
+

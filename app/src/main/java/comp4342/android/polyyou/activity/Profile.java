@@ -61,8 +61,6 @@ public class Profile extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        noPostView  =findViewById(R.id.noPostView);
-        profileImageView = findViewById(R.id.profile_pic);
 //        profileImageView.setImageURI(Uri.parse(CurrentUser.getUser().getHeadImage()));
 
         // Initialize and assign variable
@@ -167,6 +165,8 @@ public class Profile extends BaseActivity {
         imgvProfile = findViewById(R.id.profile_pic);
         tvUsername = findViewById(R.id.profile_username);
         btnLogout = findViewById(R.id.button_logout);
+        noPostView  =findViewById(R.id.noPostView);
+        profileImageView = findViewById(R.id.profile_pic);
     }
 
     protected void initEvent() {

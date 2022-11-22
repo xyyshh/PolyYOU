@@ -4,14 +4,12 @@ import androidx.activity.result.ActivityResultCallback;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,13 +29,12 @@ import java.io.InputStream;
 import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.biz.UserBiz;
 import comp4342.android.polyyou.model.CurrentUser;
-import comp4342.android.polyyou.model.Data;
 import comp4342.android.polyyou.model.User;
 import comp4342.android.polyyou.net.CommonCallBack;
 import comp4342.android.polyyou.utils.T;
 
 
-public class ImageTest extends BaseActivity {
+public class SignUpImage extends BaseActivity {
 
     private ImageView mImageView;
     private Button btnUploadImage;
@@ -61,7 +58,7 @@ public class ImageTest extends BaseActivity {
                     toHome();
                 } else {
                     startLoadingProgress();
-                    userBiz.updateProfileImage(CurrentUser.getUser().getEmail(), uriToFileApiQ(imageUri, ImageTest.this), new CommonCallBack<User>() {
+                    userBiz.updateProfileImage(CurrentUser.getUser().getEmail(), uriToFileApiQ(imageUri, SignUpImage.this), new CommonCallBack<User>() {
                         @Override
                         public void onError(Exception e) {
                             stopLoadingProgress();

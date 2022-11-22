@@ -6,19 +6,12 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EdgeEffect;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import java.io.BufferedReader;
 
 import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.biz.UserBiz;
 import comp4342.android.polyyou.model.CurrentUser;
 import comp4342.android.polyyou.model.Data;
-import comp4342.android.polyyou.model.Response;
 import comp4342.android.polyyou.model.User;
 import comp4342.android.polyyou.net.CommonCallBack;
 import comp4342.android.polyyou.utils.Str;
@@ -133,7 +126,7 @@ public class Signup extends BaseActivity {
     }
 
     private void toProfileImage() {
-        Intent intent = new Intent(this, ImageTest.class);
+        Intent intent = new Intent(this, SignUpImage.class);
         startActivity(intent);
     }
 
