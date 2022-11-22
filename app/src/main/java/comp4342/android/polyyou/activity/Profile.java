@@ -63,8 +63,18 @@ public class Profile extends BaseActivity {
         setContentView(R.layout.activity_profile);
 //        profileImageView.setImageURI(Uri.parse(CurrentUser.getUser().getHeadImage()));
 
-        initLayout();
         initData();
+        tvUsername = findViewById(R.id.profile_username);
+        btnLogout = findViewById(R.id.button_logout);
+        profileImageView = findViewById(R.id.profile_pic);
+        noPostView  =findViewById(R.id.noPostView);
+        mRecycleView = findViewById(R.id.postRecycleView);
+        //初始化数据
+
+        initView();
+        initEvent();
+        if(CurrentUser.getUser() != null)
+            tvUsername.setText(CurrentUser.getUser().getName());
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -101,15 +111,39 @@ public class Profile extends BaseActivity {
     }
 
 
-    private void initLayout() {
-        tvUsername = findViewById(R.id.profile_username);
-        btnLogout = findViewById(R.id.button_logout);
-        profileImageView = findViewById(R.id.profile_pic);
-        noPostView  =findViewById(R.id.noPostView);
-        mRecycleView = findViewById(R.id.postRecycleView);
-        //初始化数据
-        initData();
+//    private void initLayout() {
+//        tvUsername = findViewById(R.id.profile_username);
+//        btnLogout = findViewById(R.id.button_logout);
+//        profileImageView = findViewById(R.id.profile_pic);
+//        noPostView  =findViewById(R.id.noPostView);
+//        mRecycleView = findViewById(R.id.postRecycleView);
+//        //初始化数据
+//        initData();
+//
+//        initView();
+//        initEvent();
+//        if(CurrentUser.getUser() != null)
+//            tvUsername.setText(CurrentUser.getUser().getName());
+//    }
+    public void initData() {
+        m_arrPostList = null;
+        // second hand = 1
+        postBiz.loadPostByNotification(new CommonCallBack<Data>() {
+            @Override
+            public void onError(Exception e) {
+                Log.e("notification post get", e.toString());
+            }
+            @Override
+            public void onSuccess(Data response) {
+                stopLoadingProgress();
+                Log.d("get_post_activity", response.getData());
+                m_arrPostList = response.toArrayListPost();
+                initLayout1();
+            }
 
+        });
+    }
+    public void initLayout1(){
         if(m_arrPostList!=null){
             noPostView.setVisibility(View.INVISIBLE);
             mAdapter = new PostViewAdapter(this, m_arrPostList);
@@ -130,25 +164,6 @@ public class Profile extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        initView();
-        initEvent();
-        if(CurrentUser.getUser() != null)
-            tvUsername.setText(CurrentUser.getUser().getName());
-    }
-    public void initData() {
-        m_arrPostList = null;
-        // second hand = 1
-        postBiz.loadPostByNotification(new CommonCallBack<Data>() {
-            @Override
-            public void onError(Exception e) {
-                Log.e("notification post get", e.toString());
-            }
-            @Override
-            public void onSuccess(Data response) {
-                stopLoadingProgress();
-                Log.d("get_post_activity", response.getData());
-                m_arrPostList = response.toArrayListPost();}
-        });
     }
 
     private void requestImg(final URL imgUrl)
