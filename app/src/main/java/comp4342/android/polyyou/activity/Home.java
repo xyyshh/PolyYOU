@@ -57,19 +57,17 @@ public class Home extends BaseActivity {
         verifyPermission(Home.this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        findAllPosts();
+
         // find whether the user has logged in in the last 30 days
         loadLastUser();
         if(CurrentUser.getUser() == null || loginTimeout()) {
             Intent intent_welcome = new Intent(this, Welcome.class);
             startActivity(intent_welcome);
         }
-        mRecycleView = findViewById(R.id.postRecycleView);
-        initView();
 
+        loadPostsByTag("1");
         initLayout();
         initEvent();
-
 
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -121,57 +119,6 @@ public class Home extends BaseActivity {
                     REQUEST_EXTERNAL_STORAGE);
         }
     }
-    /**
-     * Method used to encapsulate the code that initializes and sets the Layout
-     * for this Activity.
-     */
-    public void initData() {
-//        for (int i = 1; i <= 40; i++) {
-//            m_arrPostList.add(new Post());
-//        }
-//        ArrayList<Post> postList = new ArrayList<Post>();
-        Post post1=new Post();
-        User author = new User("Yooki", "1234", "", "");
-        author.setHeadImage("hihih");
-        post1.setAuthor(author);
-        post1.setPostTitle("Help! I need the help!");
-        post1.setPostContent("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
-        post1.setTag_name("1");
-//        Comment comment = new Comment(author,null,"Cool!");
-//        Comment comment1 = new Comment(author,null,"It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool!");
-//        Comment comment2 = new Comment(author,"hihi","It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!");
-//        Comment comment3 = new Comment(author,null, "Cool!");
-//        post1.addComments(comment);
-//        post1.addComments(comment1);
-//        post1.addComments(comment2);
-//        post1.addComments(comment3);
-//        post1.addComments(comment2);
-//        post1.addComments(comment3);
-//        post1.addComments(comment2);
-//        post1.addComments(comment3);
-//        post1.addComments(comment2);
-//        post1.addComments(comment3);
-//        post1.setCurrentTime();
-//        m_arrPostList.add(post1);
-//
-//        Post post2=new Post();
-//        User author1 = new User("haha11111111111111111111111111111111111111111111111111", "1235", "", "");
-//        author.setHeadImage("ihih");
-//        post2.setAuthor(author1);
-//        post2.setPostTitle("Hello!!");
-//        post2.setPostContent("ooooohohoo!");
-//        post2.setTag_name("2");
-//        post2.setCurrentTime();
-////        post2.addComments(comment1);
-//        m_arrPostList.add(post2);
-//        m_arrPostList.add(post1);
-//        m_arrPostList.add(post2);
-//        m_arrPostList.add(post1);
-//        m_arrPostList.add(post2);
-//        m_arrPostList.add(post1);
-//        m_arrPostList.add(post2);
-//        m_arrPostList.add(post1);
-    }
 
     public void initView() {
         mAdapter = new PostViewAdapter(Home.this, m_arrPostList);
@@ -185,15 +132,12 @@ public class Home extends BaseActivity {
         btn_takeaway = findViewById(R.id.ta_filter_button);
         btn_help = findViewById(R.id.help_filter_button);
         btn_secondhand = findViewById(R.id.sh_filter_button);
-
+        mRecycleView = findViewById(R.id.postRecycleView);
     }
-//    private List<Comment> m_commentList = null;
 
-    private void findAllPosts() {
-//        m_commentList = null;
-        // second hand = 1
+    private void loadPostsByTag(String tag) {
         m_arrPostList = null;
-        postBiz.loadPost("1", new CommonCallBack<Data>() {
+        postBiz.loadPostByTag(tag, new CommonCallBack<Data>() {
             @Override
             public void onError(Exception e) {
                 Log.e("second hand post get", e.toString());
@@ -203,28 +147,7 @@ public class Home extends BaseActivity {
                 stopLoadingProgress();
                 Log.d("get_post_activity", response.getData());
                 m_arrPostList = response.toArrayListPost();
-
-//                int ind = 0;
-//                for(; ind < m_arrPostList.size();ind++){
-//                    Log.d("number_of_comment", String.valueOf(ind));
-//                    postBiz.loadComment(String.valueOf(m_arrPostList.get(ind).getId()), new CommonCallBack<Data>() {
-//                        @Override
-//                        public void onError(Exception e) {
-//                            Log.e("get_comments", "get comments error");
-//                            T.showToast(e.toString());
-//                        }
-//
-//                        @Override
-//                        public void onSuccess(Data response) {
-//                            List<Comment> lst = response.toArrayListComment();
-//                            for(Comment comment: lst) {
-//                                Log.d("load_comments", comment.toString());
-//                                addComments(comment);
-//                            }
-//                        }
-//                    });
-//                }
-
+                initView();
             }
         });
     }
@@ -233,43 +156,19 @@ public class Home extends BaseActivity {
         btn_secondhand.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                findAllPosts();
-                ArrayList<Post> tmp = new ArrayList<Post>();
-                for(Post post: m_arrPostList){
-                    Log.d("post_id", post.toString());
-                    if(post.getTag_id().toString().equals("1"))
-                        tmp.add(post);
-                }
-                m_arrPostList = tmp;
-                initView();
+                loadPostsByTag("1");
             }
         });
         btn_help.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                findAllPosts();
-                ArrayList<Post> tmp = new ArrayList<Post>();
-                for(Post post: m_arrPostList){
-                    Log.d("post_id", post.toString());
-                    if(post.getTag_id().toString().equals("2"))
-                        tmp.add(post);
-                }
-                m_arrPostList = tmp;
-                initView();
+                loadPostsByTag("2");
             }
         });
         btn_takeaway.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                findAllPosts();
-                ArrayList<Post> tmp = new ArrayList<Post>();
-                for(Post post: m_arrPostList){
-                    Log.d("post_id", post.toString());
-                    if(post.getTag_id().toString().equals("3"))
-                        tmp.add(post);
-                }
-                m_arrPostList = tmp;
-                initView();
+                loadPostsByTag("3");
             }
         });
     }

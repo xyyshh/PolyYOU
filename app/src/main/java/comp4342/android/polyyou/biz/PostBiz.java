@@ -17,11 +17,12 @@ import comp4342.android.polyyou.net.CommonCallBack;
 
 
 public class PostBiz {
-    public void loadPost(String postType, CommonCallBack<Data> commonCallBack){
+    public void loadPostByTag(String tag, CommonCallBack<Data> commonCallBack){
         OkHttpUtils
                 .get()
-                .url(Config.baseUrl + "posts/list")
+                .url(Config.baseUrl + "posts/list-by-tag")
                 .tag(this)
+                .addParams("tid", tag)
                 .build()
                 .execute(commonCallBack);
     }

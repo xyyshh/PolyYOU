@@ -31,7 +31,7 @@ public class Data implements Serializable {
 
     public ArrayList<Post> toArrayListPost() {
         ArrayList<Post> a = new ArrayList<Post>();
-        int i = 5;
+        int i = 1;
         int len = this.data.length();
         while(i < len) {
             StringBuilder s = new StringBuilder();
@@ -48,12 +48,14 @@ public class Data implements Serializable {
             for(String ss: post_content) {
                 String[] pair = ss.split("=");
                 if(pair.length == 2) {
-                //    Log.d("post_content", pair[0] + " " + pair[1]);
+                   Log.d("post_content", pair[0] + " " + pair[1]);
                     convertToPost(pair[0], pair[1], post);
                 }
             }
-            if(post.getAuthor()!=null && post.getPostTitle()!=null)
+            if(post.getAuthor()!=null && post.getPostTitle()!=null) {
+                Log.d("Data_post_content", post.toString());
                 a.add(post);
+            }
         }
         return a;
     }
