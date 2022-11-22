@@ -69,7 +69,7 @@
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:layout_marginTop="200dp"
-        android:text="No Related Post!\n Try the others~ "
+        android:text="No Related Post!\n Try the others"
         android:textAlignment="center"
         android:textColor="@color/polyu_color"
         android:textSize="35sp"
@@ -97,6 +97,7 @@
         android:layout_alignParentBottom="true"
         app:itemBackground="@color/white"
         android:background="@color/white"
+        app:itemIconSize="30dp"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:menu="@menu/menu_navigation" />
