@@ -70,7 +70,7 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
     public int getItemCount() {
         if(posts == null)
             return 0;
-        System.out.println("Post num is "+posts.size());
+//        System.out.println("Post num is "+posts.size());
         return posts.size();
     }
 

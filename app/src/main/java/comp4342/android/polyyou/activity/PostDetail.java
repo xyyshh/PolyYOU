@@ -84,11 +84,13 @@ public class PostDetail extends BaseActivity {
         mpostView.setLayoutManager(new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL,false));
 
-        mCommentAdapter = new CommentViewAdapter(this, commentArrayList);
-        //设置适配器adapter
-        mcommentView.setAdapter(mCommentAdapter);
-        mcommentView.setLayoutManager(new LinearLayoutManager(this,
-                LinearLayoutManager.VERTICAL,false));
+        if(commentArrayList==null){
+            mCommentAdapter = new CommentViewAdapter(this, commentArrayList);
+            //设置适配器adapter
+            mcommentView.setAdapter(mCommentAdapter);
+            mcommentView.setLayoutManager(new LinearLayoutManager(this,
+                    LinearLayoutManager.VERTICAL,false));
+        }
     }
 
     public void initLayout() {

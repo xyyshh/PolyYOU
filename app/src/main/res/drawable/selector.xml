@@ -7,6 +7,6 @@
 
     <item
         android:state_selected="false"
-        android:color="@color/polyu_color"/>
+        android:color="@color/light_polyu_color"/>
 
 </selector>

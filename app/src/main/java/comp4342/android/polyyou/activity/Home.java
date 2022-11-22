@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.resources.TextAppearance;
 
 import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.biz.PostBiz;
@@ -29,6 +30,7 @@ import comp4342.android.polyyou.utils.T;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +52,7 @@ public class Home extends BaseActivity {
 //    protected PostAdapter m_postAdapter;
     private PostViewAdapter mAdapter;
     private RecyclerView mRecycleView;
+    private TextView noPostView;
 
 
     @Override
@@ -121,17 +124,25 @@ public class Home extends BaseActivity {
     }
 
     public void initView() {
-        mAdapter = new PostViewAdapter(Home.this, m_arrPostList);
-        //设置适配器adapter
-        mRecycleView.setAdapter(mAdapter);
-        mRecycleView.setLayoutManager(new LinearLayoutManager(Home.this,
-                LinearLayoutManager.VERTICAL,false));
+        if(m_arrPostList!=null){
+            noPostView.setVisibility(View.INVISIBLE);
+            mAdapter = new PostViewAdapter(Home.this, m_arrPostList);
+            //设置适配器adapter
+            mRecycleView.setAdapter(mAdapter);
+            mRecycleView.setLayoutManager(new LinearLayoutManager(Home.this,
+                    LinearLayoutManager.VERTICAL,false));
+        }
+        else{
+            noPostView.setVisibility(View.VISIBLE);
+        }
     }
 
     public void initLayout() {
         btn_takeaway = findViewById(R.id.ta_filter_button);
         btn_help = findViewById(R.id.help_filter_button);
         btn_secondhand = findViewById(R.id.sh_filter_button);
+        mRecycleView = findViewById(R.id.postRecycleView);
+        noPostView = findViewById(R.id.noPostView);
         mRecycleView = findViewById(R.id.postRecycleView);
     }
 
