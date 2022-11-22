@@ -49,10 +49,10 @@ public class PostBiz {
 
     public void loadPostByUserId(String id, CommonCallBack<Data> commonCallBack){
         OkHttpUtils
-                .post()
-                .url(Config.baseUrl + "post")
+                .get()
+                .url(Config.baseUrl + "posts/list-by-owner")
                 .tag(this)
-                .addParams("postId", CurrentUser.getUser().getId())
+                .addParams("uid", CurrentUser.getUser().getId())
                 .build()
                 .execute(commonCallBack);
     }

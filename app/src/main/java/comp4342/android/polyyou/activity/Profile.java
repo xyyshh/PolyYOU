@@ -40,7 +40,6 @@ import java.util.ArrayList;
 
 public class Profile extends BaseActivity {
 
-    private ImageView imgvProfile;
     private TextView tvUsername;
     private Button btnLogout;
     private Button btn_takeaway;
@@ -63,12 +62,12 @@ public class Profile extends BaseActivity {
         setContentView(R.layout.activity_profile);
 //        profileImageView.setImageURI(Uri.parse(CurrentUser.getUser().getHeadImage()));
 
+        initLayout();
+        initData(CurrentUser.getUser().getId());
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
         // Set that home is selected
         bottomNavigationView.setSelectedItemId(R.id.profile);
-
         // Perform  ItemSelectedListener
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -92,40 +91,24 @@ public class Profile extends BaseActivity {
                 return false;
             }
         });
-        noPostView  =findViewById(R.id.noPostView);
-        mRecycleView = findViewById(R.id.postRecycleView);
-        //初始化数据
-        initData();
 
-        if(m_arrPostList==null){
-            noPostView.setVisibility(View.VISIBLE);
-            mAdapter = new PostViewAdapter(this, m_arrPostList);
-            //设置适配器adapter
-            mRecycleView.setAdapter(mAdapter);
-            mRecycleView.setLayoutManager(new LinearLayoutManager(this,
-                    LinearLayoutManager.VERTICAL,false));
-            URL url = null;
-            try {
-                Log.d("Get profile image", CurrentUser.getUser().getHeadImage());
-                url = new URL(Config.baseUrl+CurrentUser.getUser().getHeadImage());
-                requestImg(url);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        else{
-            noPostView.setVisibility(View.INVISIBLE);
-        }
-
-        initView();
         initEvent();
         if(CurrentUser.getUser() != null)
             tvUsername.setText(CurrentUser.getUser().getName());
     }
-    public void initData() {
+
+
+    private void initLayout() {
+        tvUsername = findViewById(R.id.profile_username);
+        btnLogout = findViewById(R.id.button_logout);
+        profileImageView = findViewById(R.id.profile_pic);
+        noPostView  =findViewById(R.id.noPostView);
+        mRecycleView = findViewById(R.id.postRecycleView);
+    }
+    private void initData(String id) {
         m_arrPostList = null;
         // second hand = 1
-        postBiz.loadPostByNotification(new CommonCallBack<Data>() {
+        postBiz.loadPostByUserId(id, new CommonCallBack<Data>() {
             @Override
             public void onError(Exception e) {
                 Log.e("notification post get", e.toString());
@@ -134,10 +117,33 @@ public class Profile extends BaseActivity {
             public void onSuccess(Data response) {
                 stopLoadingProgress();
                 Log.d("get_post_activity", response.getData());
-                m_arrPostList = response.toArrayListPost();}
+                m_arrPostList = response.toArrayListPost();
+                initView();
+            }
         });
     }
 
+    private void initView() {
+        if(m_arrPostList==null){
+            noPostView.setVisibility(View.VISIBLE);
+            mAdapter = new PostViewAdapter(this, m_arrPostList);
+            //设置适配器adapter
+            mRecycleView.setAdapter(mAdapter);
+            mRecycleView.setLayoutManager(new LinearLayoutManager(this,
+                    LinearLayoutManager.VERTICAL,false));
+        }
+        else{
+            noPostView.setVisibility(View.INVISIBLE);
+        }
+        URL url = null;
+        try {
+            Log.d("Get profile image", CurrentUser.getUser().getHeadImage());
+            url = new URL(Config.baseUrl+CurrentUser.getUser().getHeadImage());
+            requestImg(url);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     private void requestImg(final URL imgUrl)
     {
         new Thread(new Runnable() {
@@ -162,12 +168,6 @@ public class Profile extends BaseActivity {
         });
     }
 
-    protected void initView() {
-        imgvProfile = findViewById(R.id.profile_pic);
-        tvUsername = findViewById(R.id.profile_username);
-        btnLogout = findViewById(R.id.button_logout);
-        profileImageView = findViewById(R.id.profile_pic);
-    }
 
     protected void initEvent() {
         btnLogout.setOnClickListener(new View.OnClickListener() {

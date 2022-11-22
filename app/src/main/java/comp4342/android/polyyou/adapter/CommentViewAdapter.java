@@ -45,54 +45,23 @@ public class CommentViewAdapter extends RecyclerView.Adapter<CommentViewAdapter.
     @NonNull
     @Override
     public CommentViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-//        if()
-//        View view = LayoutInflater.from(context).inflate(R.layout.post_collapse, viewGroup, false);
-//        return new CommentViewAdapter.ViewHolder(view);
-//        if(i==1){
+
             View commentView = View.inflate(context, R.layout.comment_item,null);
             return new CommentViewAdapter.ViewHolder(commentView);
-//        }
-//        else if (i==2){
-//            View commentReplyView = View.inflate(context, R.layout.comment_reply,null);
-//            return new CommentViewAdapter.ViewHolder(commentReplyView);
-//        }
-//        else{
-//            View commentInputView = View.inflate(context, R.layout.comment_input,null);
-//            return new CommentViewAdapter.ViewHolder(commentInputView);
-//        }
     }
-
-//    @Override
-//    public int getItemViewType(int i) {
-//        if(i==1){
-//            return 3;//input box
-//        }
-//        Comment comment = comments.get(i-1);
-//        if(comment.getCommentee()==null){
-//            return 1;
-//        }
-//        else{
-//            return 2;
-//        }
-//    }
 
 
     @Override
     public void onBindViewHolder(@NonNull CommentViewAdapter.ViewHolder viewHolder, int i) {
-        Comment comment = comments.get(i-1);
-        Glide.with(context)
-                .load(comment.getProfilePhotoAddress())
-                .into(viewHolder.avatar);
-        viewHolder.itemView.setOnClickListener(v -> {
-            viewHolder.comment_input.setHint("@"+comment.getCommenter().getName());
-//            int position = viewHolder.getLayoutPosition();
-            //DeliverdInfo
-//            Intent intent = new Intent(context, PostDetail.class);
-        });
+        Comment comment = comments.get(i);
+//        Glide.with(context)
+//                .load(comment.getProfilePhotoAddress())
+//                .into(viewHolder.avatar);
+
         viewHolder.content.setText(comment.getCommentContent());
         viewHolder.time.setText(comment.getCommentTime());
 //        viewHolder.commentee.setText(comment.getCommentee());
-        viewHolder.commenter.setText(comment.getCommenter().getName());
+//        viewHolder.commenter.setText(comment.getCommenter().getName());
 //        viewHolder.avatar.setImageURI(Uri.parse(comment.getProfilePhotoAddress()));
 //        viewHolder.button_submit.setOnClickListener(new View.OnClickListener(){
 //            @Override
@@ -123,14 +92,14 @@ public class CommentViewAdapter extends RecyclerView.Adapter<CommentViewAdapter.
         @BindView(R.id.comment_content)
         TextView content;
 
-        @BindView(R.id.commentee_name)
-            TextView commentee;
+//        @BindView(R.id.commentee_name)
+//            TextView commentee;
 
-        @BindView(R.id.comment_input_box)
-        EditText comment_input;
+//        @BindView(R.id.comment_input_box)
+//        EditText comment_input;
 
-        @BindView(R.id.button_comment_submit)
-        Button button_submit;
+//        @BindView(R.id.button_comment_submit)
+//        Button button_submit;
 
 
 
