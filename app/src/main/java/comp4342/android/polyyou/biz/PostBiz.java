@@ -27,7 +27,7 @@ public class PostBiz {
 
     public void loadPostByNotification(User currentUser, CommonCallBack<Post> commonCallBack){
         OkHttpUtils
-                .post()
+                .get()
                 .url(Config.baseUrl + "post")
                 .tag(this)
                 .addParams("postId", currentUser.getId())
