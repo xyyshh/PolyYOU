@@ -82,7 +82,9 @@ public class ImageTest extends AppCompatActivity {
                 @Override
                 public void onActivityResult(Uri result) {
                     if (result != null)
+                        btnImageNext.setText("Next");
                         mImageView.setImageURI(result);
+
         }
     }
     );
