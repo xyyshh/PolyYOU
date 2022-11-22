@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context=".activity.PostDetail">
 
     <Button
@@ -16,19 +17,23 @@
         android:layout_marginStart="25dp"/>
 
 
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="80dp"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/post_detailed_view"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
-        android:scrollbars="vertical"
-        android:fadeScrollbars="true"
-        android:fastScrollEnabled="false"
-        android:overScrollMode="never"
         />
 
     <RelativeLayout
@@ -76,4 +81,6 @@
             android:bottomRightRadius="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
+</RelativeLayout>
+</ScrollView>
 </RelativeLayout>

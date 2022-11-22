@@ -18,9 +18,10 @@
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/commenter_profile_photo"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:background="@drawable/shape_profile_image"
+            android:src="@drawable/polyu"
             android:scaleType="centerCrop"
             app:riv_oval = "true"/>
 

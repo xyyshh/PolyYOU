@@ -83,11 +83,7 @@ public class PostDetail extends BaseActivity {
 
             @Override
             public void onSuccess(Data response) {
-//                List<Comment> lst = response.toArrayListComment();
                 commentArrayList = response.toArrayListComment();
-//                for(Comment comment: lst) {
-//                    Log.d("load_comments", comment.toString());
-////                    post.addComments(comment);
 //                }
                 initView();
             }
@@ -101,7 +97,8 @@ public class PostDetail extends BaseActivity {
         mpostView.setLayoutManager(new LinearLayoutManager(PostDetail.this,
                 LinearLayoutManager.VERTICAL,false));
 
-        if(commentArrayList==null){
+        if(commentArrayList!=null){
+            System.out.println("commentArrayList size" + String.valueOf(commentArrayList.size()));
             mCommentAdapter = new CommentViewAdapter(this, commentArrayList);
             //设置适配器adapter
             mcommentView.setAdapter(mCommentAdapter);

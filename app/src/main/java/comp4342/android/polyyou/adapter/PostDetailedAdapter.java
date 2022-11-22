@@ -43,8 +43,9 @@ public class PostDetailedAdapter extends RecyclerView.Adapter<PostDetailedAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         Glide.with(context)
-                .load(post.author.getHeadImage())
+                .load(post.getPhotoAddress())
                 .into(viewHolder.imageView);
+
         viewHolder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, PostDetail.class);
             intent.putExtra("id", post.id);
