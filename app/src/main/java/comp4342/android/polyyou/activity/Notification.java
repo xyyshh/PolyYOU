@@ -54,7 +54,7 @@ public class Notification extends BaseActivity {
 //        创建适配器，将数据传递给适配器
 
         //No notification
-        if(m_arrPostList.size()==0){
+        if(m_arrPostList==null){
             noNotificationsView.setVisibility(View.VISIBLE);
             commentUnderPost.setVisibility(View.INVISIBLE);
             commentUnderPost.setVisibility(View.INVISIBLE);
@@ -126,23 +126,6 @@ public class Notification extends BaseActivity {
                 stopLoadingProgress();
                 Log.d("get_post_activity", response.getData());
                 m_arrPostList = response.toArrayListPost();
-////        User author = new User("Jehan","123","","");
-//        User author=CurrentUser.getUser();
-//        Post post1=new Post();
-////        author.setHeadImage("hihih");
-//        post1.setAuthor(author);
-//        post1.setPostTitle("Jehan. Help! I need the help!");
-//        post1.setPostContent("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
-//        post1.setTag_name("1");
-//        Comment comment = new Comment(author,null,"Cool!");
-//        Comment comment1 = new Comment(author,null,"It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool!");
-//        Comment comment2 = new Comment(author,"Yooki","It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!");
-//        post1.addComments(comment);
-//        post1.addComments(comment1);
-//        post1.addComments(comment2);
-//        post1.setCurrentTime();
-//        m_arrPostList.add(post1);
-//        m_arrCommentList.add(post1);
             }
         });
     }

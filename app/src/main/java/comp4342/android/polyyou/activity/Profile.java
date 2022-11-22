@@ -54,12 +54,14 @@ public class Profile extends BaseActivity {
     private PostViewAdapter mAdapter;
     private RecyclerView mRecycleView;
     private ImageView profileImageView;
+    private TextView noPostView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        noPostView  =findViewById(R.id.noPostView);
         profileImageView = findViewById(R.id.profile_pic);
 //        profileImageView.setImageURI(Uri.parse(CurrentUser.getUser().getHeadImage()));
 
@@ -93,28 +95,28 @@ public class Profile extends BaseActivity {
             }
         });
 
-
-
         mRecycleView = findViewById(R.id.postRecycleView);
         //初始化数据
         initData();
-        System.out.println("m_arrPostList num is "+m_arrPostList.size());
-//        //创建布局管理器，垂直设置LinearLayoutManager.VERTICAL，水平设置LinearLayoutManager.HORIZONTAL
-//        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-//        创建适配器，将数据传递给适配器
-        mAdapter = new PostViewAdapter(this, m_arrPostList);
-        //设置适配器adapter
-        mRecycleView.setAdapter(mAdapter);
-        mRecycleView.setLayoutManager(new LinearLayoutManager(this,
-                LinearLayoutManager.VERTICAL,false));
-        URL url = null;
-        try {
-            url = new URL(Config.baseUrl+"uploadTest.jpg");
-            requestImg(url);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
+        if(m_arrPostList==null){
+            noPostView.setVisibility(View.INVISIBLE);
+            mAdapter = new PostViewAdapter(this, m_arrPostList);
+            //设置适配器adapter
+            mRecycleView.setAdapter(mAdapter);
+            mRecycleView.setLayoutManager(new LinearLayoutManager(this,
+                    LinearLayoutManager.VERTICAL,false));
+            URL url = null;
+            try {
+                url = new URL(Config.baseUrl+"uploadTest.jpg");
+                requestImg(url);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            noPostView.setVisibility(View.VISIBLE);
+        }
 
         initView();
         initEvent();
@@ -135,51 +137,6 @@ public class Profile extends BaseActivity {
                 Log.d("get_post_activity", response.getData());
                 m_arrPostList = response.toArrayListPost();}
         });
-//        for (int i = 1; i <= 40; i++) {
-//            m_arrPostList.add(new Post());
-//        }
-//        ArrayList<Post> postList = new ArrayList<Post>();
-//        Post post1=new Post();
-//        User author = new User("Yooki", "1234", "", "uploadTest.jpg");
-//        author.setHeadImage("hihih");
-//        post1.setAuthor(author);
-//        post1.setPostTitle("Help! I need the help!");
-//        post1.setPostContent("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
-//        post1.setTag_name("1");
-//        Comment comment = new Comment(author,null,"Cool!");
-//        Comment comment1 = new Comment(author,null,"It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool! It looks soo cool!");
-//        Comment comment2 = new Comment(author,"hihi","It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!It looks soo cool! It looks soo cool!It looks soo cool!It looks soo cool!");
-//        Comment comment3 = new Comment(author,null, "Cool!");
-//        post1.addComments(comment);
-//        post1.addComments(comment1);
-//        post1.addComments(comment2);
-//        post1.addComments(comment3);
-//        post1.addComments(comment2);
-//        post1.addComments(comment3);
-//        post1.addComments(comment2);
-//        post1.addComments(comment3);
-//        post1.addComments(comment2);
-//        post1.addComments(comment3);
-//        post1.setCurrentTime();
-//        m_arrPostList.add(post1);
-//
-//        Post post2=new Post();
-//        User author1 = new User("haha11111111111111111111111111111111111111111111111111", "1235", "", "");
-//        author.setHeadImage("ihih");
-//        post2.setAuthor(author1);
-//        post2.setPostTitle("Hello!!");
-//        post2.setPostContent("ooooohohoo!");
-//        post2.setTag_name("2");
-//        post2.setCurrentTime();
-//        post2.addComments(comment1);
-//        m_arrPostList.add(post2);
-//        m_arrPostList.add(post1);
-//        m_arrPostList.add(post2);
-//        m_arrPostList.add(post1);
-//        m_arrPostList.add(post2);
-//        m_arrPostList.add(post1);
-//        m_arrPostList.add(post2);
-//        m_arrPostList.add(post2);
     }
 
     private void requestImg(final URL imgUrl)

@@ -68,7 +68,7 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        System.out.println("Post num is "+posts.size());
+//        System.out.println("Post num is "+posts.size());
         return posts.size();
     }
 
