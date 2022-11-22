@@ -30,9 +30,9 @@ public class PostBiz {
     public void loadPostByNotification(CommonCallBack<Data> commonCallBack){
         OkHttpUtils
                 .get()
-                .url(Config.baseUrl + "post")
+                .url(Config.baseUrl + "posts/list-by-notification")
                 .tag(this)
-                .addParams("postId", CurrentUser.getUser().getId())
+                .addParams("uid", CurrentUser.getUser().getId())
                 .build()
                 .execute(commonCallBack);
     }
