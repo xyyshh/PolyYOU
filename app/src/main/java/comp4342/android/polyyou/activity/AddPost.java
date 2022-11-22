@@ -57,7 +57,7 @@ public class AddPost extends BaseActivity {
     private Uri imageUri;
     User user = CurrentUser.getUser();
 
-    private PostBiz PostBiz = new PostBiz();
+    private PostBiz postBiz = new PostBiz();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,26 +155,18 @@ public class AddPost extends BaseActivity {
                     T.showToast("Post's content cannot be empty");
                     return;
                 }
-                Long strPostTag = (long)0;
+                String strPostTag = "";
                 if(topicGroup.getCheckedRadioButtonId()==btnSecondhand.getId()){
-                    strPostTag = (long)1;
+                    strPostTag = "1";
                 }else if(topicGroup.getCheckedRadioButtonId()==btnHelp.getId()){
-                    strPostTag = (long)2;
+                    strPostTag = "2";
                 }else if(topicGroup.getCheckedRadioButtonId()==btnTakeaway.getId()){
-                    strPostTag = (long)3;
+                    strPostTag = "3";
                 }
                 String strPostTitle = postTitleEditText.getText().toString();
                 String strPostContent = postEditText.getText().toString();
-                String strProfilePhotoAddress = "";
-                String strUploadPhotoAddress = "";
-//                if(topicGroup.getCheckedRadioButtonId()==-1){
-//                    T.showToast("You should choose a tag!");  return;
-//                }
-
 
                 if (!strPostContent.isEmpty() && !strPostTitle.isEmpty()) {
-//                    addPost(new Post(dateToStamp(System.currentTimeMillis()), strPostTitle, m_strUserName, strProfilePhotoAddress, strPostContent, strUploadPhotoAddress));
-                    //postEditText.setText("");
                     Post post=new Post();
                     post.setAuthor(user);
                     post.setTime(dateToStamp(System.currentTimeMillis()));
@@ -183,7 +175,7 @@ public class AddPost extends BaseActivity {
                     post.setPostTitle(strPostTitle);
 
                     startLoadingProgress();
-                    PostBiz.addPost(post, uriToFileApiQ(imageUri, AddPost.this), new CommonCallBack<Post>(){
+                    postBiz.addPost(post, uriToFileApiQ(imageUri, AddPost.this), new CommonCallBack<Post>(){
                         @Override
                         public void onError(Exception e) {
                             stopLoadingProgress();
@@ -210,8 +202,9 @@ public class AddPost extends BaseActivity {
         startActivity(intent);
     }
     public static File uriToFileApiQ(Uri uri, Context context) {
+
         File file = null;
-        if (uri == null) return file;
+        if (uri == null) return null;
         //android10以上转换
         if (uri.getScheme().equals(ContentResolver.SCHEME_FILE)) {
             file = new File(uri.getPath());
@@ -235,6 +228,7 @@ public class AddPost extends BaseActivity {
                 e.printStackTrace();
             }
         }
+        Log.d("File transfer:", file.getAbsolutePath());
         return file;
     }
 

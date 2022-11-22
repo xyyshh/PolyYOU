@@ -100,7 +100,7 @@ public class Profile extends BaseActivity {
         initData();
 
         if(m_arrPostList==null){
-            noPostView.setVisibility(View.INVISIBLE);
+            noPostView.setVisibility(View.VISIBLE);
             mAdapter = new PostViewAdapter(this, m_arrPostList);
             //设置适配器adapter
             mRecycleView.setAdapter(mAdapter);
@@ -108,14 +108,14 @@ public class Profile extends BaseActivity {
                     LinearLayoutManager.VERTICAL,false));
             URL url = null;
             try {
-                url = new URL(Config.baseUrl+"uploadTest.jpg");
+                url = new URL(Config.baseUrl+CurrentUser.getUser().getHeadImage());
                 requestImg(url);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         else{
-            noPostView.setVisibility(View.VISIBLE);
+            noPostView.setVisibility(View.INVISIBLE);
         }
 
         initView();
@@ -147,7 +147,6 @@ public class Profile extends BaseActivity {
                 Bitmap bitmap = null;
                 try {
                     bitmap = BitmapFactory.decodeStream(imgUrl.openStream());
-
                     showImg(bitmap);
                 } catch (IOException e) {
                     e.printStackTrace();

@@ -61,11 +61,11 @@ public class Data implements Serializable {
     }
 
     private void convertToPost(String key, String value, Post post) {
-        if(key.equals("id"))    post.setId(Integer.valueOf(value));
+        if(key.equals("id"))    post.setId(value);
         else if(key.equals("postTitle")) post.setPostTitle(value);
         else if(key.equals("createTime"))   post.setTime(value);
         else if(key.equals("postContent"))  post.setPostContent(value);
-        else if(key.equals("tag"))  post.setTag_id(Long.valueOf(value));
+        else if(key.equals("tag"))  post.setTag_id(value);
         else if(key.equals("postImage"))    post.setAttachedPhoto(value);
         else if(key.equals("ownerId"))  post.setAuthor(new User("xy", value, "12", "33"));
     }

@@ -16,7 +16,7 @@
         android:layout_marginBottom="34dp"
         android:background="@drawable/red_next_button"
         android:stateListAnimator="@null"
-        android:text="Next"
+        android:text="Skip"
         android:textColor="@color/white"
         android:textAllCaps="false"
         tools:ignore="HardcodedText,SpUsage"

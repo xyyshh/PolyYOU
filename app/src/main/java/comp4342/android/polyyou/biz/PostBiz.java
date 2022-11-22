@@ -58,7 +58,8 @@ public class PostBiz {
     }
 
     public void addPost(Post post, File file, CommonCallBack<Post> commonCallBack) {
-        OkHttpUtils
+        if (file == null)
+            OkHttpUtils
                 .post()
                 .url(Config.baseUrl + "posts/sent-post")
                 .tag(this)
@@ -67,9 +68,22 @@ public class PostBiz {
                 .addParams("creteTime", post.time)
                 .addParams("postTitle", post.getPostTitle())
                 .addParams("postContent", post.postContent)
-                .addFile("image", file.getName(), file)
                 .build()
                 .execute(commonCallBack);
+        else
+            OkHttpUtils
+                    .post()
+                    .url(Config.baseUrl + "posts/sent-post")
+                    .tag(this)
+                    .addParams("tag", post.getTag_id().toString())
+                    .addParams("ownerId", post.author.getId())
+                    .addParams("creteTime", post.time)
+                    .addParams("postTitle", post.getPostTitle())
+                    .addParams("postContent", post.postContent)
+                    .addParams("postImage", file.getName())
+                    .addFile("image", file.getName(), file)
+                    .build()
+                    .execute(commonCallBack);
     }
 
     public void onDestroy() {
