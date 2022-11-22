@@ -92,7 +92,7 @@ public class Profile extends BaseActivity {
                 return false;
             }
         });
-
+        noPostView  =findViewById(R.id.noPostView);
         mRecycleView = findViewById(R.id.postRecycleView);
         //初始化数据
         initData();
@@ -106,6 +106,7 @@ public class Profile extends BaseActivity {
                     LinearLayoutManager.VERTICAL,false));
             URL url = null;
             try {
+                Log.d("Get profile image", CurrentUser.getUser().getHeadImage());
                 url = new URL(Config.baseUrl+CurrentUser.getUser().getHeadImage());
                 requestImg(url);
             } catch (Exception e) {
@@ -165,7 +166,6 @@ public class Profile extends BaseActivity {
         imgvProfile = findViewById(R.id.profile_pic);
         tvUsername = findViewById(R.id.profile_username);
         btnLogout = findViewById(R.id.button_logout);
-        noPostView  =findViewById(R.id.noPostView);
         profileImageView = findViewById(R.id.profile_pic);
     }
 
