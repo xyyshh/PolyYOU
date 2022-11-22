@@ -57,7 +57,7 @@ public class AddPost extends BaseActivity {
     private Uri imageUri;
     User user = CurrentUser.getUser();
 
-    private PostBiz PostBiz = new PostBiz();
+    private PostBiz postBiz = new PostBiz();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,7 +175,7 @@ public class AddPost extends BaseActivity {
                     post.setPostTitle(strPostTitle);
 
                     startLoadingProgress();
-                    PostBiz.addPost(post, uriToFileApiQ(imageUri, AddPost.this), new CommonCallBack<Post>(){
+                    postBiz.addPost(post, uriToFileApiQ(imageUri, AddPost.this), new CommonCallBack<Post>(){
                         @Override
                         public void onError(Exception e) {
                             stopLoadingProgress();
@@ -228,6 +228,7 @@ public class AddPost extends BaseActivity {
                 e.printStackTrace();
             }
         }
+        Log.d("File transfer:", file.getAbsolutePath());
         return file;
     }
 

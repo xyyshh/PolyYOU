@@ -108,7 +108,7 @@ public class Profile extends BaseActivity {
                     LinearLayoutManager.VERTICAL,false));
             URL url = null;
             try {
-                url = new URL(Config.baseUrl+"uploadTest.jpg");
+                url = new URL(Config.baseUrl+CurrentUser.getUser().getHeadImage());
                 requestImg(url);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -147,7 +147,6 @@ public class Profile extends BaseActivity {
                 Bitmap bitmap = null;
                 try {
                     bitmap = BitmapFactory.decodeStream(imgUrl.openStream());
-
                     showImg(bitmap);
                 } catch (IOException e) {
                     e.printStackTrace();

@@ -67,7 +67,7 @@ public class Signup extends BaseActivity {
                         @Override
                         public void onSuccess(Data response) {
                             stopLoadingProgress();
-                            Log.d("sign_up_user", "success");
+                            Log.d("sentVerificationCode", "success");
                         }
                     });
                     new CountDownUtils(

@@ -7,69 +7,78 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.annotation.SuppressLint;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.FileUtils;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
 
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 import comp4342.android.polyyou.R;
+import comp4342.android.polyyou.biz.UserBiz;
+import comp4342.android.polyyou.model.CurrentUser;
+import comp4342.android.polyyou.model.Data;
+import comp4342.android.polyyou.model.User;
+import comp4342.android.polyyou.net.CommonCallBack;
+import comp4342.android.polyyou.utils.T;
 
 
-public class ImageTest extends AppCompatActivity {
+public class ImageTest extends BaseActivity {
 
     private ImageView mImageView;
     private Button btnUploadImage;
     private Button btnImageNext;
-    private boolean flag=false;
+    private Uri imageUri;
+    private UserBiz userBiz = new UserBiz();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_image);
-        Log.d("11", "11");
         mImageView = findViewById(R.id.profile_pic);
         btnUploadImage = findViewById(R.id.add_profile_pic);
         btnImageNext = findViewById(R.id.button_image_next);
-        Log.d("22", "22");
         btnUploadImage.setOnClickListener(v -> mGetContent.launch("image/*"));
         btnImageNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toHome();
+                if (imageUri == null) {
+                    Log.d("Skip upload image", "success");
+                    toHome();
+                } else {
+                    startLoadingProgress();
+                    userBiz.updateProfileImage(CurrentUser.getUser().getEmail(), uriToFileApiQ(imageUri, ImageTest.this), new CommonCallBack<User>() {
+                        @Override
+                        public void onError(Exception e) {
+                            stopLoadingProgress();
+                            T.showToast("Upload failed");
+                            Log.d("add profile image", e.getMessage());
+                        }
+
+                        @Override
+                        public void onSuccess(User response) {
+                            stopLoadingProgress();
+                            Log.d("add profile image", "success");
+                            toHome();
+                        }
+                    });
+                }
             }
         });
-//        btnUploadImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                View v = new View();
-//                if(flag){
-//                    v = mGetContent.launch("image/*");
-//                }
-//            }
-//        });
-
-//        btnUploadImage.setOnClickListener(v -> mGetContent.launch("image/*"));
-//        if (isShowOrNot == false) {
-//            btnUploadImage.setVisibility(View.VISIBLE); // 设置显示
-//            isShowOrNot = true;
-//        }else {
-//            btnUploadImage.setVisibility(View.GONE); // 设置隐藏
-//            isShowOrNot  = false;
-//        }
-//        btnUploadImage.setBackgroundTintMode(Color.parseColor("#F2F2F2"));
-//        btnUploadImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                btnUploadImage.setBackgroundColor(Color.parseColor("#F2F2F2"));
-//            }
-//        });
-
-
     }
 
     private void toHome() {
@@ -79,14 +88,44 @@ public class ImageTest extends AppCompatActivity {
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(
             new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
+                @SuppressLint("SetTextI18n")
                 @Override
                 public void onActivityResult(Uri result) {
-                    if (result != null)
+                    if (result != null) {
                         btnImageNext.setText("Next");
                         mImageView.setImageURI(result);
-
-        }
-    }
+                        imageUri = result;
+                    }
+                }
+            }
     );
+    public static File uriToFileApiQ(Uri uri, Context context) {
+
+        File file = null;
+        if (uri == null) return null;
+        //android10以上转换
+        if (uri.getScheme().equals(ContentResolver.SCHEME_FILE)) {
+            file = new File(uri.getPath());
+        } else if (uri.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {
+            //把文件复制到沙盒目录
+            ContentResolver contentResolver = context.getContentResolver();
+            String displayName = System.currentTimeMillis() + Math.round((Math.random() + 1) * 1000)
+                    + "." + MimeTypeMap.getSingleton().getExtensionFromMimeType(contentResolver.getType(uri));
+            try {
+                InputStream is = contentResolver.openInputStream(uri);
+                File cache = new File(context.getCacheDir().getAbsolutePath(), displayName);
+                FileOutputStream fos = new FileOutputStream(cache);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    FileUtils.copy(is, fos);
+                }
+                file = cache;
+                fos.close();
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return file;
+    }
 
 }
