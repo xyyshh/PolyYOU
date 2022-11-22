@@ -61,8 +61,11 @@ public class CommentViewAdapter extends RecyclerView.Adapter<CommentViewAdapter.
         viewHolder.content.setText(comment.getCommentContent());
         viewHolder.time.setText(comment.getCommentTime());
 //        viewHolder.commentee.setText(comment.getCommentee());
+
 //        viewHolder.commenter.setText(comment.getCommenter().getName());
-//        viewHolder.avatar.setImageURI(Uri.parse(comment.getProfilePhotoAddress()));
+        viewHolder.commenter.setText("User");
+//
+////        viewHolder.avatar.setImageURI(Uri.parse(comment.getProfilePhotoAddress()));
 //        viewHolder.button_submit.setOnClickListener(new View.OnClickListener(){
 //            @Override
 //            public void onClick(View view) {

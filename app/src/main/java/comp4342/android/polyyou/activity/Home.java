@@ -17,6 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.resources.TextAppearance;
 
 import comp4342.android.polyyou.R;
+import comp4342.android.polyyou.biz.CommentBiz;
 import comp4342.android.polyyou.biz.PostBiz;
 import comp4342.android.polyyou.adapter.PostViewAdapter;
 import comp4342.android.polyyou.model.Comment;
@@ -42,6 +43,7 @@ public class Home extends BaseActivity {
     private Button btn_help;
     private Button btn_takeaway;
     private PostBiz postBiz = new PostBiz();
+    private CommentBiz commentBiz = new CommentBiz();
 
 
     /** Contains the list Posts the Activity will present to the user. */
