@@ -100,7 +100,7 @@ public class Profile extends BaseActivity {
         initData();
 
         if(m_arrPostList==null){
-            noPostView.setVisibility(View.INVISIBLE);
+            noPostView.setVisibility(View.VISIBLE);
             mAdapter = new PostViewAdapter(this, m_arrPostList);
             //设置适配器adapter
             mRecycleView.setAdapter(mAdapter);
@@ -115,7 +115,7 @@ public class Profile extends BaseActivity {
             }
         }
         else{
-            noPostView.setVisibility(View.VISIBLE);
+            noPostView.setVisibility(View.INVISIBLE);
         }
 
         initView();

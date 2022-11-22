@@ -69,6 +69,7 @@
         android:layout_below="@+id/post_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+        android:background="@color/time_color"
         />
 
 
