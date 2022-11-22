@@ -122,6 +122,6 @@ public class Data implements Serializable {
         }
         else if(k.equals("content"))    comment.setCommentContent(v);
         else if(k.equals("createTime")) comment.setCommentTime(v);
-        else if(k.equals("ownerId")) comment.setCommentee(v);
+//        else if(k.equals("ownerId")) comment.setCommentee(v);
     }
 }
