@@ -49,32 +49,43 @@
 
 
     <TextView
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/post_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
-        android:gravity="end"
-        android:text="@string/time_string"
-        android:textColor="@color/time_color"
-        android:textSize="12sp"
-        android:textStyle="normal" />
-
-    <TextView
         android:id="@+id/post_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/author_name"
         android:layout_marginStart="20dp"
         android:layout_marginTop="18dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginEnd="20dp"
         android:text="@string/post_content_string"
         android:textColor="@color/black"
         android:textSize="16sp"
+        android:textStyle="normal" />
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:id = "@+id/image"
+        android:layout_below="@+id/post_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        />
+
+
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="end"
+        android:text="@string/time_string"
+        android:textColor="@color/time_color"
+        android:textSize="12sp"
         android:textStyle="normal" />
 
 

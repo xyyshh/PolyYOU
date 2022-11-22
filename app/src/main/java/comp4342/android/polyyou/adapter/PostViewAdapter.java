@@ -62,12 +62,15 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
         viewHolder.name.setText(post.author.getName());
         viewHolder.time.setText(post.getTime());
         //System.out.println("Comment number is: "+ post.getCommentNum());
+//        viewHolder.comment_number.setText(post);
         viewHolder.comment_number.setText(post.getCommentNum());
     }
 
     @Override
     public int getItemCount() {
-        System.out.println("Post num is "+posts.size());
+        if(posts == null)
+            return 0;
+//        System.out.println("Post num is "+posts.size());
         return posts.size();
     }
 

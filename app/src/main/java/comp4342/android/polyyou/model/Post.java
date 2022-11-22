@@ -18,11 +18,12 @@ public class Post{
 //    public String m_strProfilePhotoAddress;
     public String attachedPhoto;
     public String time;
-    public ArrayList<Comment> comments;
+//    public ArrayList<Comment> comments;
     public String tag_name;
     public String tag_id;
     public String id;
 
+    private int m_commentNum;
 
 
 
@@ -31,9 +32,9 @@ public class Post{
         this.postContent = new String("");
         this.attachedPhoto = new String("");
 //        this.photoAddress = new String("");
-        this.comments = new ArrayList<Comment>();
+//        this.comments = new ArrayList<Comment>();
 
-//        this.m_commentNum = 0;
+        this.m_commentNum = 0;
     }
 
 
@@ -60,7 +61,8 @@ public class Post{
         return author.getName();
     }
     public String getCommentNum() {
-        return String.valueOf(comments.size());
+        return String.valueOf(this.m_commentNum);
+//        return String.valueOf(comments.size());
 
         //return comments.size();
     }
@@ -72,6 +74,7 @@ public class Post{
     public ArrayList<Comment> getComments(){return comments;}
     public String getId(){return id;}
     public User getAuthor() { return this.author; }
+    public void setCommentNumber(int num){this.m_commentNum = num;}
 
     public void setAttachedPhoto(String photo) { this.attachedPhoto = photo; }
     public void setAuthor(User user){author = user;}
@@ -86,7 +89,7 @@ public class Post{
                 ", postContent='" + postContent + '\'' +
                 ", attachedPhoto='" + attachedPhoto + '\'' +
                 ", time='" + time + '\'' +
-                ", comments=" + comments +
+//                ", comments=" + comments +
                 ", tag_name='" + tag_name + '\'' +
                 ", id=" + id +
                 '}';
@@ -94,8 +97,8 @@ public class Post{
 
     //    public void setM_commentNum(int num) {m_commentNum = num;}
 //    public void setProfilePhotoAddress(String str){PhotoAddress = str; }
-    public void addComments(Comment comment){
-        comments.add(comment);}
+//    public void addComments(Comment comment){
+//        comments.add(comment);}
     public void setTime(String str){
         time=str;
 //        time = dateToStamp(System.currentTimeMillis());

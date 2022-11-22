@@ -34,6 +34,7 @@
             android:layout_width="88dp"
             android:layout_height="48dp"
             android:button="@null"
+            android:checked="true"
             android:gravity="center"
             android:background="@drawable/filter_button"
             android:text="Secondhand"
@@ -63,6 +64,17 @@
             android:layout_marginStart="31dp"/>
     </RadioGroup>
 
+    <TextView
+        android:id="@+id/noPostView"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginTop="200dp"
+        android:text="No Related Post!\n Try the others"
+        android:textAlignment="center"
+        android:textColor="@color/polyu_color"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/postRecycleView"
         android:layout_width="350dp"
@@ -85,6 +97,7 @@
         android:layout_alignParentBottom="true"
         app:itemBackground="@color/white"
         android:background="@color/white"
+        app:itemIconSize="30dp"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:menu="@menu/menu_navigation" />
