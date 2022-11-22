@@ -45,14 +45,15 @@ public class PostBiz {
                 .addParams("creteTime", post.time)
                 .addParams("postTitle", post.getPostTitle())
                 .addParams("postContent", post.postContent)
-                .addFile("image", file.getName(), file)
+                .addParams("postImage", file==null?"":file.getName())
+                .addFile("image", file==null?"":file.getName(), file)
                 .build()
                 .execute(commonCallBack);
     }
     public void addComment(Post post, Comment comment, CommonCallBack<Post> commonCallBack){
         OkHttpUtils
                 .post()
-                .url(Config.baseUrl + "comment")
+                .url(Config.baseUrl + "comments/")
                 .tag(this)
                 .addParams("postId", String.valueOf(post.getId()))
                 .addParams("commentAuthor", comment.getCommenter().getName())

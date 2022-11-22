@@ -20,10 +20,9 @@ public class Post{
     public String time;
     public ArrayList<Comment> comments;
     public String tag_name;
-    public Long tag_id;
-    public int id;
+    public String tag_id;
+    public String id;
 
-//    private int m_commentNum;
 
 
 
@@ -49,10 +48,10 @@ public class Post{
 //
 //    }
 
-    public void setTag_id(Long tagid){
+    public void setTag_id(String tagid){
         tag_id=tagid;
     }
-    public Long getTag_id(){return tag_id;}
+    public String getTag_id(){return tag_id;}
     public String getPostTitle() {
         return postTitle;
     }
@@ -71,7 +70,7 @@ public class Post{
     public String getPhotoAddress(){return attachedPhoto; }
 
     public ArrayList<Comment> getComments(){return comments;}
-    public int getId(){return id;}
+    public String getId(){return id;}
     public User getAuthor() { return this.author; }
 
     public void setAttachedPhoto(String photo) { this.attachedPhoto = photo; }
@@ -104,9 +103,13 @@ public class Post{
     public void setCurrentTime(){
         time = dateToStamp(System.currentTimeMillis());
     }
-    public void setTag_name(String tag){tag_name=tag;}
+    public void setTag_name(String tag) {
+        tag_name=tag;
+    }
 
-    public void setId(int i){id=i;}
+    public void setId(String id){
+        this.id=id;
+    }
 
 
     public String dateToStamp(long s) {
