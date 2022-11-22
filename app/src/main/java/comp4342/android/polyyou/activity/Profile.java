@@ -97,8 +97,8 @@ public class Profile extends BaseActivity {
         //初始化数据
         initData();
 
-        if(m_arrPostList==null){
-            noPostView.setVisibility(View.VISIBLE);
+        if(m_arrPostList!=null){
+            noPostView.setVisibility(View.INVISIBLE);
             mAdapter = new PostViewAdapter(this, m_arrPostList);
             //设置适配器adapter
             mRecycleView.setAdapter(mAdapter);
@@ -114,7 +114,7 @@ public class Profile extends BaseActivity {
             }
         }
         else{
-            noPostView.setVisibility(View.INVISIBLE);
+            noPostView.setVisibility(View.VISIBLE);
         }
 
         initView();
