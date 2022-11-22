@@ -106,22 +106,7 @@ public class Data implements Serializable {
 
         if(k.equals("id"))  comment.setId(v);
         else if(k.equals("postId")) comment.setPostId(v);
-        else if(k.equals("commentUserId")) {
-            UserBiz userBiz = new UserBiz();
-            userBiz.getUserById(v, new CommonCallBack<User>() {
-                @Override
-                public void onError(Exception e) {
-                    Log.e("get_user_by_id", "get user by id error");
-                }
-
-                @Override
-                public void onSuccess(User response) {
-                    Log.d("get_user_by_id_result", response.toString());
-                    user = response;
-                    comment.setCommenter(user);
-                }
-            });
-        }
+        else if(k.equals("ownerId")) comment.setOwner(v);
         else if(k.equals("content"))    comment.setCommentContent(v);
         else if(k.equals("createTime")) comment.setCommentTime(v);
 //        else if(k.equals("ownerId")) comment.setCommentee(v);

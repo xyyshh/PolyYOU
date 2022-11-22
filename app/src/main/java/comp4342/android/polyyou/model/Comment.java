@@ -7,23 +7,22 @@ public class Comment {
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
 
-//    public Post getPost() {
-//        return commentPost;
-//    }
-//
-//    public void setPost(Post post) {
-//        this.commentPost = post;
-//    }
-
     private String id;
     private User commenter;
-//    private Post commentPost;
-//    private String commentee;
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    private String owner;
     private String commentTime;
     private String commentContent;
     private String postId;
@@ -89,7 +88,7 @@ public class Comment {
     public String toString() {
         return "Comment{" +
                 "id='" + id + '\'' +
-                ", commenter=" + commenter +
+                ", ownerId='" + owner + '\'' +
 //                ", commentPost=" + commentPost +
 //                ", commentee='" + commentee + '\'' +
                 ", commentTime='" + commentTime + '\'' +

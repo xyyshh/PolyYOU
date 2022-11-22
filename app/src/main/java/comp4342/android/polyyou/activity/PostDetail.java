@@ -11,13 +11,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import comp4342.android.polyyou.R;
 import comp4342.android.polyyou.adapter.CommentViewAdapter;
 import comp4342.android.polyyou.adapter.PostDetailedAdapter;
 import comp4342.android.polyyou.adapter.PostViewAdapter;
+import comp4342.android.polyyou.biz.CommentBiz;
 import comp4342.android.polyyou.biz.PostBiz;
 import comp4342.android.polyyou.model.Comment;
 import comp4342.android.polyyou.model.CurrentUser;
@@ -38,26 +41,40 @@ public class PostDetail extends BaseActivity {
     private EditText comment_input;
     private Button btn_sendComment;
     private PostBiz postBiz = new PostBiz();
+    private CommentBiz commentBiz = new CommentBiz();
     private ArrayList<Comment> commentArrayList = new ArrayList<Comment>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_detail);
-        int id = getIntent().getIntExtra("id", 1);
+        String id = String.valueOf(getIntent().getIntExtra("id", 1));
+        Log.i("PostDetail", id);
 //        HtmlRender.render("http://47.94.134.55:8080/answer/" + id + ".html", this);
 //        answerService.getAnswer(id);
 //        answerService.setAnswerCallback(this);
 
-        post = new Post();
-        getPostById(String.valueOf(id));
+        postBiz.loadPostByPostId(id, new CommonCallBack<Data>() {
+            @Override
+            public void onError(Exception e) {
+                Log.e("get_post_by_pid", "get post error");
+            }
+
+            @Override
+            public void onSuccess(Data response) {
+                ArrayList<Post> postArrayList= response.toArrayListPost();
+                post = postArrayList.get(0);
+                Log.i("PostDetail_getPostByPid", post.toString());
+            }
+        });
+        getCommentsByPostId(id);
 
         initLayout();
         initEvent();
     }
 
-    public void getPostById(String id) {
-        postBiz.loadComment(String.valueOf(id), new CommonCallBack<Data>() {
+    public void getCommentsByPostId(String id){
+        commentBiz.loadCommentsByPid(id, new CommonCallBack<Data>() {
             @Override
             public void onError(Exception e) {
                 Log.e("get_comments", "get comments error");
@@ -78,10 +95,10 @@ public class PostDetail extends BaseActivity {
     }
 
     public void initView() {
-        mPostAdapter = new PostDetailedAdapter(this, post);
+        mPostAdapter = new PostDetailedAdapter(PostDetail.this, post);
         //设置适配器adapter
         mpostView.setAdapter(mPostAdapter);
-        mpostView.setLayoutManager(new LinearLayoutManager(this,
+        mpostView.setLayoutManager(new LinearLayoutManager(PostDetail.this,
                 LinearLayoutManager.VERTICAL,false));
 
         if(commentArrayList==null){
@@ -101,6 +118,7 @@ public class PostDetail extends BaseActivity {
         btn_sendComment = findViewById(R.id.button_comment_submit);
         comment_input = findViewById(R.id.comment_input_box);
     }
+
     private void initEvent() {
         T.init(PostDetail.this);
         btn_back.setOnClickListener(new View.OnClickListener(){
@@ -118,24 +136,36 @@ public class PostDetail extends BaseActivity {
             public void onClick(View view) {
                 String comment_content = comment_input.getText().toString();
                 Comment comment = new Comment(CurrentUser.getUser(), comment_content);
+                comment.setOwner(CurrentUser.getUser().getId());
+                comment.setPostId(String.valueOf(post.getId()));
+                comment.setCommentTime(dateToStamp(System.currentTimeMillis()));
                 startLoadingProgress();
-                postBiz.addComment(post, comment, new CommonCallBack<Post>(){
+                commentBiz.addComment(comment, new CommonCallBack<Data>(){
                     @Override
                     public void onError(Exception e) {
                         stopLoadingProgress();
-                        Log.d("add comment", e.getMessage());
+                        Log.e("PostDetail", e.getMessage());
                     }
 
                     @Override
-                    public void onSuccess(Post response) {
+                    public void onSuccess(Data response) {
                         stopLoadingProgress();
-                        Log.d("add comment", response.toString());
+                        Log.d("PostDetail", response.toArrayListComment().get(0).toString());
                     }
                 });
             }
         });
     }
-    private void initData(){
 
+    protected String dateToStamp(long s) {
+        String res;
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = new Date(s);
+            res = simpleDateFormat.format(date);
+        } catch (Exception e) {
+            return "";
+        }
+        return res;
     }
 }

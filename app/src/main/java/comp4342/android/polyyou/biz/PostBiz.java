@@ -37,7 +37,17 @@ public class PostBiz {
                 .execute(commonCallBack);
     }
 
-    public void loadPostByUserId(CommonCallBack<Data> commonCallBack){
+    public void loadPostByPostId(String id, CommonCallBack<Data> commonCallBack){
+        OkHttpUtils
+                .get()
+                .url(Config.baseUrl + "posts/list-by-post-id")
+                .tag(this)
+                .addParams("pid", id)
+                .build()
+                .execute(commonCallBack);
+    }
+
+    public void loadPostByUserId(String id, CommonCallBack<Data> commonCallBack){
         OkHttpUtils
                 .post()
                 .url(Config.baseUrl + "post")
@@ -58,28 +68,6 @@ public class PostBiz {
                 .addParams("postTitle", post.getPostTitle())
                 .addParams("postContent", post.postContent)
                 .addFile("image", file.getName(), file)
-                .build()
-                .execute(commonCallBack);
-    }
-    public void addComment(Post post, Comment comment, CommonCallBack<Post> commonCallBack){
-        OkHttpUtils
-                .post()
-                .url(Config.baseUrl + "comment")
-                .tag(this)
-                .addParams("postId", String.valueOf(post.getId()))
-                .addParams("commentAuthor", comment.getCommenter().getName())
-                .addParams("commentTime", comment.getCommentTime())
-                .addParams("commentContent", comment.getCommentContent())
-                .build()
-                .execute(commonCallBack);
-    }
-
-    public void loadComment(String postId, CommonCallBack<Data> commonCallBack){
-        OkHttpUtils
-                .get()
-                .url(Config.baseUrl + "comments/list")
-                .tag(this)
-                .addParams("postId", String.valueOf(postId))
                 .build()
                 .execute(commonCallBack);
     }
