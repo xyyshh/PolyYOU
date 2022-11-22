@@ -15,14 +15,11 @@ public class Post{
     public String postTitle;
     public User author;
     public String postContent;
-//    public String m_strProfilePhotoAddress;
     public String attachedPhoto;
     public String time;
-//    public ArrayList<Comment> comments;
     public String tag_name;
     public String tag_id;
     public String id;
-
     private int m_commentNum;
 
 
