@@ -71,7 +71,6 @@ public class Post{
     public String getProfilePhotoAddress(){return author.getHeadImage(); }
     public String getPhotoAddress(){return attachedPhoto; }
 
-    public ArrayList<Comment> getComments(){return comments;}
     public String getId(){return id;}
     public User getAuthor() { return this.author; }
     public void setCommentNumber(int num){this.m_commentNum = num;}
