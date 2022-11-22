@@ -77,6 +77,7 @@ public class Login extends BaseActivity {
                                         @Override
                                         public void onError(Exception e) {
                                                 stopLoadingProgress();
+                                                T.showToast(e.getMessage());
                                                 Log.d("login activity", e.getMessage());
                                         }
 

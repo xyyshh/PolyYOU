@@ -54,12 +54,14 @@ public class Signup extends BaseActivity {
                         @Override
                         public void onError(Exception e) {
                             stopLoadingProgress();
+                            T.showToast(e.getMessage());
                             Log.d("sign up activity", e.getMessage());
                         }
 
                         @Override
                         public void onSuccess(Data response) {
                             stopLoadingProgress();
+                            T.showToast("Register accept!");
                             Log.d("sentVerificationCode", "success");
                         }
                     });
@@ -108,6 +110,7 @@ public class Signup extends BaseActivity {
                     @Override
                     public void onError(Exception e) {
                         stopLoadingProgress();
+
                         Log.d("login activity", e.getMessage());
                     }
 

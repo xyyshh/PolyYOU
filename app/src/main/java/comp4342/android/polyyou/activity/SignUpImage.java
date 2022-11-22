@@ -58,7 +58,8 @@ public class SignUpImage extends BaseActivity {
                     toHome();
                 } else {
                     startLoadingProgress();
-                    userBiz.updateProfileImage(CurrentUser.getUser().getEmail(), uriToFileApiQ(imageUri, SignUpImage.this), new CommonCallBack<User>() {
+                    File file = uriToFileApiQ(imageUri, SignUpImage.this);
+                    userBiz.updateProfileImage(CurrentUser.getUser().getEmail(), file, new CommonCallBack<User>() {
                         @Override
                         public void onError(Exception e) {
                             stopLoadingProgress();
@@ -69,6 +70,7 @@ public class SignUpImage extends BaseActivity {
                         @Override
                         public void onSuccess(User response) {
                             stopLoadingProgress();
+                            CurrentUser.getUser().setHeadImage(response.getHeadImage());
                             Log.d("add profile image", "success");
                             toHome();
                         }

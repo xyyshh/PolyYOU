@@ -50,9 +50,6 @@ public class PostDetail extends BaseActivity {
         setContentView(R.layout.activity_post_detail);
         String id = String.valueOf(getIntent().getIntExtra("id", 1));
         Log.i("PostDetail", id);
-//        HtmlRender.render("http://47.94.134.55:8080/answer/" + id + ".html", this);
-//        answerService.getAnswer(id);
-//        answerService.setAnswerCallback(this);
 
         postBiz.loadPostByPostId(id, new CommonCallBack<Data>() {
             @Override
@@ -84,7 +81,6 @@ public class PostDetail extends BaseActivity {
             @Override
             public void onSuccess(Data response) {
                 commentArrayList = response.toArrayListComment();
-//                }
                 initView();
             }
         });
