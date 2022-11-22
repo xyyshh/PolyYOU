@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,11 +42,9 @@ public class PostDetailedAdapter extends RecyclerView.Adapter<PostDetailedAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-//        Glide.with(context)
-//                .load(post.author.getHeadImage())
-//                .placeholder(R.drawable.user_profile_photo)
-//                .error(R.drawable.user_profile_photo)
-//                .into(viewHolder.avatar);
+        Glide.with(context)
+                .load(post.author.getHeadImage())
+                .into(viewHolder.imageView);
         viewHolder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, PostDetail.class);
             intent.putExtra("id", post.id);
@@ -75,6 +74,9 @@ public class PostDetailedAdapter extends RecyclerView.Adapter<PostDetailedAdapte
 
         @BindView(R.id.post_content)
         TextView content;
+
+        @BindView(R.id.image)
+        ImageView imageView;
 
 //        @BindView(R.id.comment_number)
 //        TextView comment_number;
